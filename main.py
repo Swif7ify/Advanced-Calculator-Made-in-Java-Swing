@@ -1,3 +1,4 @@
+
 name = "Earl"
 first_name = "Earl Romeo"
 last_name = "Ordovez"
@@ -6,6 +7,13 @@ print(type(name))
 
 for char in first_name:
     print(char)
+
+=======
+# name = "Earl"
+# first_name = "Earl Romeo"
+# last_name = "Ordovez"
+# print("Hello " + name)
+# print(type(name))
 
 #
 # print("Hello " + first_name + " " + last_name)
