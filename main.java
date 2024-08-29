@@ -12,8 +12,8 @@ public class main{
         //di ko pa alam kung pano eh
         double sqroot = Math.sqrt(expression);//square root
         double cbroot = Math.cbrt(expression);//cube root
-        int numCeil = Math.ceil(expression);
-        int numFloor = Math.floor(expression);
+        double numCeil = Math.ceil(expression);
+        double numFloor = Math.floor(expression);
         int numRound = Math.round(expression);
     }
 
@@ -56,9 +56,79 @@ public class main{
             double imagiNum = Math.sqrt(-discri) / (2*a);
             //output output
         }
-    
+    }
 
+    //factorial
+    public static int factorialFunc(int inputNum){
+        int factProd = 1;
 
+        for(int i = 1; i <= inputNum; i++){
+            factProd *= i; 
+        }
+        
+        return factProd;
+    }
+
+    public static int capitalSigma(int InitialNum, int LastNum){
+        int totalSum = 0; 
+
+        for(int i = InitialNum; i <= LastNum; i++){
+            int valueOrExpression = i;
+            totalSum += valueOrExpression; 
+            //or depende pa yung equation nilagay nila dito, kayo decide
+        }
+        return totalSum;
+    }
+
+    //the same lang sa summation sa taas, pero multiply
+    public static int capitalPi(int InitialNum, int LastNum){
+        int totalProd = 1; 
+
+        for(int i = InitialNum; i <= LastNum; i++){
+            int valueOrExpression = i;
+            totalProd *= valueOrExpression; 
+            //or depende pa yung equation nilagay nila dito, kayo decide
+        }
+        return totalProd;
+    }
+
+    // double summation naman na to
+    public static int doubleSummation(int lastNum1, int lastNum2) {
+        int totalSum = 0;
+        
+        for (int i = 1; i <= lastNum1; i++) {
+            for (int j = 1; j <= lastNum2; j++) {
+                totalSum += (i + j); 
+            }
+        }   
+        return totalSum;
+    }
+
+    public static int doubleProduct(int lastNum1, int lastNum2) {
+        int totalProd = 0;
+        
+        for (int i = 1; i <= lastNum1; i++) {
+            for (int j = 1; j <= lastNum2; j++) {
+                totalProd += (i * j); 
+            }
+        }
+        return totalProd;
+    }
+
+    public static int factorialSum(int a, int b){
+        int num1 = factorialFunc(a);
+        int num2 = factorialFunc(b);
+
+        int totalSum = num1 + num2;
+        return totalSum;
+    }
+
+    public static itn factorialQuo(int a, int b){
+        int num1 = factorialFunc(a);
+        int num2 = factorialFunc(b);
+
+        int totalQuo = num1 / num2;
+        return totalQuo;
     }
 }
 
