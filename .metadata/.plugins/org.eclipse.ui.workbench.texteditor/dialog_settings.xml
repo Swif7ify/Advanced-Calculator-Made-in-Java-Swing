@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="factorial"/>
+		<item key="wrap" value="false"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="factorial"/>
+			<item value="getLabel()"/>
+			<item value="*"/>
+			<item value="times"/>
+			<item value="mutiply"/>
+			<item value="plus_button"/>
+			<item value="one_button"/>
+			<item value="modulus"/>
+			<item value="+/-"/>
+			<item value="panel.add(one_button)"/>
+			<item value="panel.add(one_button"/>
+			<item value="equal"/>
+			<item value="equalbutton"/>
+			<item value="="/>
+			<item value="equals"/>
+		</list>
+		<list key="replacehistory">
+			<item value="getText()"/>
+			<item value="RoundedButton"/>
+			<item value="54"/>
+			<item value="94"/>
+			<item value="66"/>
+			<item value="79"/>
+			<item value=".setBounds(360, 308, 55, 52);"/>
+			<item value="155"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1160"/>
+		<item key="DIALOG_Y_ORIGIN" value="312"/>
+		<item key="DIALOG_WIDTH" value="414"/>
+		<item key="DIALOG_HEIGHT" value="454"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>
