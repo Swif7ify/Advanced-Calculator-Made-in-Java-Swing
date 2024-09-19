@@ -47,6 +47,8 @@ public class BSIT2A extends JFrame {
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result;
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int start, end, constant, sum, jstart, jend, equation;
+    int a = 1, b = 1;
+    boolean reset = false;
 	/**
 	 * Create the frame.
 	 */
@@ -74,7 +76,7 @@ public class BSIT2A extends JFrame {
 		panel_1.setLayout(null);
 		
 		RoundJTextField calc = new RoundJTextField(10);
-		calc.setSize(200, 58);
+		calc.setSize(135, 33);
 		calc.setLocation(10, 10);
 		panel_1.add(calc);
 		calc.setColumns(10);
@@ -90,9 +92,11 @@ public class BSIT2A extends JFrame {
 		numwrapper.setColumns(10);
 		
 		RoundJTextField holder = new RoundJTextField(10);
+		holder.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
+		holder.setHorizontalAlignment(SwingConstants.LEFT);
 		holder.setBackground(new Color(255, 255, 255));
 		holder.setEditable(false);
-		holder.setBounds(37, 2, 634, 30);
+		holder.setBounds(37, 2, 210, 41);
 		panel_1.add(holder);
 		holder.setColumns(10);
 		
@@ -117,11 +121,6 @@ public class BSIT2A extends JFrame {
 					calc.setText("0");
 				}
 				
-				if (hold.length() > 1) {
-					holder.setText(hold.substring(0, hold.length() - 1));
-				} else {
-					holder.setText(""); 
-				}
 				if(valueIndex == 1) {
 					valueIndex = 1;
 				} else {
@@ -132,6 +131,14 @@ public class BSIT2A extends JFrame {
 				} else {
 					zeroCount --;
 				}
+				
+				if (zeroCount == 0) {
+					holder.setText("");
+				} else {
+					holder.setText(hold.substring(0, hold.length() - 1));
+				}
+				
+				reset = false;
 			}
 		});
 		
@@ -164,6 +171,7 @@ public class BSIT2A extends JFrame {
 			    B = null;
 			    C = null;
 			    D = null;
+			    reset = false;
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -179,6 +187,7 @@ public class BSIT2A extends JFrame {
 					 firstDoubleValue = Double.parseDouble(calc.getText());
 					 calc.setText(" -" + firstDoubleValue);
 					 numwrapper.setText(calc.getText());
+					 holder.setText("+/-" + firstDoubleValue);
 				 }
 			}
 		});
@@ -275,9 +284,19 @@ public class BSIT2A extends JFrame {
 		seven_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		seven_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + seven_button.getText()) : calc.getText() + seven_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + seven_button.getText()) : calc.getText() + seven_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + seven_button.getText()) : calc.getText() + seven_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
+					zeroCount++;
+				}
 			}
 		});
 		seven_button.setForeground(new Color(255, 255, 255));
@@ -289,9 +308,19 @@ public class BSIT2A extends JFrame {
 		eight_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		eight_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + eight_button.getText()) : calc.getText() + eight_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + eight_button.getText()) : calc.getText() + eight_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + eight_button.getText()) : calc.getText() + eight_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
+					zeroCount++;
+				}
 			}
 		});
 		eight_button.setForeground(new Color(255, 255, 255));
@@ -303,9 +332,19 @@ public class BSIT2A extends JFrame {
 		nine_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		nine_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + nine_button.getText()) : calc.getText() + nine_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + nine_button.getText()) : calc.getText() + nine_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + nine_button.getText()) : calc.getText() + nine_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		nine_button.setForeground(new Color(255, 255, 255));
@@ -400,9 +439,19 @@ public class BSIT2A extends JFrame {
 		four_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		four_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + four_button.getText()) : calc.getText() + four_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + four_button.getText()) : numwrapper.getText() + four_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + four_button.getText()) : calc.getText() + four_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + four_button.getText()) : numwrapper.getText() + four_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + four_button.getText()) : calc.getText() + four_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + four_button.getText()) : numwrapper.getText() + four_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		four_button.setForeground(new Color(255, 255, 255));
@@ -414,9 +463,19 @@ public class BSIT2A extends JFrame {
 		five_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		five_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + five_button.getText()) : calc.getText() + five_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + five_button.getText()) : numwrapper.getText() + five_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + five_button.getText()) : calc.getText() + five_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + five_button.getText()) : numwrapper.getText() + five_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + five_button.getText()) : calc.getText() + five_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + five_button.getText()) : numwrapper.getText() + five_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		five_button.setForeground(new Color(255, 255, 255));
@@ -428,9 +487,19 @@ public class BSIT2A extends JFrame {
 		six_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		six_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + six_button.getText()) : calc.getText() + six_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + six_button.getText()) : numwrapper.getText() + six_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + six_button.getText()) : calc.getText() + six_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + six_button.getText()) : numwrapper.getText() + six_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + six_button.getText()) : calc.getText() + six_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + six_button.getText()) : numwrapper.getText() + six_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		six_button.setForeground(new Color(255, 255, 255));
@@ -523,9 +592,19 @@ public class BSIT2A extends JFrame {
 		one_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		one_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + one_button.getText()) : calc.getText() + one_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + one_button.getText()) : numwrapper.getText() + one_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + one_button.getText()) : calc.getText() + one_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + one_button.getText()) : numwrapper.getText() + one_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + one_button.getText()) : calc.getText() + one_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + one_button.getText()) : numwrapper.getText() + one_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		one_button.setForeground(new Color(255, 255, 255));
@@ -537,9 +616,19 @@ public class BSIT2A extends JFrame {
 		two_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		two_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + two_button.getText()) : calc.getText() + two_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + two_button.getText()) : numwrapper.getText() + two_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + two_button.getText()) : calc.getText() + two_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + two_button.getText()) : numwrapper.getText() + two_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + two_button.getText()) : calc.getText() + two_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + two_button.getText()) : numwrapper.getText() + two_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		two_button.setForeground(new Color(255, 255, 255));
@@ -551,9 +640,19 @@ public class BSIT2A extends JFrame {
 		three_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		three_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(zeroCount == 0 ? (" " + three_button.getText()) : calc.getText() + three_button.getText());
-				numwrapper.setText(zeroCount == 0 ? (" " + three_button.getText()) : numwrapper.getText() + three_button.getText());
-		        zeroCount++;
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					calc.setText(zeroCount == 0 ? (" " + three_button.getText()) : calc.getText() + three_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + three_button.getText()) : numwrapper.getText() + three_button.getText());
+			        zeroCount++;
+					
+				} else {
+					calc.setText(zeroCount == 0 ? (" " + three_button.getText()) : calc.getText() + three_button.getText());
+					numwrapper.setText(zeroCount == 0 ? (" " + three_button.getText()) : numwrapper.getText() + three_button.getText());
+			        zeroCount++;
+				}
 			}
 		});
 		three_button.setForeground(new Color(255, 255, 255));
@@ -655,9 +754,20 @@ public class BSIT2A extends JFrame {
 		zero_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		zero_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(zeroCount !=0) {
-					  calc.setText(calc.getText() + zero_button.getText());
-					  numwrapper.setText(numwrapper.getText() + "0");
+				if(reset) {
+					numwrapper.setText("");
+					calc.setText("");
+					reset = false;
+					if(zeroCount !=0) {
+						  calc.setText(calc.getText() + zero_button.getText());
+						  numwrapper.setText(numwrapper.getText() + "0");
+					}
+					
+				} else {
+					if(zeroCount !=0) {
+						  calc.setText(calc.getText() + zero_button.getText());
+						  numwrapper.setText(numwrapper.getText() + "0");
+					}
 				}
 			}
 		});
@@ -800,6 +910,42 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText(calc.getText());
 					break;
 					
+				case "a! + b!":
+					firstDoubleValue = Double.parseDouble(firstValue);
+					secondDoubleValue = Double.parseDouble(secondValue);
+					if(firstDoubleValue == 0 && secondDoubleValue == 0 || firstDoubleValue == 1 && secondDoubleValue == 1) {
+						Answer = 1;
+					} else {
+						for (int i = 2; i <= firstDoubleValue; i++) {
+							a *= i; 
+						}
+						for (int i = 2; i <= secondDoubleValue; i++) {
+							b *= i; 
+						}
+						Answer = a + b;
+						calc.setText(" " + Answer);
+						numwrapper.setText(calc.getText());
+					}
+					break;
+					
+				case "a! / b!":
+					firstDoubleValue = Double.parseDouble(firstValue);
+					secondDoubleValue = Double.parseDouble(secondValue);
+					if(firstDoubleValue == 0 && secondDoubleValue == 0 || firstDoubleValue == 1 && secondDoubleValue == 1) {
+						Answer = 1;
+					} else {
+						for (int i = 2; i <= firstDoubleValue; i++) {
+							a *= i; 
+						}
+						for (int i = 2; i <= secondDoubleValue; i++) {
+							b *= i; 
+						}
+						Answer = a / b;
+						calc.setText(" " + Answer);
+						numwrapper.setText(calc.getText());
+					}
+					break;
+					
 				case "log(2)(":
 					firstValue = calc.getText();
 					firstDoubleValue = Double.parseDouble(firstValue);
@@ -809,6 +955,11 @@ public class BSIT2A extends JFrame {
 					break;
 					
 				case "log(":
+					firstValue = calc.getText();
+					firstDoubleValue = Double.parseDouble(firstValue);
+					Answer = Math.log(firstDoubleValue);
+					calc.setText(" " + Answer);
+					numwrapper.setText(calc.getText());
 					break;
 				}
 					
@@ -853,12 +1004,10 @@ public class BSIT2A extends JFrame {
 						numwrapper.setText(calc.getText());
 					} 
 		            
-
+					reset = true;
 					firstValue = null;
 					decimalCount = 0;
-				
-					
-				result = Answer;
+					result = Answer;
 			}
 		});
 		equals_button.setForeground(new Color(255, 255, 255));
@@ -936,7 +1085,11 @@ public class BSIT2A extends JFrame {
 		logX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/logx.png")));
 		logX_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "log(x)");
+				numwrapper.setText(zeroCount == 0 ?(" " + "log(") : numwrapper.getText() + "log(");
+				zeroCount++;
+				operator = "log(";
+				decimalCount = 0;
+				valueIndex = 1;
 			}
 		});
 		logX_button.setForeground(new Color(255, 255, 255));
@@ -1047,7 +1200,16 @@ public class BSIT2A extends JFrame {
 		aFACTplusbFACT_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		aFACTplusbFACT_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "a! + b!");
+				if (firstValue == null) {
+	                firstValue = calc.getText();
+	                
+	            } else {                
+	                secondValue = calc.getText();                
+	            }
+				calc.setText(" ");
+				numwrapper.setText(zeroCount == 0 ?(" " + "!") : numwrapper.getText() + "!");
+				zeroCount++;
+				operator = "a! + b!";
 			}
 		});
 		aFACTplusbFACT_button.setForeground(new Color(255, 255, 255));
@@ -1059,7 +1221,16 @@ public class BSIT2A extends JFrame {
 		aFACTdividebFACT_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		aFACTdividebFACT_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "a! / b!");
+				if (firstValue == null) {
+	                firstValue = calc.getText();
+	                
+	            } else {                
+	                secondValue = calc.getText();                
+	            }
+				calc.setText(" ");
+				numwrapper.setText(zeroCount == 0 ?(" " + "!") : numwrapper.getText() + "!");
+				zeroCount++;
+				operator = "a! / b!";
 			}
 		});
 		aFACTdividebFACT_button.setForeground(new Color(255, 255, 255));
