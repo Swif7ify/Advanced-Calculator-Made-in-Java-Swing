@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="cbrt"/>
+		<item key="selection" value="summation"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="false"/>
-		<item key="wholeword" value="true"/>
+		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="summation"/>
+			<item value="getclass "/>
+			<item value="getclass"/>
 			<item value="cbrt"/>
 			<item value="AC"/>
 			<item value="N!"/>
@@ -20,9 +23,6 @@
 			<item value="getLabel()"/>
 			<item value="*"/>
 			<item value="times"/>
-			<item value="mutiply"/>
-			<item value="plus_button"/>
-			<item value="one_button"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ceiledValue"/>
