@@ -49,6 +49,7 @@ public class BSIT2A extends JFrame {
     int a = 1, b = 1;
     boolean reset = false, isMinus = false;
     private ArrayList<Integer> numbers = new ArrayList<>();
+    private ArrayList<String> operators = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -178,6 +179,7 @@ public class BSIT2A extends JFrame {
 			    reset = false;
 			    isMinus = false;
 			    numbers.clear();
+			    operators.clear();
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -219,6 +221,7 @@ public class BSIT2A extends JFrame {
 				operator = plus_button.getText();
 	            decimalCount = 0;
 				numbers.add(Integer.parseInt(calc.getText()));
+				operators.add(plus_button.getText());
 				calc.setText("");
 			}
 		});
@@ -370,6 +373,7 @@ public class BSIT2A extends JFrame {
 				operator = minus_button.getText();
 	            decimalCount = 0;
 				numbers.add(Integer.parseInt(calc.getText()));
+				operators.add(minus_button.getText());
 				calc.setText("");
 			}
 			
@@ -521,6 +525,7 @@ public class BSIT2A extends JFrame {
 				 operator = multiplication_button.getText();
 				 decimalCount = 0;
 				 numbers.add(Integer.parseInt(calc.getText()));
+				 operators.add(multiplication_button.getText());
 				 calc.setText("");
 			}
 		});
@@ -670,6 +675,7 @@ public class BSIT2A extends JFrame {
 				operator = division_button.getText();
 				decimalCount = 0;
 				numbers.add(Integer.parseInt(calc.getText()));
+				operators.add(division_button.getText());
 				calc.setText("");
 			}
 		});
@@ -912,7 +918,7 @@ public class BSIT2A extends JFrame {
 					if (!calc.getText().isEmpty()) {
 						numbers.add((int) Double.parseDouble(calc.getText()));
 					}
-					Answer = Functions.calculateResult(numbers, operator);
+					Answer = Functions.calculateResult(numbers, operators);
 					
 					calc.setText("" + Answer);   
 					numwrapper.setText(calc.getText());
