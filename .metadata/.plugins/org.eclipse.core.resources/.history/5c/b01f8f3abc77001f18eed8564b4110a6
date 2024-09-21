@@ -1,0 +1,15 @@
+package calculator;
+
+public class Functions {
+	public static int factorial(double firstDoubleValue, double answer) {
+		if(firstDoubleValue == 0 || firstDoubleValue == 1) {
+			answer = 1;
+		} else {
+			answer = 1;
+			for (int i = 2; i <= firstDoubleValue; i++) {
+				answer *= i; 
+			}
+		}
+		return (int) answer;
+	}
+}

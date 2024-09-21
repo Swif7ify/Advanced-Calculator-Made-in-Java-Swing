@@ -1,17 +1,17 @@
 package calculator;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 
@@ -19,8 +19,6 @@ public class BSIT2A extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	@SuppressWarnings("unused")
-	private JTextField numwrapper;
 
 	/**
 	  Launch the application.
@@ -32,9 +30,9 @@ public class BSIT2A extends JFrame {
 				try {
 					BSIT2A frame = new BSIT2A();
 					frame.setTitle("Advance Calculator");
-					ImageIcon icon = new ImageIcon(getClass().getResource("/Picture/teamba.png"));
-					Image image = icon.getImage();
-					frame.setIconImage(image);
+					Image image = ImageIO.read(new File(getClass().getResource("/Picture/teamba.png").toURI()));
+					Image scaledImage = image.getScaledInstance(256, 256, Image.SCALE_SMOOTH);
+					frame.setIconImage(scaledImage);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,11 +42,11 @@ public class BSIT2A extends JFrame {
 	}
 
 	String firstValue, secondValue, thirdValue, fourthValue, operator, A, B, C, D;;
-    double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result;
+    double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result, ANS;
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
-    boolean reset = false;
+    boolean reset = false, isMinus = false;
 	/**
 	 * Create the frame.
 	 */
@@ -76,8 +74,8 @@ public class BSIT2A extends JFrame {
 		panel_1.setLayout(null);
 		
 		RoundJTextField calc = new RoundJTextField(10);
-		calc.setSize(135, 33);
-		calc.setLocation(10, 10);
+//		calc.setSize(135, 33);
+//		calc.setLocation(10, 10);
 		panel_1.add(calc);
 		calc.setColumns(10);
 		
@@ -104,9 +102,8 @@ public class BSIT2A extends JFrame {
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		DEL_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String currentText = numwrapper.getText();
-				String hold = holder.getText();
 				String currentEq = calc.getText();
+				String currentText = numwrapper.getText();
 				if (currentText.equals("0") || currentEq.equals("0")) {
 					return;
 				} else if(currentText.length() == 2 || currentEq.length() == 2) {
@@ -135,10 +132,11 @@ public class BSIT2A extends JFrame {
 				if (zeroCount == 0) {
 					holder.setText("");
 				} else {
-					holder.setText(hold.substring(0, hold.length() - 1));
+					return;
 				}
 				
 				reset = false;
+				isMinus = false;
 			}
 		});
 		
@@ -172,6 +170,7 @@ public class BSIT2A extends JFrame {
 			    C = null;
 			    D = null;
 			    reset = false;
+			    isMinus = false;
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -183,11 +182,20 @@ public class BSIT2A extends JFrame {
 		plus_minusbutton.setFont(new Font("Tahoma", Font.BOLD, 15));
 		plus_minusbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 if (zeroCount != 0 & Double.parseDouble(calc.getText()) > 0) {
+				 if (zeroCount != 0) {
 					 firstDoubleValue = Double.parseDouble(calc.getText());
-					 calc.setText(" -" + firstDoubleValue);
-					 numwrapper.setText(calc.getText());
-					 holder.setText("+/-" + firstDoubleValue);
+					 String currentText = calc.getText();
+					 if (isMinus) {
+						 currentText = currentText.substring(1);
+						 calc.setText(currentText);
+						 numwrapper.setText(currentText);
+						 isMinus = false;
+					 } else {
+						 calc.setText("-" + currentText);
+						 numwrapper.setText(calc.getText());
+						 holder.setText("+/-" + firstDoubleValue);
+						 isMinus = true;
+					 }
 				 }
 			}
 		});
@@ -206,7 +214,7 @@ public class BSIT2A extends JFrame {
 	            } else {                
 	                secondValue = calc.getText();                
 	            }
-				calc.setText(" ");
+				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "+");
 	            operator = plus_button.getText();
 	            decimalCount = 0;
@@ -288,13 +296,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + seven_button.getText()) : calc.getText() + seven_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + seven_button.getText()) : calc.getText() + seven_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + seven_button.getText()) : calc.getText() + seven_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + seven_button.getText()) : calc.getText() + seven_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
 					zeroCount++;
 				}
 			}
@@ -312,13 +320,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + eight_button.getText()) : calc.getText() + eight_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + eight_button.getText()) : calc.getText() + eight_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + eight_button.getText()) : calc.getText() + eight_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + eight_button.getText()) : calc.getText() + eight_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
 					zeroCount++;
 				}
 			}
@@ -336,13 +344,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + nine_button.getText()) : calc.getText() + nine_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + nine_button.getText()) : calc.getText() + nine_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + nine_button.getText()) : calc.getText() + nine_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + nine_button.getText()) : calc.getText() + nine_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -361,7 +369,7 @@ public class BSIT2A extends JFrame {
 	            } else {
 	                secondValue = calc.getText();                
 	            }
-				calc.setText(" ");
+				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "-");
 	            operator = minus_button.getText();
 	            decimalCount = 0;
@@ -383,7 +391,7 @@ public class BSIT2A extends JFrame {
 		            secondValue = calc.getText();
 		        }
 
-		        calc.setText(" ");
+		        calc.setText("");
 		        numwrapper.setText(numwrapper.getText() + "//");
 		        operator = integerdivision_button.getText();
 		        decimalCount = 0;
@@ -404,7 +412,7 @@ public class BSIT2A extends JFrame {
 					secondValue = calc.getText();    
 				}      
 				
-				calc.setText(" ");
+				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "%");
 				operator = modulus.getText();
 				decimalCount = 0;
@@ -424,7 +432,7 @@ public class BSIT2A extends JFrame {
 	            } else {
 	                secondValue = calc.getText();                
 	            }
-				calc.setText(" ");
+				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "!");
 	            operator = factorial_button.getText();
 	            decimalCount = 0;
@@ -443,13 +451,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + four_button.getText()) : calc.getText() + four_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + four_button.getText()) : numwrapper.getText() + four_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + four_button.getText()) : calc.getText() + four_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + four_button.getText()) : numwrapper.getText() + four_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + four_button.getText()) : calc.getText() + four_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + four_button.getText()) : numwrapper.getText() + four_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + four_button.getText()) : calc.getText() + four_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + four_button.getText()) : numwrapper.getText() + four_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -467,13 +475,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + five_button.getText()) : calc.getText() + five_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + five_button.getText()) : numwrapper.getText() + five_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + five_button.getText()) : calc.getText() + five_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + five_button.getText()) : numwrapper.getText() + five_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + five_button.getText()) : calc.getText() + five_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + five_button.getText()) : numwrapper.getText() + five_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + five_button.getText()) : calc.getText() + five_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + five_button.getText()) : numwrapper.getText() + five_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -491,13 +499,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + six_button.getText()) : calc.getText() + six_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + six_button.getText()) : numwrapper.getText() + six_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + six_button.getText()) : calc.getText() + six_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + six_button.getText()) : numwrapper.getText() + six_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + six_button.getText()) : calc.getText() + six_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + six_button.getText()) : numwrapper.getText() + six_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + six_button.getText()) : calc.getText() + six_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + six_button.getText()) : numwrapper.getText() + six_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -516,7 +524,7 @@ public class BSIT2A extends JFrame {
 		            } else {
 		                secondValue = calc.getText();                
 		            }
-				 calc.setText(" ");
+				 calc.setText("");
 				 numwrapper.setText(numwrapper.getText() + "×");
 				 operator = multiplication_button.getText();
 				 decimalCount = 0;
@@ -575,8 +583,8 @@ public class BSIT2A extends JFrame {
 		summation_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		summation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ?(" " + "∑") : numwrapper.getText() + "∑");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ?("" + "∑") : numwrapper.getText() + "∑");
 				zeroCount++;
 				operator = "∑";
 				decimalCount = 0;
@@ -596,13 +604,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + one_button.getText()) : calc.getText() + one_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + one_button.getText()) : numwrapper.getText() + one_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + one_button.getText()) : calc.getText() + one_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + one_button.getText()) : numwrapper.getText() + one_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + one_button.getText()) : calc.getText() + one_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + one_button.getText()) : numwrapper.getText() + one_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + one_button.getText()) : calc.getText() + one_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + one_button.getText()) : numwrapper.getText() + one_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -620,13 +628,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + two_button.getText()) : calc.getText() + two_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + two_button.getText()) : numwrapper.getText() + two_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + two_button.getText()) : calc.getText() + two_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + two_button.getText()) : numwrapper.getText() + two_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + two_button.getText()) : calc.getText() + two_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + two_button.getText()) : numwrapper.getText() + two_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + two_button.getText()) : calc.getText() + two_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + two_button.getText()) : numwrapper.getText() + two_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -644,13 +652,13 @@ public class BSIT2A extends JFrame {
 					numwrapper.setText("");
 					calc.setText("");
 					reset = false;
-					calc.setText(zeroCount == 0 ? (" " + three_button.getText()) : calc.getText() + three_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + three_button.getText()) : numwrapper.getText() + three_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + three_button.getText()) : calc.getText() + three_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + three_button.getText()) : numwrapper.getText() + three_button.getText());
 			        zeroCount++;
 					
 				} else {
-					calc.setText(zeroCount == 0 ? (" " + three_button.getText()) : calc.getText() + three_button.getText());
-					numwrapper.setText(zeroCount == 0 ? (" " + three_button.getText()) : numwrapper.getText() + three_button.getText());
+					calc.setText(zeroCount == 0 ? ("" + three_button.getText()) : calc.getText() + three_button.getText());
+					numwrapper.setText(zeroCount == 0 ? ("" + three_button.getText()) : numwrapper.getText() + three_button.getText());
 			        zeroCount++;
 				}
 			}
@@ -674,7 +682,7 @@ public class BSIT2A extends JFrame {
 					Answer = firstDoubleValue / secondDoubleValue;
 					firstValue = "" + Answer;
 				}
-				calc.setText(" ");
+				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "÷");
 				operator = division_button.getText();
 				decimalCount = 0;
@@ -696,8 +704,8 @@ public class BSIT2A extends JFrame {
 	            } else {                
 	                secondValue = calc.getText();                
 	            }
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ? (" " + "x^y") : numwrapper.getText() + "x^y");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
 				zeroCount ++;
 	            operator = "x^y";
 	            decimalCount = 0;
@@ -716,12 +724,15 @@ public class BSIT2A extends JFrame {
 				if (firstValue == null) {
 	                firstValue = calc.getText();
 	                
-	            } else {                
+	            } else if(secondValue == null) {                
 	                secondValue = calc.getText(); 
-	                thirdValue = calc.getText();
+	                
+	            } else if(thirdValue == null) {
+	            	thirdValue = calc.getText();
 	            }
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ? (" " + "x^y^z") : numwrapper.getText() + "x^y^z");
+
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
 				zeroCount ++;
 	            operator = "x^y^z";
 	            decimalCount = 0;
@@ -737,8 +748,8 @@ public class BSIT2A extends JFrame {
 		productnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/prodnot.png")));
 		productnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ? (" " + "Π") : numwrapper.getText() + "Π");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ? ("" + "Π") : numwrapper.getText() + "Π");
 				zeroCount++;
 				operator = "Π";
 				decimalCount = 0;
@@ -800,26 +811,15 @@ public class BSIT2A extends JFrame {
 					firstValue = A;
 					secondValue = B;
 					thirdValue = C;
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					thirdDoubleValue = Double.parseDouble(thirdValue);
+					firstDoubleValue = Integer.parseInt(firstValue);
+					secondDoubleValue = Integer.parseInt(secondValue);
+					thirdDoubleValue = Integer.parseInt(thirdValue);
 					
-					start = (int)firstDoubleValue;
-					end = (int)secondDoubleValue;
-					constant = (int)thirdDoubleValue;
-					sum = 0;
-					if (constant == 0 || constant == 1) {
-						for (int n = start; n <= end; n++) {
-							sum += n;
-						}
-					} else {
-						for (int n = start; n <= end; n++) {
-							sum +=constant;
-		            	}
-					}
-	            	calc.setText(" " + sum);
+					int summation = (int) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+					calc.setText("" + summation);
 	            	numwrapper.setText(calc.getText());
-	            	break;
+	            	ANS = summation;
+					break;
 	            	
 				case "∑∑":
 					firstValue = A;
@@ -831,19 +831,10 @@ public class BSIT2A extends JFrame {
 					thirdDoubleValue = Double.parseDouble(thirdValue);
 					fourthDoubleValue = Double.parseDouble(fourthValue);
 					
-					start = (int)firstDoubleValue;
-					end = (int)secondDoubleValue;
-					jstart = (int)thirdDoubleValue;
-					jend = (int)fourthDoubleValue;
-					sum = 0;
-//					ATTENTION
-					for(int n = start; n <= end; n++) {
-						for(int j = jstart; j <= jend; j++) {
-							sum += (3*n*j);
-						}
-					}
-					calc.setText(" " + sum);
+					int doubleSummation = (int) Functions.doubleSummation(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+					calc.setText("" + doubleSummation);
 	            	numwrapper.setText(calc.getText());
+	            	ANS = doubleSummation;
 					break;
 	            	
 				case "Π":
@@ -854,21 +845,10 @@ public class BSIT2A extends JFrame {
 					secondDoubleValue = Double.parseDouble(secondValue);
 					thirdDoubleValue = Double.parseDouble(thirdValue);
 					
-					start = (int)firstDoubleValue;
-					end = (int)secondDoubleValue;
-					constant = (int)thirdDoubleValue;
-					sum = 1;
-					if (constant == 0 || constant == 1) {
-						for (int n = start; n <= end; n++) {
-							sum *= n;
-						}
-					} else {
-						for (int n = start; n <= end; n++) {
-							sum *= constant;
-		            	}
-					}
-	            	calc.setText(" " + sum);
+					int prodnot = (int) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+	            	calc.setText("" + prodnot);
 	            	numwrapper.setText(calc.getText());
+	            	ANS = prodnot;
 	            	break;
 	            	
 				case "ΠΠ":
@@ -881,133 +861,81 @@ public class BSIT2A extends JFrame {
 					thirdDoubleValue = Double.parseDouble(thirdValue);
 					fourthDoubleValue = Double.parseDouble(fourthValue);
 					
-					start = (int)firstDoubleValue;
-					end = (int)secondDoubleValue;
-					jstart = (int)thirdDoubleValue;
-					jend = (int)fourthDoubleValue;
-					sum = 1;
-//					ATTENTION
-					for(int n = start; n <= end; n++) {
-						for(int j = jstart; j <= jend; j++) {
-							sum *= (3*n*j);
-						}
-					}
-					calc.setText(" " + sum);
+					int doubleProdNot = (int) Functions.doubleProdNot(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+					
+					calc.setText("" + doubleProdNot);
 	            	numwrapper.setText(calc.getText());
+	            	ANS = doubleProdNot;
 					break;
 	            
 				case "N!":
 					firstDoubleValue = Double.parseDouble(firstValue);
-					if(firstDoubleValue == 0 || firstDoubleValue == 1) {
-						Answer = 1;
-					} else {
-						Answer = 1;
-						for (int i = 2; i <= firstDoubleValue; i++) {
-							Answer *= i; 
-						}
-					}
-					calc.setText(" " + Answer);
+					int factorial = Functions.factorial(firstDoubleValue);
+					calc.setText("" + factorial);
 					numwrapper.setText(calc.getText());
+					ANS = factorial;
 					break;
 					
 				case "a! + b!":
 					firstDoubleValue = Double.parseDouble(firstValue);
 					secondDoubleValue = Double.parseDouble(secondValue);
-					if(firstDoubleValue == 0 && secondDoubleValue == 0 || firstDoubleValue == 1 && secondDoubleValue == 1) {
-						Answer = 1;
-					} else {
-						for (int i = 2; i <= firstDoubleValue; i++) {
-							a *= i; 
-						}
-						for (int i = 2; i <= secondDoubleValue; i++) {
-							b *= i; 
-						}
-						Answer = a + b;
-						calc.setText(" " + Answer);
-						numwrapper.setText(calc.getText());
-					}
+					int sumFactorial = Functions.sumFactorial(firstDoubleValue, secondDoubleValue);
+					calc.setText("" + sumFactorial);
+					numwrapper.setText(calc.getText());
+					ANS = sumFactorial;
 					break;
 					
 				case "a! / b!":
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					if(firstDoubleValue == 0 && secondDoubleValue == 0 || firstDoubleValue == 1 && secondDoubleValue == 1) {
-						Answer = 1;
-					} else {
-						for (int i = 2; i <= firstDoubleValue; i++) {
-							a *= i; 
-						}
-						for (int i = 2; i <= secondDoubleValue; i++) {
-							b *= i; 
-						}
-						Answer = a / b;
-						calc.setText(" " + Answer);
-						numwrapper.setText(calc.getText());
-					}
+					firstDoubleValue = Integer.parseInt(firstValue);
+					secondDoubleValue = Integer.parseInt(secondValue);
+					int divideFactorial = Functions.divideFactorial(firstDoubleValue, secondDoubleValue);
+					calc.setText("" + divideFactorial);
+					numwrapper.setText(calc.getText());
+					ANS = divideFactorial;
 					break;
 					
 				case "log(2)(":
 					firstValue = calc.getText();
 					firstDoubleValue = Double.parseDouble(firstValue);
 					Answer = Math.log(firstDoubleValue) / Math.log(2);
-					calc.setText(" " + Answer);
+					calc.setText("" + Answer);
 					numwrapper.setText(calc.getText());
+					ANS = Answer;
 					break;
 					
 				case "log(":
 					firstValue = calc.getText();
 					firstDoubleValue = Double.parseDouble(firstValue);
 					Answer = Math.log(firstDoubleValue);
-					calc.setText(" " + Answer);
+					calc.setText("" + Answer);
 					numwrapper.setText(calc.getText());
+					ANS = Answer;
 					break;
-				}
-					
-					secondValue = calc.getText();            
+				case "x^y^z":
 					firstDoubleValue = Double.parseDouble(firstValue);
 					secondDoubleValue = Double.parseDouble(secondValue);
-
-					if (operator == "+") {
-						Answer = firstDoubleValue + secondDoubleValue;
-						calc.setText(" " + Answer);   
-						numwrapper.setText(calc.getText());
-					} else if (operator == "-") {
-						Answer = firstDoubleValue - secondDoubleValue;
-						calc.setText(" " + Answer); 
-						numwrapper.setText(calc.getText());
-					} else if (operator == "*") {
-						Answer = firstDoubleValue * secondDoubleValue;
-						calc.setText(" " + Answer); 
-						numwrapper.setText(calc.getText());
-					} else if (operator == "÷") {
-						Answer = firstDoubleValue / secondDoubleValue;
-						calc.setText(" " + Answer);
-						numwrapper.setText(calc.getText());
-					} else if (operator == "//") {
-						Answer = firstDoubleValue / secondDoubleValue;
-						int result = (int) Answer;
-						calc.setText(" " + result);
-						numwrapper.setText(calc.getText());
-					} else if (operator == "%") {
-						Answer = firstDoubleValue % secondDoubleValue;
-						calc.setText(" " + Answer);
-						numwrapper.setText(calc.getText());
-					} else if (operator == "x^y") {
-						int Answer = (int) Math.pow(firstDoubleValue, secondDoubleValue);
-						calc.setText(" " + Answer);
-						numwrapper.setText(calc.getText());
-					} else if (operator == "x^y^z") {
-						thirdDoubleValue = Double.parseDouble(thirdValue);
-						result =  Math.pow(thirdDoubleValue, secondDoubleValue);
-						Answer =  Math.pow(firstDoubleValue, result);
-						calc.setText(" " + Answer);
-						numwrapper.setText(calc.getText());
-					} 
-		            
+					thirdDoubleValue = Double.parseDouble(thirdValue);
+					holder.setText(numwrapper.getText());
+					result =  Math.pow(thirdDoubleValue, secondDoubleValue);
+					Answer =  Math.pow(firstDoubleValue, result);
+					calc.setText("" + Answer);
+					numwrapper.setText(calc.getText());
+					ANS = Answer;
+					break;
+					
+				default:
+					secondValue = calc.getText();
+					firstDoubleValue = Double.parseDouble(firstValue);
+					secondDoubleValue = Double.parseDouble(secondValue);
+					
+					double basicCalculation = Functions.basicCalculation(operator, firstDoubleValue, secondDoubleValue);
+					calc.setText("" + basicCalculation);   
+					numwrapper.setText(calc.getText());
+					ANS = basicCalculation;
+				}
 					reset = true;
 					firstValue = null;
 					decimalCount = 0;
-					result = Answer;
 			}
 		});
 		equals_button.setForeground(new Color(255, 255, 255));
@@ -1020,8 +948,8 @@ public class BSIT2A extends JFrame {
 		doublesummation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doublesum.png")));
 		doublesummation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ?(" " + "∑∑") : numwrapper.getText() + "∑∑");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ?("" + "∑∑") : numwrapper.getText() + "∑∑");
 				zeroCount++;
 				operator = "∑∑";
 				decimalCount = 0;
@@ -1038,8 +966,8 @@ public class BSIT2A extends JFrame {
 		doubleproductnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doubleprodnot.png")));
 		doubleproductnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ?(" " + "ΠΠ") : numwrapper.getText() + "ΠΠ");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ?("" + "ΠΠ") : numwrapper.getText() + "ΠΠ");
 				zeroCount++;
 				operator = "ΠΠ";
 				decimalCount = 0;
@@ -1068,7 +996,7 @@ public class BSIT2A extends JFrame {
 		logsubtwoX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/log2x.png")));
 		logsubtwoX_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(zeroCount == 0 ?(" " + "log(2)(") : numwrapper.getText() + "log(2)(");
+				numwrapper.setText(zeroCount == 0 ?("" + "log(2)(") : numwrapper.getText() + "log(2)(");
 				zeroCount++;
 				operator = "log(2)(";
 				decimalCount = 0;
@@ -1085,7 +1013,7 @@ public class BSIT2A extends JFrame {
 		logX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/logx.png")));
 		logX_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(zeroCount == 0 ?(" " + "log(") : numwrapper.getText() + "log(");
+				numwrapper.setText(zeroCount == 0 ?("" + "log(") : numwrapper.getText() + "log(");
 				zeroCount++;
 				operator = "log(";
 				decimalCount = 0;
@@ -1110,9 +1038,9 @@ public class BSIT2A extends JFrame {
 		        } else if (valueIndex == 4) {
 		        	D = calc.getText();
 		        }
-				calc.setText(" ");
+				calc.setText("");
 		        valueIndex++;
-		        numwrapper.setText(zeroCount == 0 ? (" " + A_button.getText()) : numwrapper.getText() + A_button.getText());
+		        numwrapper.setText(zeroCount == 0 ? ("" + A_button.getText()) : numwrapper.getText() + A_button.getText());
 		        zeroCount++;
 			}
 		});
@@ -1135,9 +1063,9 @@ public class BSIT2A extends JFrame {
 		        	D = calc.getText();
 		        }
 				
-				calc.setText(" ");
+				calc.setText("");
 		        valueIndex++;
-		        numwrapper.setText(zeroCount == 0 ? (" " + B_button.getText()) : numwrapper.getText() + B_button.getText());
+		        numwrapper.setText(zeroCount == 0 ? ("" + B_button.getText()) : numwrapper.getText() + B_button.getText());
 		        zeroCount++;
 			}
 		});
@@ -1160,9 +1088,9 @@ public class BSIT2A extends JFrame {
 		        	D = calc.getText();
 		        }
 							
-				calc.setText(" ");
+				calc.setText("");
 				valueIndex++;
-				numwrapper.setText(zeroCount == 0 ? (" " + C_button.getText()) : numwrapper.getText() + C_button.getText());
+				numwrapper.setText(zeroCount == 0 ? ("" + C_button.getText()) : numwrapper.getText() + C_button.getText());
 				zeroCount++;
 			}
 		});
@@ -1185,9 +1113,9 @@ public class BSIT2A extends JFrame {
 		        	D = calc.getText();
 		        }
 							
-				calc.setText(" ");
+				calc.setText("");
 				valueIndex++;
-				numwrapper.setText(zeroCount == 0 ? (" " + D_button.getText()) : numwrapper.getText() + D_button.getText());
+				numwrapper.setText(zeroCount == 0 ? ("" + D_button.getText()) : numwrapper.getText() + D_button.getText());
 				zeroCount++;
 			}
 		});
@@ -1206,8 +1134,8 @@ public class BSIT2A extends JFrame {
 	            } else {                
 	                secondValue = calc.getText();                
 	            }
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ?(" " + "!") : numwrapper.getText() + "!");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ?("" + "!") : numwrapper.getText() + "!");
 				zeroCount++;
 				operator = "a! + b!";
 			}
@@ -1227,8 +1155,8 @@ public class BSIT2A extends JFrame {
 	            } else {                
 	                secondValue = calc.getText();                
 	            }
-				calc.setText(" ");
-				numwrapper.setText(zeroCount == 0 ?(" " + "!") : numwrapper.getText() + "!");
+				calc.setText("");
+				numwrapper.setText(zeroCount == 0 ?("" + "!") : numwrapper.getText() + "!");
 				zeroCount++;
 				operator = "a! / b!";
 			}
@@ -1316,8 +1244,9 @@ public class BSIT2A extends JFrame {
 		answer_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		answer_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText(calc.getText() + result);
-				numwrapper.setText(numwrapper.getText() + "ANS");
+				calc.setText(calc.getText() + ANS);
+				numwrapper.setText(zeroCount == 0 ?("" + "ANS") : numwrapper.getText() + "ANS");
+				zeroCount ++;
 			}
 		});
 
