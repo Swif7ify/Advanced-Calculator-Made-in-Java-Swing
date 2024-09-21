@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.imageio.ImageIO;
@@ -47,6 +48,7 @@ public class BSIT2A extends JFrame {
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
     boolean reset = false, isMinus = false;
+    private ArrayList<Integer> numbers = new ArrayList<>();
 	/**
 	 * Create the frame.
 	 */
@@ -118,6 +120,10 @@ public class BSIT2A extends JFrame {
 					calc.setText("0");
 				}
 				
+				if (!numbers.isEmpty()) {
+		            numbers.remove(numbers.size() - 1);
+		        }
+				
 				if(valueIndex == 1) {
 					valueIndex = 1;
 				} else {
@@ -171,6 +177,7 @@ public class BSIT2A extends JFrame {
 			    D = null;
 			    reset = false;
 			    isMinus = false;
+			    numbers.clear();
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -208,16 +215,11 @@ public class BSIT2A extends JFrame {
 		plus_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		plus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-	                firstValue = calc.getText();
-	                
-	            } else {                
-	                secondValue = calc.getText();                
-	            }
-				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "+");
-	            operator = plus_button.getText();
+				operator = plus_button.getText();
 	            decimalCount = 0;
+				numbers.add(Integer.parseInt(calc.getText()));
+				calc.setText("");
 			}
 		});
 		plus_button.setForeground(new Color(255, 255, 255));
@@ -364,15 +366,11 @@ public class BSIT2A extends JFrame {
 		minus_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		minus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-	                firstValue = calc.getText();
-	            } else {
-	                secondValue = calc.getText();                
-	            }
-				calc.setText("");
-				numwrapper.setText(numwrapper.getText() + "-");
-	            operator = minus_button.getText();
+	            numwrapper.setText(numwrapper.getText() + "-");
+				operator = minus_button.getText();
 	            decimalCount = 0;
+				numbers.add(Integer.parseInt(calc.getText()));
+				calc.setText("");
 			}
 			
 		});
@@ -519,15 +517,11 @@ public class BSIT2A extends JFrame {
 		multiplication_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		multiplication_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 if (firstValue == null) {
-		                firstValue = calc.getText();
-		            } else {
-		                secondValue = calc.getText();                
-		            }
-				 calc.setText("");
-				 numwrapper.setText(numwrapper.getText() + "×");
+				 numwrapper.setText(numwrapper.getText() + "*");
 				 operator = multiplication_button.getText();
 				 decimalCount = 0;
+				 numbers.add(Integer.parseInt(calc.getText()));
+				 calc.setText("");
 			}
 		});
 		multiplication_button.setForeground(new Color(255, 255, 255));
@@ -672,20 +666,11 @@ public class BSIT2A extends JFrame {
 		division_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		division_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-					firstValue = calc.getText();
-				} else {
-					secondValue = calc.getText();                
-					
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					Answer = firstDoubleValue / secondDoubleValue;
-					firstValue = "" + Answer;
-				}
-				calc.setText("");
 				numwrapper.setText(numwrapper.getText() + "÷");
 				operator = division_button.getText();
 				decimalCount = 0;
+				numbers.add(Integer.parseInt(calc.getText()));
+				calc.setText("");
 			}
 		});
 		division_button.setForeground(new Color(255, 255, 255));
@@ -924,18 +909,19 @@ public class BSIT2A extends JFrame {
 					break;
 					
 				default:
-					secondValue = calc.getText();
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
+					if (!calc.getText().isEmpty()) {
+						numbers.add((int) Double.parseDouble(calc.getText()));
+					}
+					Answer = Functions.calculateResult(numbers, operator);
 					
-					double basicCalculation = Functions.basicCalculation(operator, firstDoubleValue, secondDoubleValue);
-					calc.setText("" + basicCalculation);   
+					calc.setText("" + Answer);   
 					numwrapper.setText(calc.getText());
-					ANS = basicCalculation;
+					ANS = Answer;
 				}
-					reset = true;
-					firstValue = null;
-					decimalCount = 0;
+				
+				reset = true;
+				firstValue = null;
+				decimalCount = 0;
 			}
 		});
 		equals_button.setForeground(new Color(255, 255, 255));
