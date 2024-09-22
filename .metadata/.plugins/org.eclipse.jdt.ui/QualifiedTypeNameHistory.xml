@@ -2,4 +2,5 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="calculator.RoundedPanel"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="calculator.RoundJTextField"/>
 </qualifiedTypeNameHistroy>

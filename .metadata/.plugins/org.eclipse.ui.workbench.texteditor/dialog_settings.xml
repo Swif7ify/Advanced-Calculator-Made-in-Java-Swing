@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="if(reset)"/>
+		<item key="selection" value="multiplication_button"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="false"/>
-		<item key="wholeword" value="false"/>
+		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="if(reset)"/>
-			<item value="if (reset)"/>
-			<item value="summation"/>
-			<item value="getclass "/>
-			<item value="getclass"/>
-			<item value="cbrt"/>
-			<item value="AC"/>
-			<item value="N!"/>
-			<item value="firstValue"/>
-			<item value="//"/>
-			<item value="flooredValue"/>
-			<item value="Holder"/>
-			<item value="textfield"/>
-			<item value="factorial"/>
-			<item value="getLabel()"/>
+			<item value="multiplication_button"/>
+			<item value="multiplication"/>
+			<item value="minus_button"/>
+			<item value="plus_button"/>
+			<item value="plus_but"/>
+			<item value="one_button"/>
+			<item value="one"/>
+			<item value="result"/>
 		</list>
 		<list key="replacehistory">
+			<item value="&quot;&quot;"/>
 			<item value="ceiledValue"/>
 			<item value="holder"/>
 			<item value="getText()"/>
@@ -32,14 +26,11 @@
 			<item value="54"/>
 			<item value="94"/>
 			<item value="66"/>
-			<item value="79"/>
-			<item value=".setBounds(360, 308, 55, 52);"/>
-			<item value="155"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="694"/>
-		<item key="DIALOG_Y_ORIGIN" value="318"/>
+		<item key="DIALOG_X_ORIGIN" value="1179"/>
+		<item key="DIALOG_Y_ORIGIN" value="348"/>
 		<item key="DIALOG_WIDTH" value="414"/>
 		<item key="DIALOG_HEIGHT" value="454"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
