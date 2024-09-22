@@ -105,45 +105,44 @@ public class BSIT2A extends JFrame {
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		DEL_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String currentEq = calc.getText();
-				String currentText = numwrapper.getText();
-				if (currentText.equals("0") || currentEq.equals("0")) {
+				try {
+					String currentEq = calc.getText();
+					String currentText = numwrapper.getText();
+					if (currentText.equals("0") || currentEq.equals("0")) {
+						return;
+					} else if(currentText.length() == 2 || currentEq.length() == 2) {
+						numwrapper.setText("0");
+						calc.setText("");
+						holder.setText("");
+					} else if (currentText.length() > 1) {
+						numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					} else if (currentEq.length() > 1) {
+						calc.setText(currentEq.substring(0, currentEq.length() - 1));
+					} else {
+						numwrapper.setText("0");
+						calc.setText("0");
+					}
+					
+					if (!numbers.isEmpty()) {
+			            numbers.remove(numbers.size() - 1);
+			        }
+					
+					if(valueIndex == 1) {
+						valueIndex = 1;
+					} else {
+						valueIndex--;
+					}
+					if (zeroCount == 0) {
+						zeroCount = 0;
+					} else {
+						zeroCount --;
+					}
+					
+					reset = false;
+					isMinus = false;
+				} catch (Exception error) {
 					return;
-				} else if(currentText.length() == 2 || currentEq.length() == 2) {
-					numwrapper.setText("0");
-					calc.setText("0");
-				} else if (currentText.length() > 1) {
-					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
-				} else if (currentEq.length() > 1) {
-					calc.setText(currentEq.substring(0, currentEq.length() - 1));
-				} else {
-					numwrapper.setText("0");
-					calc.setText("0");
 				}
-				
-				if (!numbers.isEmpty()) {
-		            numbers.remove(numbers.size() - 1);
-		        }
-				
-				if(valueIndex == 1) {
-					valueIndex = 1;
-				} else {
-					valueIndex--;
-				}
-				if (zeroCount == 0) {
-					zeroCount = 0;
-				} else {
-					zeroCount --;
-				}
-				
-				if (zeroCount == 0) {
-					holder.setText("");
-				} else {
-					return;
-				}
-				
-				reset = false;
-				isMinus = false;
 			}
 		});
 		
@@ -158,28 +157,18 @@ public class BSIT2A extends JFrame {
 		AC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numwrapper.setText("0");
-				calc.setText("0");
-				holder.setText("");
-				firstValue = null;
-				secondValue = null;
-				thirdValue = null;
-				fourthValue = null;
-				firstDoubleValue = 0;
-				secondDoubleValue = 0;
-				thirdDoubleValue = 0;
-				fourthDoubleValue = 0;
-				Answer = 0;
-				decimalCount = 0;
-				zeroCount = 0;
-				valueIndex = 0;
-			    A = null;
-			    B = null;
-			    C = null;
-			    D = null;
-			    reset = false;
-			    isMinus = false;
-			    numbers.clear();
-			    operators.clear();
+				calc.setText("");
+				holder.setText(""); 
+				firstValue = null; secondValue = null;
+				thirdValue = null; fourthValue = null;
+				firstDoubleValue = 0; secondDoubleValue = 0;
+				thirdDoubleValue = 0; fourthDoubleValue = 0;
+				Answer = 0; decimalCount = 0;
+				zeroCount = 0; valueIndex = 0;
+			    A = null; B = null;
+			    C = null; D = null;
+			    reset = false; isMinus = false;
+			    numbers.clear(); operators.clear();
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -217,12 +206,25 @@ public class BSIT2A extends JFrame {
 		plus_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		plus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "+");
-				operator = plus_button.getText();
-	            decimalCount = 0;
-				numbers.add(Integer.parseInt(calc.getText()));
-				operators.add(plus_button.getText());
-				calc.setText("");
+				try {
+					if (zeroCount == 0) {
+						return;
+					} else {
+						numwrapper.setText(numwrapper.getText() + "+");
+						operator = plus_button.getText();
+			            decimalCount = 0;
+						numbers.add(Integer.parseInt(calc.getText()));
+						operators.add(plus_button.getText());
+						calc.setText("");
+					}
+				} catch (Exception error) {
+					calc.setText("");
+					numwrapper.setText("0");
+					holder.setText("Math Error");
+					operators.clear(); numbers.clear();
+					reset = true;
+				}
+				
 			}
 		});
 		plus_button.setForeground(new Color(255, 255, 255));
@@ -238,11 +240,13 @@ public class BSIT2A extends JFrame {
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            double flooredValue = Math.floor(currentValue);
 		            
-		            calc.setText(String.valueOf(flooredValue));
+		            calc.setText("" + flooredValue);
 		            numwrapper.setText(calc.getText());
-		        } catch (NumberFormatException ex) {
+		        } catch (Exception ex) {
 		            numwrapper.setText("0");
 		            calc.setText("0");
+		            holder.setText("Math Error");
+		            reset = true;
 		        }
 			}
 		});
@@ -259,11 +263,13 @@ public class BSIT2A extends JFrame {
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            double ceiledValue = Math.ceil(currentValue);
 		            
-		            calc.setText(String.valueOf(ceiledValue));
+		            calc.setText("" + ceiledValue);
 		            numwrapper.setText(calc.getText());
-		        } catch (NumberFormatException ex) {
+		        } catch (Exception ex) {
 		            numwrapper.setText("0");
 		            calc.setText("0");
+		            holder.setText("Math Error");
+		            reset = true;
 		        }
 			}
 		});
@@ -282,9 +288,11 @@ public class BSIT2A extends JFrame {
 
 		            calc.setText(String.valueOf(intValue));
 		            numwrapper.setText(calc.getText());
-		        } catch (NumberFormatException ex) {
-		            numwrapper.setText("0");
-		            calc.setText("0");
+		        } catch (Exception ex) {
+		        	 numwrapper.setText("0");
+		        	 calc.setText("0");
+		        	 holder.setText("Math Error");
+		        	 reset = true;
 		        }
 			}
 		});
@@ -369,14 +377,25 @@ public class BSIT2A extends JFrame {
 		minus_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		minus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	            numwrapper.setText(numwrapper.getText() + "-");
-				operator = minus_button.getText();
-	            decimalCount = 0;
-				numbers.add(Integer.parseInt(calc.getText()));
-				operators.add(minus_button.getText());
-				calc.setText("");
+				try {
+					if (zeroCount == 0) {
+						return;
+					} else {
+						 numwrapper.setText(numwrapper.getText() + "-");
+						 operator = minus_button.getText();
+						 decimalCount = 0;
+						 numbers.add(Integer.parseInt(calc.getText()));
+						 operators.add(minus_button.getText());
+						 calc.setText("");
+					}
+				} catch (Exception error) {
+					calc.setText("");
+					numwrapper.setText("0");
+					holder.setText("Math Error");
+					operators.clear(); numbers.clear();
+					reset = true;
+				}
 			}
-			
 		});
 		minus_button.setForeground(new Color(255, 255, 255));
 		minus_button.setBackground(new Color(254, 143, 0));
@@ -387,16 +406,23 @@ public class BSIT2A extends JFrame {
 		integerdivision_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		integerdivision_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-		            firstValue = calc.getText();
-		        } else {
-		            secondValue = calc.getText();
-		        }
-
-		        calc.setText("");
-		        numwrapper.setText(numwrapper.getText() + "//");
-		        operator = integerdivision_button.getText();
-		        decimalCount = 0;
+				try {
+					if (firstValue == null) {
+			            firstValue = calc.getText();
+					} else {
+						secondValue = calc.getText();
+			        }
+					calc.setText("");
+			        numwrapper.setText(numwrapper.getText() + "//");
+			        operator = integerdivision_button.getText();
+			        decimalCount = 0;
+				} catch (Exception error) {
+					firstValue = null;
+					secondValue = null;
+					calc.setText("");
+					numwrapper.setText("0");
+					holder.setText("Syntax Error");
+				}
 		    }
 		});
 		integerdivision_button.setForeground(new Color(0, 0, 0));
@@ -408,16 +434,24 @@ public class BSIT2A extends JFrame {
 		modulus.setFont(new Font("Tahoma", Font.BOLD, 15));
 		modulus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-					firstValue = calc.getText();
-				} else {                
-					secondValue = calc.getText();    
-				}      
-				
-				calc.setText("");
-				numwrapper.setText(numwrapper.getText() + "%");
-				operator = modulus.getText();
-				decimalCount = 0;
+				try {
+					if (firstValue == null) {
+						firstValue = calc.getText();
+					} else {                
+						secondValue = calc.getText();    
+					}      
+					
+					calc.setText("");
+					numwrapper.setText(numwrapper.getText() + "%");
+					operator = modulus.getText();
+					decimalCount = 0;
+				} catch (Exception error) {
+					firstValue = null;
+					secondValue = null;
+					calc.setText("");
+					numwrapper.setText("0");
+					holder.setText("Syntax Error");
+				}
 			}
 		});
 		modulus.setForeground(new Color(0, 0, 0));
@@ -429,15 +463,24 @@ public class BSIT2A extends JFrame {
 		factorial_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		factorial_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-	                firstValue = calc.getText();
-	            } else {
-	                secondValue = calc.getText();                
-	            }
-				calc.setText("");
-				numwrapper.setText(numwrapper.getText() + "!");
-	            operator = factorial_button.getText();
-	            decimalCount = 0;
+				try {
+					if (firstValue == null) {
+		                firstValue = calc.getText();
+		            } else {
+		                secondValue = calc.getText();                
+		            }
+					calc.setText("");
+					numwrapper.setText(numwrapper.getText() + "!");
+		            operator = factorial_button.getText();
+		            decimalCount = 0;
+				} catch (Exception error) {
+					firstValue = null;
+					secondValue = null;
+					calc.setText("");
+					numwrapper.setText("0");
+					holder.setText("Syntax Error");
+				}
+				
 			}
 		});
 		factorial_button.setForeground(new Color(0, 0, 0));
