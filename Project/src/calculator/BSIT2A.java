@@ -48,7 +48,7 @@ public class BSIT2A extends JFrame {
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
     boolean reset = false, isMinus = false;
-    private ArrayList<Integer> numbers = new ArrayList<>();
+    private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
 	/**
 	 * Create the frame.
@@ -58,7 +58,7 @@ public class BSIT2A extends JFrame {
 		setBounds(100, 100, 808, 768);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
@@ -77,8 +77,8 @@ public class BSIT2A extends JFrame {
 		panel_1.setLayout(null);
 		
 		RoundJTextField calc = new RoundJTextField(10);
-//		calc.setSize(135, 33);
-//		calc.setLocation(10, 10);
+		calc.setSize(135, 33);
+		calc.setLocation(175, 10);
 		panel_1.add(calc);
 		calc.setColumns(10);
 		
@@ -210,21 +210,19 @@ public class BSIT2A extends JFrame {
 					if (zeroCount == 0) {
 						return;
 					} else {
+						reset = false;
 						numwrapper.setText(numwrapper.getText() + "+");
 						operator = plus_button.getText();
 			            decimalCount = 0;
-						numbers.add(Integer.parseInt(calc.getText()));
+						numbers.add(Double.parseDouble(calc.getText()));
 						operators.add(plus_button.getText());
 						calc.setText("");
 					}
 				} catch (Exception error) {
-					calc.setText("");
-					numwrapper.setText("0");
-					holder.setText("Math Error");
-					operators.clear(); numbers.clear();
-					reset = true;
+					String currentText = numwrapper.getText();
+					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					return;
 				}
-				
 			}
 		});
 		plus_button.setForeground(new Color(255, 255, 255));
@@ -381,19 +379,18 @@ public class BSIT2A extends JFrame {
 					if (zeroCount == 0) {
 						return;
 					} else {
-						 numwrapper.setText(numwrapper.getText() + "-");
-						 operator = minus_button.getText();
-						 decimalCount = 0;
-						 numbers.add(Integer.parseInt(calc.getText()));
-						 operators.add(minus_button.getText());
-						 calc.setText("");
+						reset = false;
+						numwrapper.setText(numwrapper.getText() + "-");
+						operator = minus_button.getText();
+						decimalCount = 0;
+						numbers.add(Double.parseDouble(calc.getText()));
+						operators.add(minus_button.getText());
+						calc.setText("");
 					}
 				} catch (Exception error) {
-					calc.setText("");
-					numwrapper.setText("0");
-					holder.setText("Math Error");
-					operators.clear(); numbers.clear();
-					reset = true;
+					String currentText = numwrapper.getText();
+					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					return;
 				}
 			}
 		});
@@ -564,12 +561,13 @@ public class BSIT2A extends JFrame {
 		multiplication_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		multiplication_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 numwrapper.setText(numwrapper.getText() + "*");
-				 operator = multiplication_button.getText();
-				 decimalCount = 0;
-				 numbers.add(Integer.parseInt(calc.getText()));
-				 operators.add(multiplication_button.getText());
-				 calc.setText("");
+				reset = false;
+				numwrapper.setText(numwrapper.getText() + "*");
+				operator = multiplication_button.getText();
+				decimalCount = 0;
+				numbers.add(Double.parseDouble(calc.getText()));
+				operators.add(multiplication_button.getText());
+				calc.setText("");
 			}
 		});
 		multiplication_button.setForeground(new Color(255, 255, 255));
@@ -714,10 +712,11 @@ public class BSIT2A extends JFrame {
 		division_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		division_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				reset = false;
 				numwrapper.setText(numwrapper.getText() + "÷");
 				operator = division_button.getText();
 				decimalCount = 0;
-				numbers.add(Integer.parseInt(calc.getText()));
+				numbers.add(Double.parseDouble(calc.getText()));
 				operators.add(division_button.getText());
 				calc.setText("");
 			}
@@ -840,134 +839,127 @@ public class BSIT2A extends JFrame {
 		equals_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		equals_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switch(operator) {
-				case "∑":
-					firstValue = A;
-					secondValue = B;
-					thirdValue = C;
-					firstDoubleValue = Integer.parseInt(firstValue);
-					secondDoubleValue = Integer.parseInt(secondValue);
-					thirdDoubleValue = Integer.parseInt(thirdValue);
-					
-					int summation = (int) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
-					calc.setText("" + summation);
-	            	numwrapper.setText(calc.getText());
-	            	ANS = summation;
-					break;
-	            	
-				case "∑∑":
-					firstValue = A;
-					secondValue = B;
-					thirdValue = C;
-					fourthValue = D;
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					thirdDoubleValue = Double.parseDouble(thirdValue);
-					fourthDoubleValue = Double.parseDouble(fourthValue);
-					
-					int doubleSummation = (int) Functions.doubleSummation(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
-					calc.setText("" + doubleSummation);
-	            	numwrapper.setText(calc.getText());
-	            	ANS = doubleSummation;
-					break;
-	            	
-				case "Π":
-					firstValue = A;
-					secondValue = B;
-					thirdValue = C;
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					thirdDoubleValue = Double.parseDouble(thirdValue);
-					
-					int prodnot = (int) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
-	            	calc.setText("" + prodnot);
-	            	numwrapper.setText(calc.getText());
-	            	ANS = prodnot;
-	            	break;
-	            	
-				case "ΠΠ":
-					firstValue = A;
-					secondValue = B;
-					thirdValue = C;
-					fourthValue = D;
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					thirdDoubleValue = Double.parseDouble(thirdValue);
-					fourthDoubleValue = Double.parseDouble(fourthValue);
-					
-					int doubleProdNot = (int) Functions.doubleProdNot(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
-					
-					calc.setText("" + doubleProdNot);
-	            	numwrapper.setText(calc.getText());
-	            	ANS = doubleProdNot;
-					break;
-	            
-				case "N!":
-					firstDoubleValue = Double.parseDouble(firstValue);
-					int factorial = Functions.factorial(firstDoubleValue);
-					calc.setText("" + factorial);
-					numwrapper.setText(calc.getText());
-					ANS = factorial;
-					break;
-					
-				case "a! + b!":
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					int sumFactorial = Functions.sumFactorial(firstDoubleValue, secondDoubleValue);
-					calc.setText("" + sumFactorial);
-					numwrapper.setText(calc.getText());
-					ANS = sumFactorial;
-					break;
-					
-				case "a! / b!":
-					firstDoubleValue = Integer.parseInt(firstValue);
-					secondDoubleValue = Integer.parseInt(secondValue);
-					int divideFactorial = Functions.divideFactorial(firstDoubleValue, secondDoubleValue);
-					calc.setText("" + divideFactorial);
-					numwrapper.setText(calc.getText());
-					ANS = divideFactorial;
-					break;
-					
-				case "log(2)(":
-					firstValue = calc.getText();
-					firstDoubleValue = Double.parseDouble(firstValue);
-					Answer = Math.log(firstDoubleValue) / Math.log(2);
-					calc.setText("" + Answer);
-					numwrapper.setText(calc.getText());
-					ANS = Answer;
-					break;
-					
-				case "log(":
-					firstValue = calc.getText();
-					firstDoubleValue = Double.parseDouble(firstValue);
-					Answer = Math.log(firstDoubleValue);
-					calc.setText("" + Answer);
-					numwrapper.setText(calc.getText());
-					ANS = Answer;
-					break;
-				case "x^y^z":
-					firstDoubleValue = Double.parseDouble(firstValue);
-					secondDoubleValue = Double.parseDouble(secondValue);
-					thirdDoubleValue = Double.parseDouble(thirdValue);
-					holder.setText(numwrapper.getText());
-					result =  Math.pow(thirdDoubleValue, secondDoubleValue);
-					Answer =  Math.pow(firstDoubleValue, result);
-					calc.setText("" + Answer);
-					numwrapper.setText(calc.getText());
-					ANS = Answer;
-					break;
-					
-				default:
-					if (!calc.getText().isEmpty()) {
-						numbers.add((int) Double.parseDouble(calc.getText()));
+				try {
+					if(operator == "∑" || operator == "Π") {
+						firstValue = A; secondValue = B;
+						thirdValue = C;
+						firstDoubleValue = Double.parseDouble(firstValue);
+						secondDoubleValue = Double.parseDouble(secondValue);
+						thirdDoubleValue = Double.parseDouble(thirdValue);
+					} else if(operator == "∑∑" || operator == "ΠΠ") {
+						firstValue = A; secondValue = B;
+						thirdValue = C; fourthValue = D;
+						firstDoubleValue = Double.parseDouble(firstValue);
+						secondDoubleValue = Double.parseDouble(secondValue);
+						thirdDoubleValue = Double.parseDouble(thirdValue);
+						fourthDoubleValue = Double.parseDouble(fourthValue);
+					} else if (operator == "a! + b!" || operator == "a! / b!") {
+						firstDoubleValue = Double.parseDouble(firstValue);
+						secondDoubleValue = Double.parseDouble(secondValue);
+					} else if (operator == "log(2)(" || operator == "log(") {
+						firstValue = calc.getText();
+						firstDoubleValue = Double.parseDouble(firstValue);
 					}
-					Answer = Functions.calculateResult(numbers, operators);
-					
-					calc.setText("" + Answer);   
-					numwrapper.setText(calc.getText());
-					ANS = Answer;
+					switch(operator) {
+						case "∑":
+							int summation = (int) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+							calc.setText("" + summation);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = summation;
+							break;
+			            	
+						case "∑∑":
+							int doubleSummation = (int) Functions.doubleSummation(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+							calc.setText("" + doubleSummation);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = doubleSummation;
+							break;
+			            	
+						case "Π":
+							int prodnot = (int) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+			            	calc.setText("" + prodnot);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = prodnot;
+			            	break;
+			            	
+						case "ΠΠ":
+							int doubleProdNot = (int) Functions.doubleProdNot(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+							calc.setText("" + doubleProdNot);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = doubleProdNot;
+							break;
+			            
+						case "N!":
+							firstDoubleValue = Double.parseDouble(firstValue);
+							int factorial = Functions.factorial(firstDoubleValue);
+							calc.setText("" + factorial);
+							numwrapper.setText(calc.getText());
+							ANS = factorial;
+							break;
+							
+						case "a! + b!":
+							int sumFactorial = Functions.sumFactorial(firstDoubleValue, secondDoubleValue);
+							calc.setText("" + sumFactorial);
+							numwrapper.setText(calc.getText());
+							ANS = sumFactorial;
+							break;
+							
+						case "a! / b!":
+							int divideFactorial = Functions.divideFactorial(firstDoubleValue, secondDoubleValue);
+							calc.setText("" + divideFactorial);
+							numwrapper.setText(calc.getText());
+							ANS = divideFactorial;
+							break;
+							
+						case "log(2)(":
+							Answer = Math.log(firstDoubleValue) / Math.log(2);
+							calc.setText("" + Answer);
+							numwrapper.setText(calc.getText());
+							ANS = Answer;
+							break;
+							
+						case "log(":
+							Answer = Math.log(firstDoubleValue);
+							calc.setText("" + Answer);
+							numwrapper.setText(calc.getText());
+							ANS = Answer;
+							break;
+						case "x^y^z":
+							firstDoubleValue = Double.parseDouble(firstValue);
+							secondDoubleValue = Double.parseDouble(secondValue);
+							thirdDoubleValue = Double.parseDouble(thirdValue);
+							holder.setText(numwrapper.getText());
+							result =  Math.pow(thirdDoubleValue, secondDoubleValue);
+							Answer =  Math.pow(firstDoubleValue, result);
+							calc.setText("" + Answer);
+							numwrapper.setText(calc.getText());
+							ANS = Answer;
+							break;
+							
+						default:
+							if(operator == "+" || operator == "-" || operator == "*" || operator == "÷") {
+								if (!calc.getText().isEmpty()) {
+									numbers.add((Double) Double.parseDouble(calc.getText()));
+								}
+								Answer = Functions.calculateResult(numbers, operators);
+							} else {
+								secondValue = calc.getText();
+								firstDoubleValue = Double.parseDouble(firstValue);
+								secondDoubleValue = Double.parseDouble(secondValue);
+								Answer = Functions.basicCalculation(operator, firstDoubleValue, secondDoubleValue);
+							}
+							
+							operators.clear();
+							numbers.clear();
+							calc.setText("" + Answer);   
+							numwrapper.setText(calc.getText());
+							ANS = Answer;
+					}
+				} catch (Exception error) {
+					holder.setText("Syntax Error");
 				}
 				
+				calc.setText(calc.getText());
 				reset = true;
 				firstValue = null;
 				decimalCount = 0;

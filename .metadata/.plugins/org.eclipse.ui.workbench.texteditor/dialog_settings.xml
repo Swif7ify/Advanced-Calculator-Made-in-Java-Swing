@@ -16,13 +16,6 @@
 			<item value="one_button"/>
 			<item value="one"/>
 			<item value="result"/>
-			<item value="x^y"/>
-			<item value="x^y^z"/>
-			<item value="&quot; &quot;"/>
-			<item value="resource"/>
-			<item value="if(reset)"/>
-			<item value="if (reset)"/>
-			<item value="summation"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;&quot;"/>
@@ -33,9 +26,6 @@
 			<item value="54"/>
 			<item value="94"/>
 			<item value="66"/>
-			<item value="79"/>
-			<item value=".setBounds(360, 308, 55, 52);"/>
-			<item value="155"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

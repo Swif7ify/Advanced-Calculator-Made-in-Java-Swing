@@ -91,18 +91,6 @@ public class Functions {
 	public static double basicCalculation(String operator, double firstValue, double secondValue) {
 		double Answer = 0;
 		switch(operator) {
-		case "+":
-			Answer = firstValue + secondValue;
-			break;
-		case "-":
-			Answer = firstValue - secondValue;
-			break;
-		case "*":
-			Answer = firstValue * secondValue;
-			break;
-		case "÷":
-			Answer = firstValue / secondValue;
-			break;
 		case "//":
 			Answer = firstValue / secondValue;
 			Answer = (int) Answer;
@@ -118,13 +106,26 @@ public class Functions {
 		return Answer;
 	}
 	
-	public static double calculateResult(ArrayList<Integer> numbers,  ArrayList<String> operators) {
+	public static double calculateResult(ArrayList<Double> numbers,  ArrayList<String> operators) {
 	    double result = numbers.get(0);
 	    
 	    for (int i = 1; i < numbers.size(); i++) {
 	    	String operator = operators.get(0);
-	    	result = basicCalculation(operator, result, numbers.get(i));
-	    	 operators.remove(0);
+	    	switch(operator) {
+	            case "+":
+	                result += numbers.get(i);
+	                break;
+	            case "-":
+	                result -= numbers.get(i);
+	                break;
+	            case "*":
+	                result *= numbers.get(i);
+	                break;
+	            case "÷":
+	                result /= numbers.get(i);
+	                break;
+	        }
+	        operators.remove(0);
 	    }
 
 	    return result;
