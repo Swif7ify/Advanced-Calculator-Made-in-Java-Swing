@@ -47,7 +47,7 @@ public class BSIT2A extends JFrame {
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
-    boolean reset = false, isMinus = false;
+    boolean reset = false, isMinus = false, allowed = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
 	/**
@@ -110,22 +110,20 @@ public class BSIT2A extends JFrame {
 					String currentText = numwrapper.getText();
 					if (currentText.equals("0") || currentEq.equals("0")) {
 						return;
-					} else if(currentText.length() == 2 || currentEq.length() == 2) {
+					} else if(currentText.length() == 1 || currentEq.length() == 1) {
+						if (!numbers.isEmpty()) {
+				            numbers.remove(numbers.size() - 1);
+				        }
 						numwrapper.setText("0");
 						calc.setText("");
 						holder.setText("");
-					} else if (currentText.length() > 1) {
+					} else if (currentText.length() > 1 || currentEq.length() > 1) {
 						numwrapper.setText(currentText.substring(0, currentText.length() - 1));
-					} else if (currentEq.length() > 1) {
 						calc.setText(currentEq.substring(0, currentEq.length() - 1));
 					} else {
 						numwrapper.setText("0");
 						calc.setText("0");
 					}
-					
-					if (!numbers.isEmpty()) {
-			            numbers.remove(numbers.size() - 1);
-			        }
 					
 					if(valueIndex == 1) {
 						valueIndex = 1;
@@ -240,7 +238,7 @@ public class BSIT2A extends JFrame {
 		            
 		            calc.setText("" + flooredValue);
 		            numwrapper.setText(calc.getText());
-		        } catch (Exception ex) {
+		        } catch (Exception error) {
 		            numwrapper.setText("0");
 		            calc.setText("0");
 		            holder.setText("Math Error");
@@ -263,7 +261,7 @@ public class BSIT2A extends JFrame {
 		            
 		            calc.setText("" + ceiledValue);
 		            numwrapper.setText(calc.getText());
-		        } catch (Exception ex) {
+		        } catch (Exception error) {
 		            numwrapper.setText("0");
 		            calc.setText("0");
 		            holder.setText("Math Error");
@@ -286,7 +284,7 @@ public class BSIT2A extends JFrame {
 
 		            calc.setText(String.valueOf(intValue));
 		            numwrapper.setText(calc.getText());
-		        } catch (Exception ex) {
+		        } catch (Exception error) {
 		        	 numwrapper.setText("0");
 		        	 calc.setText("0");
 		        	 holder.setText("Math Error");
@@ -443,11 +441,8 @@ public class BSIT2A extends JFrame {
 					operator = modulus.getText();
 					decimalCount = 0;
 				} catch (Exception error) {
-					firstValue = null;
-					secondValue = null;
-					calc.setText("");
-					numwrapper.setText("0");
 					holder.setText("Syntax Error");
+					return;
 				}
 			}
 		});
@@ -461,23 +456,21 @@ public class BSIT2A extends JFrame {
 		factorial_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (firstValue == null) {
-		                firstValue = calc.getText();
-		            } else {
-		                secondValue = calc.getText();                
-		            }
-					calc.setText("");
-					numwrapper.setText(numwrapper.getText() + "!");
-		            operator = factorial_button.getText();
-		            decimalCount = 0;
+					if(zeroCount == 0) {
+						return;
+					} else {
+						if (firstValue == null) {
+			                firstValue = calc.getText();
+			            }
+						calc.setText("");
+						numwrapper.setText(numwrapper.getText() + "!");
+			            operator = factorial_button.getText();
+			            decimalCount = 0;
+					}
 				} catch (Exception error) {
-					firstValue = null;
-					secondValue = null;
-					calc.setText("");
-					numwrapper.setText("0");
 					holder.setText("Syntax Error");
+					return;
 				}
-				
 			}
 		});
 		factorial_button.setForeground(new Color(0, 0, 0));
@@ -561,13 +554,23 @@ public class BSIT2A extends JFrame {
 		multiplication_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		multiplication_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				reset = false;
-				numwrapper.setText(numwrapper.getText() + "*");
-				operator = multiplication_button.getText();
-				decimalCount = 0;
-				numbers.add(Double.parseDouble(calc.getText()));
-				operators.add(multiplication_button.getText());
-				calc.setText("");
+				try {
+					if(zeroCount == 0) {
+						return;
+					} else {
+						reset = false;
+						numwrapper.setText(numwrapper.getText() + "*");
+						operator = multiplication_button.getText();
+						decimalCount = 0;
+						numbers.add(Double.parseDouble(calc.getText()));
+						operators.add(multiplication_button.getText());
+						calc.setText("");
+					}
+				} catch (Exception error) {
+					String currentText = numwrapper.getText();
+					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					return;
+				}
 			}
 		});
 		multiplication_button.setForeground(new Color(255, 255, 255));
@@ -607,6 +610,8 @@ public class BSIT2A extends JFrame {
 		            
 		            calc.setText(String.valueOf(cubeRootValue));
 		        } catch (NumberFormatException ex) {
+		        	reset = true;
+		        	holder.setText("Syntax Error");
 		            calc.setText("0");
 		            numwrapper.setText("0");
 		        }
@@ -623,12 +628,20 @@ public class BSIT2A extends JFrame {
 		summation_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		summation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText("");
-				numwrapper.setText(zeroCount == 0 ?("" + "∑") : numwrapper.getText() + "∑");
-				zeroCount++;
-				operator = "∑";
-				decimalCount = 0;
-				valueIndex = 1;
+				try {
+					calc.setText("");
+					numwrapper.setText(zeroCount == 0 ?("" + "∑") : numwrapper.getText() + "∑");
+					zeroCount++;
+					operator = "∑";
+					decimalCount = 0;
+					valueIndex = 1;
+				} catch (Exception error) {
+					reset = true;
+		        	holder.setText("Syntax Error");
+		            calc.setText("0");
+		            numwrapper.setText("0");
+				}
+				
 			}
 		});
 		summation_button.setForeground(new Color(0, 0, 0));
@@ -712,13 +725,23 @@ public class BSIT2A extends JFrame {
 		division_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		division_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				reset = false;
-				numwrapper.setText(numwrapper.getText() + "÷");
-				operator = division_button.getText();
-				decimalCount = 0;
-				numbers.add(Double.parseDouble(calc.getText()));
-				operators.add(division_button.getText());
-				calc.setText("");
+				try {
+					if(zeroCount == 0) {
+						return;
+					} else {
+						reset = false;
+						numwrapper.setText(numwrapper.getText() + "÷");
+						operator = division_button.getText();
+						decimalCount = 0;
+						numbers.add(Double.parseDouble(calc.getText()));
+						operators.add(division_button.getText());
+						calc.setText("");
+					}
+				} catch (Exception error) {
+					String currentText = numwrapper.getText();
+					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					return;
+				}
 			}
 		});
 		division_button.setForeground(new Color(255, 255, 255));
@@ -731,17 +754,28 @@ public class BSIT2A extends JFrame {
 		XpowerY_button.setIcon(new ImageIcon(getClass().getResource("/Picture/X.png")));
 		XpowerY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-	                firstValue = calc.getText();
-	                
-	            } else {                
-	                secondValue = calc.getText();                
-	            }
-				calc.setText("");
-				numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
-				zeroCount ++;
-	            operator = "x^y";
-	            decimalCount = 0;
+				try {
+					if(allowed) {
+						if (firstValue == null) {
+			                firstValue = calc.getText();
+			                
+			            } else {                
+			                secondValue = calc.getText();                
+			            }
+						allowed = false;
+						calc.setText("");
+						numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
+						zeroCount ++;
+			            operator = "x^y";
+			            decimalCount = 0;
+					} else {
+						return;
+					}
+					
+				} catch (Exception error) {
+					holder.setText("Syntax Error");
+					return;
+				}
 			}
 		});
 		XpowerY_button.setForeground(new Color(0, 0, 0));
@@ -754,21 +788,25 @@ public class BSIT2A extends JFrame {
 		XpowerYpowerofZ_button.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz.png")));
 		XpowerYpowerofZ_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (firstValue == null) {
-	                firstValue = calc.getText();
-	                
-	            } else if(secondValue == null) {                
-	                secondValue = calc.getText(); 
-	                
-	            } else if(thirdValue == null) {
-	            	thirdValue = calc.getText();
-	            }
-
-				calc.setText("");
-				numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
-				zeroCount ++;
-	            operator = "x^y^z";
-	            decimalCount = 0;
+				try {
+					if (firstValue == null) {
+		                firstValue = calc.getText();
+		                
+		            } else if(secondValue == null) {                
+		                secondValue = calc.getText(); 
+		                
+		            } else if(thirdValue == null) {
+		            	thirdValue = calc.getText();
+		            }
+					calc.setText("");
+					numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
+					zeroCount ++;
+		            operator = "x^y^z";
+		            decimalCount = 0;
+				} catch (Exception error) {
+					holder.setText("Syntax Error");
+					return;
+				}
 			}
 		});
 		XpowerYpowerofZ_button.setForeground(new Color(0, 0, 0));
@@ -781,12 +819,19 @@ public class BSIT2A extends JFrame {
 		productnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/prodnot.png")));
 		productnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				calc.setText("");
-				numwrapper.setText(zeroCount == 0 ? ("" + "Π") : numwrapper.getText() + "Π");
-				zeroCount++;
-				operator = "Π";
-				decimalCount = 0;
-				valueIndex = 1;
+				try {
+					calc.setText("");
+					numwrapper.setText(zeroCount == 0 ? ("" + "Π") : numwrapper.getText() + "Π");
+					zeroCount++;
+					operator = "Π";
+					decimalCount = 0;
+					valueIndex = 1;
+				} catch (Exception error) {
+					reset = true;
+		        	holder.setText("Syntax Error");
+		            calc.setText("0");
+		            numwrapper.setText("0");
+				}
 			}
 		});
 		productnotation_button.setForeground(new Color(0, 0, 0));
@@ -957,6 +1002,7 @@ public class BSIT2A extends JFrame {
 					}
 				} catch (Exception error) {
 					holder.setText("Syntax Error");
+					return;
 				}
 				
 				calc.setText(calc.getText());
