@@ -3141,3 +3141,63 @@ Node.js v22.7.0
 !ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-23 09:48:56.064
 !MESSAGE Got back status code 0
 
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-23 10:52:40.365
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-23 10:52:40.498
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'return' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-23 10:52:41.838
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-23 10:52:42.400
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 9!
+Expecting: one of these possible Token sequences:
+  1. ['interface']
+  2. ['@']
+but found: 'char'!
+	->compilationUnit
+	->ordinaryCompilationUnit
+	->typeDeclaration
+	->interfaceDeclaration
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js10050899736021056028\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+

@@ -658,6 +658,7 @@ public class BSIT2A extends JFrame {
 		            calc.setText("0");
 		            numwrapper.setText("0");
 				}
+				
 			}
 		});
 		summation_button.setForeground(new Color(0, 0, 0));
