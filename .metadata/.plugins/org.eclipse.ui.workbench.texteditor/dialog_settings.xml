@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="multiplication_button"/>
+		<item key="selection" value="summation"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Exception"/>
 			<item value="multiplication_button"/>
 			<item value="multiplication"/>
 			<item value="minus_button"/>
@@ -15,7 +16,6 @@
 			<item value="plus_but"/>
 			<item value="one_button"/>
 			<item value="one"/>
-			<item value="result"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;&quot;"/>
