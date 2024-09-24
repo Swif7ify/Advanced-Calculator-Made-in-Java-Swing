@@ -1014,12 +1014,16 @@ public class BSIT2A extends JFrame {
 							
 						case "a! + b!":
 							int sumFactorial = Functions.sumFactorial(firstDoubleValue, secondDoubleValue);
-							Answer = sumFactorial;
+							calc.setText("" + sumFactorial);
+							numwrapper.setText(calc.getText());
+							ANS = sumFactorial;
 							break;
 							
 						case "a! / b!":
 							int divideFactorial = Functions.divideFactorial(firstDoubleValue, secondDoubleValue);
-							Answer = divideFactorial;
+							calc.setText("" + divideFactorial);
+							numwrapper.setText(calc.getText());
+							ANS = divideFactorial;
 							break;
 							
 						case "log(2)(":
@@ -1456,7 +1460,7 @@ public class BSIT2A extends JFrame {
 }
 
 
-// ATTENTION FIX
+// ATTENTION
 // SWITHCHING BETWEEN XY and XYZ
 // MISSING FUNCTION
 // SET WOULD PROBABLY BE SOMEHTING LIKE LOG INPUT(INPUT

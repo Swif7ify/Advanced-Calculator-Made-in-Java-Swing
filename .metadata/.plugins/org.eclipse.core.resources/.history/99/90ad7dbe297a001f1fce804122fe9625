@@ -988,38 +988,52 @@ public class BSIT2A extends JFrame {
 					switch(operator) {
 						case "∑":
 							int summation = (int) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
-							Answer = summation;
+							calc.setText("" + summation);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = summation;
 							break;
 			            	
 						case "∑∑":
 							int doubleSummation = (int) Functions.doubleSummation(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
-							Answer = doubleSummation;
+							calc.setText("" + doubleSummation);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = doubleSummation;
 							break;
 			            	
 						case "Π":
 							int prodnot = (int) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
-							Answer = prodnot;
+			            	calc.setText("" + prodnot);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = prodnot;
 			            	break;
 			            	
 						case "ΠΠ":
 							int doubleProdNot = (int) Functions.doubleProdNot(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
-			            	Answer = doubleProdNot;
+							calc.setText("" + doubleProdNot);
+			            	numwrapper.setText(calc.getText());
+			            	ANS = doubleProdNot;
 							break;
 			            
 						case "N!":
 							firstDoubleValue = Double.parseDouble(firstValue);
 							int factorial = Functions.factorial(firstDoubleValue);
-							Answer = factorial;
+							calc.setText("" + factorial);
+							numwrapper.setText(calc.getText());
+							ANS = factorial;
 							break;
 							
 						case "a! + b!":
 							int sumFactorial = Functions.sumFactorial(firstDoubleValue, secondDoubleValue);
-							Answer = sumFactorial;
+							calc.setText("" + sumFactorial);
+							numwrapper.setText(calc.getText());
+							ANS = sumFactorial;
 							break;
 							
 						case "a! / b!":
 							int divideFactorial = Functions.divideFactorial(firstDoubleValue, secondDoubleValue);
-							Answer = divideFactorial;
+							calc.setText("" + divideFactorial);
+							numwrapper.setText(calc.getText());
+							ANS = divideFactorial;
 							break;
 							
 						case "log(2)(":
@@ -1456,7 +1470,7 @@ public class BSIT2A extends JFrame {
 }
 
 
-// ATTENTION FIX
+// ATTENTION
 // SWITHCHING BETWEEN XY and XYZ
 // MISSING FUNCTION
 // SET WOULD PROBABLY BE SOMEHTING LIKE LOG INPUT(INPUT
