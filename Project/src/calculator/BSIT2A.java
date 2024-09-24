@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 
 public class BSIT2A extends JFrame {
@@ -47,7 +48,7 @@ public class BSIT2A extends JFrame {
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
-    boolean reset = false, isMinus = false, allowed = false;
+    boolean reset = false, isMinus = false, allowed = false, isVisible1 = false, isVisible2 = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
 	/**
@@ -76,11 +77,39 @@ public class BSIT2A extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
+		JLabel xy_holder = new JLabel("");
+		panel_1.add(xy_holder);
+		xy_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xy-black.png")));
+		xy_holder.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel xyz_holder = new JLabel("");
+		panel_1.add(xyz_holder);
+		xyz_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz-black.png")));
+		xyz_holder.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		RoundJTextField calc = new RoundJTextField(10);
 		calc.setSize(135, 33);
 		calc.setLocation(175, 10);
 		panel_1.add(calc);
 		calc.setColumns(10);
+		
+		RoundJTextField zValue = new RoundJTextField(10);
+		zValue.setHorizontalAlignment(SwingConstants.TRAILING);
+		zValue.setFont(new Font("Malgun Gothic", Font.PLAIN, 26)); zValue.setText("0");
+		panel_1.add(zValue);
+		zValue.setColumns(10);
+		
+		RoundJTextField yValue = new RoundJTextField(10);  
+		yValue.setHorizontalAlignment(SwingConstants.TRAILING);
+		yValue.setFont(new Font("Malgun Gothic", Font.PLAIN, 28)); yValue.setText("0");
+		panel_1.add(yValue);
+		yValue.setColumns(10);
+		
+		RoundJTextField xValue = new RoundJTextField(10);
+		xValue.setHorizontalAlignment(SwingConstants.TRAILING);
+		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 33)); xValue.setText("0"); 
+		panel_1.add(xValue);
+		xValue.setColumns(10);
 		
 		RoundJTextField numwrapper = new RoundJTextField(500);
 		numwrapper.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -108,37 +137,61 @@ public class BSIT2A extends JFrame {
 				try {
 					String currentEq = calc.getText();
 					String currentText = numwrapper.getText();
-					if (currentText.equals("0") || currentEq.equals("0")) {
-						return;
-					} else if(currentText.length() == 1 || currentEq.length() == 1) {
-						if (!numbers.isEmpty()) {
-				            numbers.remove(numbers.size() - 1);
-				        }
-						numwrapper.setText("0");
-						calc.setText("");
-						holder.setText("");
-					} else if (currentText.length() > 1 || currentEq.length() > 1) {
-						numwrapper.setText(currentText.substring(0, currentText.length() - 1));
-						calc.setText(currentEq.substring(0, currentEq.length() - 1));
-					} else {
-						numwrapper.setText("0");
-						calc.setText("0");
-					}
+					String xVal = xValue.getText();
+					String yVal = yValue.getText();
+					String zVal = zValue.getText();
 					
-					if(valueIndex == 1) {
-						valueIndex = 1;
+					if(isVisible1 || isVisible2) {
+						if(!zVal.isEmpty() && !zVal.equals("0")) {
+							zValue.setText(zVal.substring(0, zVal.length() - 1));
+						} else {
+							zValue.setText("0");
+							if(!yVal.isEmpty() && !yVal.equals("0")) {
+								yValue.setText(yVal.substring(0, yVal.length() - 1));
+							} else {
+								yValue.setText("0");
+								if(!xVal.isEmpty() && !xVal.equals("0")) {
+									xValue.setText(xVal.substring(0, xVal.length() - 1));
+								} else {
+									xValue.setText("0");
+									return;
+								}
+							}
+						}
 					} else {
-						valueIndex--;
-					}
-					if (zeroCount == 0) {
-						zeroCount = 0;
-					} else {
-						zeroCount --;
+						if (currentText.equals("0") || currentEq.equals("0")) {
+							return;
+						} else if(currentText.length() == 1 || currentEq.length() == 1) {
+							if (!numbers.isEmpty()) {
+					            numbers.remove(numbers.size() - 1);
+					        }
+							numwrapper.setText("0");
+							calc.setText("");
+							holder.setText("");
+						} else if (currentText.length() > 1 || currentEq.length() > 1) {
+							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+							calc.setText(currentEq.substring(0, currentEq.length() - 1));
+						} else {
+							numwrapper.setText("0");
+							calc.setText("0");
+						}
+						
+						if(valueIndex == 1) {
+							valueIndex = 1;
+						} else {
+							valueIndex--;
+						}
+						if (zeroCount == 0) {
+							zeroCount = 0;
+						} else {
+							zeroCount --;
+						} 
 					}
 					
 					reset = false;
 					isMinus = false;
 				} catch (Exception error) {
+					System.out.println(error);
 					return;
 				}
 			}
@@ -167,6 +220,8 @@ public class BSIT2A extends JFrame {
 			    C = null; D = null;
 			    reset = false; isMinus = false; allowed = false;
 			    numbers.clear(); operators.clear();
+			    zValue.setText("0"); yValue.setText("0"); 
+			    xValue.setText("0");
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -764,30 +819,31 @@ public class BSIT2A extends JFrame {
 		division_button.setBackground(new Color(254, 143, 0));
 		division_button.setBounds(340, 384, 94, 54);
 		panel.add(division_button);
-//		ATTENTION
+		
 		RoundedButton XpowerY_button = new RoundedButton("", 50);
 		XpowerY_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		XpowerY_button.setIcon(new ImageIcon(getClass().getResource("/Picture/X.png")));
 		XpowerY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(allowed) {
-						if (firstValue == null) {
-			                firstValue = calc.getText();
-			                
-			            } else {                
-			                secondValue = calc.getText();                
-			            }
-						allowed = false;
-						calc.setText("");
-						numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
-						zeroCount ++;
-			            operator = "x^y";
-			            decimalCount = 0;
+					if(isVisible1) {
+						yValue.setBounds(0, 0, 0, 0);
+						xValue.setBounds(0, 0, 0, 0);
+						xy_holder.setBounds(0, 0, 0, 0);
+						numwrapper.setBounds(10, 33, 698, 72);
+						isVisible1 = false;
 					} else {
-						return;
+						zValue.setBounds(0, 0, 0, 0);
+						yValue.setBounds(515, 36, 178, 25);
+						xValue.setBounds(515, 54, 161, 41);
+						xy_holder.setBounds(15, 37, 66, 60);
+						numwrapper.setBounds(0, 0, 0, 0);
+						isVisible1 = true;
 					}
-					
+				
+					zeroCount ++;
+					operator = "x^y";
+					decimalCount = 0;
 				} catch (Exception error) {
 					holder.setText("Syntax Error");
 					return;
@@ -798,37 +854,39 @@ public class BSIT2A extends JFrame {
 		XpowerY_button.setBackground(new Color(212, 212, 210));
 		XpowerY_button.setBounds(444, 384, 94, 54);
 		panel.add(XpowerY_button);
-//		ATTENTION
+		
 		RoundedButton XpowerYpowerofZ_button = new RoundedButton("", 50);
 		XpowerYpowerofZ_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		XpowerYpowerofZ_button.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz.png")));
 		XpowerYpowerofZ_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(allowed) {
-						if (firstValue == null) {
-			                firstValue = calc.getText();
-			                
-			            } else if(secondValue == null) {                
-			                secondValue = calc.getText(); 
-			                
-			            } else if(thirdValue == null) {
-			            	thirdValue = calc.getText();
-			            }
-						calc.setText("");
-						numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
-						zeroCount ++;
-			            operator = "x^y^z";
-			            decimalCount = 0;
+					if(isVisible2) {
+						zValue.setBounds(0, 0, 0, 0);
+						yValue.setBounds(0, 0, 0, 0);
+						xValue.setBounds(0, 0, 0, 0);
+						xyz_holder.setBounds(0, 0, 0, 0);
+						numwrapper.setBounds(10, 33, 698, 72);
+						isVisible2 = false;
 					} else {
-						return;
+						zValue.setBounds(500, 21, 189, 25);
+						yValue.setBounds(497, 46, 178, 27);
+						xValue.setBounds(497, 67, 161, 41);
+						xyz_holder.setBounds(15, 37, 66, 60);
+						numwrapper.setBounds(0, 0, 0, 0);
+						isVisible2 = true;
 					}
+					
+					zeroCount ++;
+					operator = "x^y^z";
+					decimalCount = 0;
 				} catch (Exception error) {
 					holder.setText("Syntax Error");
 					return;
 				}
 			}
 		});
+		
 		XpowerYpowerofZ_button.setForeground(new Color(0, 0, 0));
 		XpowerYpowerofZ_button.setBackground(new Color(212, 212, 210));
 		XpowerYpowerofZ_button.setBounds(548, 384, 94, 54);
@@ -988,16 +1046,18 @@ public class BSIT2A extends JFrame {
 							numwrapper.setText(calc.getText());
 							ANS = Answer;
 							break;
+							
 						case "x^y^z":
-							firstDoubleValue = Double.parseDouble(firstValue);
-							secondDoubleValue = Double.parseDouble(secondValue);
-							thirdDoubleValue = Double.parseDouble(thirdValue);
+							firstDoubleValue = Double.parseDouble(xValue.getText());
+							secondDoubleValue = Double.parseDouble(yValue.getText());
+							thirdDoubleValue = Double.parseDouble(zValue.getText());
 							holder.setText(numwrapper.getText());
 							result =  Math.pow(thirdDoubleValue, secondDoubleValue);
 							Answer =  Math.pow(firstDoubleValue, result);
 							calc.setText("" + Answer);
 							numwrapper.setText(calc.getText());
 							ANS = Answer;
+							XpowerYpowerofZ_button.doClick();
 							break;
 							
 						default:
@@ -1007,10 +1067,16 @@ public class BSIT2A extends JFrame {
 								}
 								Answer = Functions.calculateResult(numbers, operators);
 							} else {
-								secondValue = calc.getText();
+								if(operator == "x^y") {
+									firstValue = xValue.getText();
+									secondValue = yValue.getText();
+								} else {
+									secondValue = calc.getText();
+								}
 								firstDoubleValue = Double.parseDouble(firstValue);
 								secondDoubleValue = Double.parseDouble(secondValue);
 								Answer = Functions.basicCalculation(operator, firstDoubleValue, secondDoubleValue);
+								XpowerY_button.doClick();
 							}
 							
 							operators.clear();
@@ -1188,7 +1254,7 @@ public class BSIT2A extends JFrame {
 		B_button.setBackground(new Color(80, 80, 80));
 		B_button.setBounds(132, 574, 94, 54);
 		panel.add(B_button);
-
+		
 		RoundedButton C_button = new RoundedButton("C", 50);
 		C_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		C_button.addActionListener(new ActionListener() {
@@ -1322,29 +1388,30 @@ public class BSIT2A extends JFrame {
 		XpowerY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(allowed) {
-						if (firstValue == null) {
-			                firstValue = calc.getText();
-			                
-			            } else {                
-			                secondValue = calc.getText();                
-			            }
-						allowed = false;
-						calc.setText("");
-						numwrapper.setText(zeroCount == 0 ? ("" + "^") : numwrapper.getText() + "^");
-						zeroCount ++;
-			            operator = "x^y";
-			            decimalCount = 0;
+					if(isVisible1) {
+						yValue.setBounds(0, 0, 0, 0);
+						xValue.setBounds(0, 0, 0, 0);
+						xy_holder.setBounds(0, 0, 0, 0);
+						numwrapper.setBounds(10, 33, 698, 72);
+						isVisible1 = false;
 					} else {
-						return;
+						yValue.setBounds(515, 36, 178, 25);
+						xValue.setBounds(515, 54, 161, 41);
+						xy_holder.setBounds(15, 37, 66, 60);
+						numwrapper.setBounds(0, 0, 0, 0);
+						isVisible1 = true;
 					}
 					
+					zeroCount ++;
+					operator = "x^y";
+					decimalCount = 0;
 				} catch (Exception error) {
 					holder.setText("Syntax Error");
 					return;
 				}
 			}
 		});
+		
 		XpowerY.setForeground(new Color(255, 255, 255));
 		XpowerY.setBackground(new Color(80, 80, 80));
 		XpowerY.setBounds(236, 638, 94, 54);
@@ -1386,7 +1453,7 @@ public class BSIT2A extends JFrame {
 		XpowerC.setBackground(new Color(80, 80, 80));
 		XpowerC.setBounds(548, 638, 94, 54);
 		panel.add(XpowerC);
-
+		
 		RoundedButton answer_button = new RoundedButton("ANS", 50);
 		answer_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		answer_button.addActionListener(new ActionListener() {
