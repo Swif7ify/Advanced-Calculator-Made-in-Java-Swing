@@ -1,0 +1,34 @@
+package calculator;
+
+import java.util.ArrayList;
+
+public class CalculatorHelper {
+	
+	private RoundJTextField calc;
+	private RoundJTextField numwrapper;
+	private RoundJTextField holder;
+	private RoundJTextField zValue;
+	private RoundJTextField yValue;
+	private RoundJTextField xValue;
+	
+	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
+            RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue) {
+		 this.calc = calc;
+		 this.numwrapper = numwrapper;
+		 this.holder = holder;
+		 this.zValue = zValue;
+		 this.yValue = yValue;
+		 this.xValue = xValue;
+	}
+	
+	public void setZero() {
+		calc.setText("");
+		holder.setText("");
+		numwrapper.setText("0");
+	}
+	
+	public void reset() {
+		setZero();
+		
+	}
+}

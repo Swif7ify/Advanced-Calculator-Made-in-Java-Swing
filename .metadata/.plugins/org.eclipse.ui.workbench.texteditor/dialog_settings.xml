@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="summation"/>
+		<item key="selection" value="helper.setZero"/>
 		<item key="wrap" value="false"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="true"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="helper.setZero"/>
+			<item value="summation"/>
+			<item value="lblNewLabel"/>
+			<item value="x^y"/>
+			<item value="xy"/>
 			<item value="Exception"/>
 			<item value="multiplication_button"/>
 			<item value="multiplication"/>
-			<item value="minus_button"/>
-			<item value="plus_button"/>
-			<item value="plus_but"/>
-			<item value="one_button"/>
-			<item value="one"/>
 		</list>
 		<list key="replacehistory">
+			<item value="xy_holder"/>
 			<item value="&quot;&quot;"/>
 			<item value="ceiledValue"/>
 			<item value="holder"/>
@@ -25,7 +26,6 @@
 			<item value="RoundedButton"/>
 			<item value="54"/>
 			<item value="94"/>
-			<item value="66"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -1,0 +1,20 @@
+package calculator;
+
+public class CalculatorHelper {
+	
+	private RoundJTextField calc;
+	private RoundJTextField numwrapper;
+	private RoundJTextField holder;
+	
+	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder) {
+		this.calc = calc;
+		this.numwrapper = numwrapper;
+		this.holder = holder;
+	}
+	
+	public void setZero() {
+		calc.setText("");
+		holder.setText("");
+		numwrapper.setText("ITWORKS");
+	}
+}
