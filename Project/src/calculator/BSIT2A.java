@@ -28,6 +28,8 @@ public class BSIT2A extends JFrame {
 	private RoundJTextField yValue;
 	private RoundJTextField xValue;
 	private CalculatorHelper helper;
+	private JLabel xy_holder;
+	private JLabel xyz_holder;
 	
 	/**
 	  Launch the application.
@@ -53,12 +55,12 @@ public class BSIT2A extends JFrame {
 		
 	}
 
-	String formatAnswer ,firstValue, secondValue, thirdValue, fourthValue, operator, A, B, C, D;
+	String firstValue, secondValue, thirdValue, fourthValue, operator, A, B, C, D;
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result, ANS;
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
-    boolean reset = false, isMinus = false, allowed = false, isVisible1 = false, isVisible2 = false;
+    boolean reset = false, isMinus = false, allowed = false, isVisible = false, isVisible2 = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
     
@@ -88,12 +90,12 @@ public class BSIT2A extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel xy_holder = new JLabel("");
+		xy_holder = new JLabel("");
 		panel_1.add(xy_holder);
 		xy_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xy-black.png")));
 		xy_holder.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel xyz_holder = new JLabel("");
+		xyz_holder = new JLabel("");
 		panel_1.add(xyz_holder);
 		xyz_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz-black.png")));
 		xyz_holder.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,7 +143,7 @@ public class BSIT2A extends JFrame {
 		panel_1.add(holder);
 		holder.setColumns(10);
 		
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue);
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, xy_holder, xyz_holder);
 		
 		RoundedButton DEL_button = new RoundedButton("DEL", 50);
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -154,7 +156,7 @@ public class BSIT2A extends JFrame {
 					String yVal = yValue.getText();
 					String zVal = zValue.getText();
 					
-					if(isVisible1 || isVisible2) {
+					if(isVisible || isVisible2) {
 						if(!zVal.isEmpty() && !zVal.equals("0")) {
 							zValue.setText(zVal.substring(0, zVal.length() - 1));
 						} else {
@@ -227,25 +229,6 @@ public class BSIT2A extends JFrame {
 		        reset = false; isMinus = false;
 		        allowed = false;
 				helper.resetAll();
-//				System.out.println(firstValue);
-//				System.out.println(secondValue);
-//				System.out.println(thirdValue);
-//				System.out.println(fourthValue);
-//				System.out.println(firstDoubleValue);
-//				System.out.println(secondDoubleValue);
-//				System.out.println(thirdDoubleValue);
-//				System.out.println(fourthDoubleValue);
-//				System.out.println(decimalCount);
-//				System.out.println(valueIndex);
-//				System.out.println(A);
-//				System.out.println(B);
-//				System.out.println(C);
-//				System.out.println(D);
-//				System.out.println(reset);
-//				System.out.println(isMinus);
-//				System.out.println(allowed);
-//				System.out.println(numbers);
-//				System.out.println(operators);
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -670,7 +653,9 @@ public class BSIT2A extends JFrame {
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            double squreRootValue = Math.sqrt(currentValue);
 		            
-		            calc.setText(String.valueOf(squreRootValue));
+		            String formattedAnswer = Functions.formatString(squreRootValue);
+		            
+		            calc.setText(String.valueOf(formattedAnswer));
 		        } catch (Exception error) {
 		        	helper.setSyntaxError();
 		        	return;
@@ -692,7 +677,8 @@ public class BSIT2A extends JFrame {
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            double cubeRootValue = Math.cbrt(currentValue);
 		            
-		            calc.setText(String.valueOf(cubeRootValue));
+		            String formattedAnswer = Functions.formatString(cubeRootValue);
+		            calc.setText(String.valueOf(formattedAnswer));
 		        } catch (Exception error) {
 		        	reset = true;
 		        	helper.setSyntaxError();
@@ -834,28 +820,22 @@ public class BSIT2A extends JFrame {
 		XpowerY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(isVisible1) {
-						yValue.setBounds(0, 0, 0, 0);
-						xValue.setBounds(0, 0, 0, 0);
-						xy_holder.setBounds(0, 0, 0, 0);
+					if(isVisible) {
+						helper.setXYZInactive();
 						numwrapper.setBounds(10, 33, 698, 72);
-						isVisible1 = false;
+						isVisible = false;
 					} else {
-						zValue.setBounds(0, 0, 0, 0);
-						xyz_holder.setBounds(0, 0, 0, 0);
-						
-						zValue.setBounds(0, 0, 0, 0);
-						yValue.setBounds(515, 36, 178, 25);
-						xValue.setBounds(515, 54, 161, 41);
-						xy_holder.setBounds(15, 37, 66, 60);
+						helper.setXYZInactive();
+						helper.setXYActive();
 						numwrapper.setBounds(0, 0, 0, 0);
-						isVisible1 = true;
+						isVisible = true;
 					}
 					
 					zeroCount ++;
 					operator = "x^y";
 					decimalCount = 0;
 				} catch (Exception error) {
+					System.out.println(error);
 					helper.setSyntaxError();
 					return;
 				}
@@ -872,24 +852,15 @@ public class BSIT2A extends JFrame {
 		XpowerYpowerofZ_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(isVisible1) {
-						zValue.setBounds(0, 0, 0, 0);
-						yValue.setBounds(0, 0, 0, 0);
-						xValue.setBounds(0, 0, 0, 0);
-						xyz_holder.setBounds(0, 0, 0, 0);
+					if(isVisible) {
+						helper.setXYZInactive();
 						numwrapper.setBounds(10, 33, 698, 72);
-						isVisible1 = false;
+						isVisible = false;
 					} else {
-						yValue.setBounds(0, 0, 0, 0);
-						xValue.setBounds(0, 0, 0, 0);
-						xy_holder.setBounds(0, 0, 0, 0);
-						
-						zValue.setBounds(500, 21, 189, 25);
-						yValue.setBounds(497, 46, 178, 27);
-						xValue.setBounds(497, 67, 161, 41);
-						xyz_holder.setBounds(15, 37, 66, 60);
+						helper.setXYZInactive();
+						helper.setXYZActive();
 						numwrapper.setBounds(0, 0, 0, 0);
-						isVisible1 = true;
+						isVisible = true;
 					}
 					
 					zeroCount ++;
@@ -1071,15 +1042,12 @@ public class BSIT2A extends JFrame {
 					holder.setText("Syntax Error");
 					return;
 				}
-				if (Answer % 1 == 0) {
-					formatAnswer = String.valueOf((int) Answer);
-				} else {
-					formatAnswer = String.format("%.2f", Answer);
-				}
 				
+				String formattedAnswer = Functions.formatString(Answer);
 				
+				holder.setText(numwrapper.getText());
 				ANS = Answer;
-				calc.setText("" + formatAnswer);  
+				calc.setText("" + formattedAnswer);  
 				calc.setText(calc.getText());
 				numwrapper.setText(calc.getText());
 				reset = true;
@@ -1377,18 +1345,18 @@ public class BSIT2A extends JFrame {
 		XpowerY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(isVisible1) {
+					if(isVisible) {
 						yValue.setBounds(0, 0, 0, 0);
 						xValue.setBounds(0, 0, 0, 0);
 						xy_holder.setBounds(0, 0, 0, 0);
 						numwrapper.setBounds(10, 33, 698, 72);
-						isVisible1 = false;
+						isVisible = false;
 					} else {
 						yValue.setBounds(515, 36, 178, 25);
 						xValue.setBounds(515, 54, 161, 41);
 						xy_holder.setBounds(15, 37, 66, 60);
 						numwrapper.setBounds(0, 0, 0, 0);
-						isVisible1 = true;
+						isVisible = true;
 					}
 					
 					zeroCount ++;
@@ -1423,7 +1391,7 @@ public class BSIT2A extends JFrame {
 		xplusC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				numwrapper.setText(numwrapper.getText() + "x + C");
-			}
+			} 
 		});
 		xplusC_button.setForeground(new Color(255, 255, 255));
 		xplusC_button.setBackground(new Color(80, 80, 80));

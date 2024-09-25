@@ -5539,3 +5539,300 @@ Expecting token of type --> EOF <-- but found --> '(' <--!
 
 Node.js v22.7.0
 
+!SESSION 2024-09-25 21:17:51.126 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:18:39.766
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:18:50.628
+!MESSAGE Logback config file: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-09-25 21:19:04.835
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\earlo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2024-09-25 21:19:45.994 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:19:49.394
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:20:12.404
+!MESSAGE Logback config file: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-09-25 21:20:24.937
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\earlo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:20:46.714
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:20:47.266
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'System' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:20:50.386
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:20:50.912
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'System' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:20:54.045
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:20:54.575
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'System' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js16344865093357733457\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-09-25 21:21:07.463
+!MESSAGE The workspace will exit with unsaved changes in this session.
+!SESSION 2024-09-25 21:21:07.993 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:21:12.167
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.core.resources 2 10035 2024-09-25 21:21:23.896
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:21:25.583
+!MESSAGE Logback config file: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-09-25 21:21:37.707
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\earlo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2024-09-25 21:21:50.125
+!MESSAGE DevStyle theme is being deactivated on this workspace; restoring colors and configuration
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2024-09-25 21:22:30.256
+!MESSAGE DevStyle is restoring colors that were configured prior to DevStyle being enabled
+
+!ENTRY org.eclipse.jdt.core 4 4 2024-09-25 21:22:36.569
+!MESSAGE Failed to save JDT index: Index for /Project/src
+!STACK 0
+java.io.FileNotFoundException: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.jdt.core\1328922201.index (The system cannot find the file specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
+	at org.eclipse.jdt.internal.core.index.FileIndexLocation.getInputStream(FileIndexLocation.java:84)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.readAllDocumentNames(DiskIndex.java:624)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeWith(DiskIndex.java:527)
+	at org.eclipse.jdt.internal.core.index.Index.save(Index.java:228)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndex(IndexManager.java:1144)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndexes(IndexManager.java:1187)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.notifyIdle(IndexManager.java:831)
+	at org.eclipse.jdt.internal.core.search.processing.JobManager.indexerLoop(JobManager.java:509)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+!SESSION 2024-09-25 21:22:37.970 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:22:41.365
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:22:45.802
+!MESSAGE Logback config file: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-09-25 21:22:57.691
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\earlo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:23:08.798
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:23:09.414
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'System' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:23:12.534
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:23:13.059
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'System' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:23:16.178
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-25 21:23:16.707
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'System' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js9453266724146278218\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2024-09-25 21:23:32.333
+!MESSAGE A DevStyle Theme is being activated on this workspace; preparing colors and configuration
+
+!ENTRY com.genuitec.eclipse.theming.ui 1 0 2024-09-25 21:23:32.403
+!MESSAGE DevStyle has archived current color configurations to alternate preferences - will be restored when switching out of the DevStyle Theme
+!SESSION 2024-09-25 21:23:47.618 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:23:51.834
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-25 21:23:56.607
+!MESSAGE Logback config file: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-09-25 21:24:08.834
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\earlo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

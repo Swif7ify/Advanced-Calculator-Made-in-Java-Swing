@@ -130,4 +130,15 @@ public class Functions {
 
 	    return result;
 	}
+	
+	public static String formatString(double Answer) {
+		String formattedAnswer;
+		if (Answer % 1 == 0) {
+			formattedAnswer = String.valueOf((int) Answer);
+		} else {
+			formattedAnswer = String.format("%.2f", Answer);
+		}
+		
+		return formattedAnswer;
+	}
 }
