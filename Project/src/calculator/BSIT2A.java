@@ -21,10 +21,18 @@ public class BSIT2A extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	private RoundJTextField calc;
+	private RoundJTextField numwrapper;
+	private RoundJTextField holder;
+	private RoundJTextField zValue;
+	private RoundJTextField yValue;
+	private RoundJTextField xValue;
+	private CalculatorHelper helper;
+	
 	/**
 	  Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -36,11 +44,13 @@ public class BSIT2A extends JFrame {
 					Image scaledImage = image.getScaledInstance(256, 256, Image.SCALE_SMOOTH);
 					frame.setIconImage(scaledImage);
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
 	}
 
 	String formatAnswer ,firstValue, secondValue, thirdValue, fourthValue, operator, A, B, C, D;
@@ -51,6 +61,7 @@ public class BSIT2A extends JFrame {
     boolean reset = false, isMinus = false, allowed = false, isVisible1 = false, isVisible2 = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
+    
 	/**
 	 * Create the frame.
 	 */
@@ -87,31 +98,31 @@ public class BSIT2A extends JFrame {
 		xyz_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz-black.png")));
 		xyz_holder.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		RoundJTextField calc = new RoundJTextField(10);
+		calc = new RoundJTextField(10);
 		calc.setSize(135, 33);
 		calc.setLocation(175, 10);
 		panel_1.add(calc);
 		calc.setColumns(10);
 		
-		RoundJTextField zValue = new RoundJTextField(10);
+		zValue = new RoundJTextField(10);
 		zValue.setHorizontalAlignment(SwingConstants.TRAILING);
 		zValue.setFont(new Font("Malgun Gothic", Font.PLAIN, 26)); zValue.setText("0");
 		panel_1.add(zValue);
 		zValue.setColumns(10);
 		
-		RoundJTextField yValue = new RoundJTextField(10);  
+		yValue = new RoundJTextField(10);  
 		yValue.setHorizontalAlignment(SwingConstants.TRAILING);
 		yValue.setFont(new Font("Malgun Gothic", Font.PLAIN, 28)); yValue.setText("0");
 		panel_1.add(yValue);
 		yValue.setColumns(10);
 		
-		RoundJTextField xValue = new RoundJTextField(10);
+		xValue = new RoundJTextField(10);
 		xValue.setHorizontalAlignment(SwingConstants.TRAILING);
 		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 33)); xValue.setText("0"); 
 		panel_1.add(xValue);
 		xValue.setColumns(10);
 		
-		RoundJTextField numwrapper = new RoundJTextField(500);
+		numwrapper = new RoundJTextField(500);
 		numwrapper.setHorizontalAlignment(SwingConstants.TRAILING);
 		numwrapper.setEditable(false);
 		numwrapper.setFont(new Font("Malgun Gothic", Font.BOLD, 30));
@@ -121,7 +132,7 @@ public class BSIT2A extends JFrame {
 		panel_1.add(numwrapper);
 		numwrapper.setColumns(10);
 		
-		RoundJTextField holder = new RoundJTextField(10);
+		holder = new RoundJTextField(10);
 		holder.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 20));
 		holder.setHorizontalAlignment(SwingConstants.LEFT);
 		holder.setBackground(new Color(255, 255, 255));
@@ -129,6 +140,8 @@ public class BSIT2A extends JFrame {
 		holder.setBounds(37, 2, 210, 41);
 		panel_1.add(holder);
 		holder.setColumns(10);
+		
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue);
 		
 		RoundedButton DEL_button = new RoundedButton("DEL", 50);
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -165,15 +178,12 @@ public class BSIT2A extends JFrame {
 							if (!numbers.isEmpty()) {
 					            numbers.remove(numbers.size() - 1);
 					        }
-							numwrapper.setText("0");
-							calc.setText("");
-							holder.setText("");
+							helper.setZero();
 						} else if (currentText.length() > 1 || currentEq.length() > 1) {
 							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
 							calc.setText(currentEq.substring(0, currentEq.length() - 1));
 						} else {
-							numwrapper.setText("0");
-							calc.setText("0");
+							helper.setZero();
 						}
 						
 						if(valueIndex == 1) {
@@ -191,7 +201,6 @@ public class BSIT2A extends JFrame {
 					reset = false;
 					isMinus = false;
 				} catch (Exception error) {
-					System.out.println(error);
 					return;
 				}
 			}
@@ -207,21 +216,36 @@ public class BSIT2A extends JFrame {
 		AC_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		AC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText("0");
-				calc.setText("");
-				holder.setText(""); 
+				zeroCount = 0; Answer = 0;
 				firstValue = null; secondValue = null;
-				thirdValue = null; fourthValue = null;
-				firstDoubleValue = 0; secondDoubleValue = 0;
-				thirdDoubleValue = 0; fourthDoubleValue = 0;
-				Answer = 0; decimalCount = 0;
-				zeroCount = 0; valueIndex = 0;
-			    A = null; B = null;
-			    C = null; D = null;
-			    reset = false; isMinus = false; allowed = false;
-			    numbers.clear(); operators.clear();
-			    zValue.setText("0"); yValue.setText("0"); 
-			    xValue.setText("0");
+		        thirdValue = null; fourthValue = null;
+		        firstDoubleValue = 0; secondDoubleValue = 0;
+		        thirdDoubleValue = 0; fourthDoubleValue = 0;
+		        decimalCount = 0; valueIndex = 0;
+		        A = null; B = null; 
+		        C = null; D = null;
+		        reset = false; isMinus = false;
+		        allowed = false;
+				helper.resetAll();
+//				System.out.println(firstValue);
+//				System.out.println(secondValue);
+//				System.out.println(thirdValue);
+//				System.out.println(fourthValue);
+//				System.out.println(firstDoubleValue);
+//				System.out.println(secondDoubleValue);
+//				System.out.println(thirdDoubleValue);
+//				System.out.println(fourthDoubleValue);
+//				System.out.println(decimalCount);
+//				System.out.println(valueIndex);
+//				System.out.println(A);
+//				System.out.println(B);
+//				System.out.println(C);
+//				System.out.println(D);
+//				System.out.println(reset);
+//				System.out.println(isMinus);
+//				System.out.println(allowed);
+//				System.out.println(numbers);
+//				System.out.println(operators);
 			}
 		});
 		AC_button.setForeground(new Color(0, 0, 0));
@@ -294,10 +318,8 @@ public class BSIT2A extends JFrame {
 		            calc.setText("" + flooredValue);
 		            numwrapper.setText(calc.getText());
 		        } catch (Exception error) {
-		            numwrapper.setText("0");
-		            calc.setText("0");
-		            holder.setText("Math Error");
-		            reset = true;
+		            helper.setMathError();
+		            return;
 		        }
 			}
 		});
@@ -317,10 +339,8 @@ public class BSIT2A extends JFrame {
 		            calc.setText("" + ceiledValue);
 		            numwrapper.setText(calc.getText());
 		        } catch (Exception error) {
-		            numwrapper.setText("0");
-		            calc.setText("0");
-		            holder.setText("Math Error");
-		            reset = true;
+		        	helper.setMathError();
+		            return;
 		        }
 			}
 		});
@@ -340,10 +360,8 @@ public class BSIT2A extends JFrame {
 		            calc.setText(String.valueOf(intValue));
 		            numwrapper.setText(calc.getText());
 		        } catch (Exception error) {
-		        	 numwrapper.setText("0");
-		        	 calc.setText("0");
-		        	 holder.setText("Math Error");
-		        	 reset = true;
+		        	helper.setMathError();
+		        	reset = true;
 		        }
 			}
 		});
@@ -357,8 +375,7 @@ public class BSIT2A extends JFrame {
 		seven_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + seven_button.getText()) : calc.getText() + seven_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
@@ -382,8 +399,7 @@ public class BSIT2A extends JFrame {
 		eight_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + eight_button.getText()) : calc.getText() + eight_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + eight_button.getText()) : numwrapper.getText() + eight_button.getText());
@@ -407,8 +423,7 @@ public class BSIT2A extends JFrame {
 		nine_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + nine_button.getText()) : calc.getText() + nine_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + nine_button.getText()) : numwrapper.getText() + nine_button.getText());
@@ -477,9 +492,8 @@ public class BSIT2A extends JFrame {
 				} catch (Exception error) {
 					firstValue = null;
 					secondValue = null;
-					calc.setText("");
-					numwrapper.setText("0");
-					holder.setText("Syntax Error");
+					reset = true;
+					helper.setSyntaxError();
 				}
 		    }
 		});
@@ -537,8 +551,9 @@ public class BSIT2A extends JFrame {
 						return;
 					}
 				} catch (Exception error) {
-					holder.setText("Syntax Error");
-					return;
+					firstValue = null;
+					reset = true;
+					helper.setSyntaxError();
 				}
 			}
 		});
@@ -552,8 +567,7 @@ public class BSIT2A extends JFrame {
 		four_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + four_button.getText()) : calc.getText() + four_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + four_button.getText()) : numwrapper.getText() + four_button.getText());
@@ -577,8 +591,7 @@ public class BSIT2A extends JFrame {
 		five_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + five_button.getText()) : calc.getText() + five_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + five_button.getText()) : numwrapper.getText() + five_button.getText());
@@ -602,8 +615,7 @@ public class BSIT2A extends JFrame {
 		six_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + six_button.getText()) : calc.getText() + six_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + six_button.getText()) : numwrapper.getText() + six_button.getText());
@@ -660,8 +672,8 @@ public class BSIT2A extends JFrame {
 		            
 		            calc.setText(String.valueOf(squreRootValue));
 		        } catch (Exception error) {
-		        	calc.setText("0");
-		            numwrapper.setText("0");
+		        	helper.setSyntaxError();
+		        	return;
 		        }
 				numwrapper.setText(calc.getText());
 			}
@@ -683,9 +695,7 @@ public class BSIT2A extends JFrame {
 		            calc.setText(String.valueOf(cubeRootValue));
 		        } catch (Exception error) {
 		        	reset = true;
-		        	holder.setText("Syntax Error");
-		            calc.setText("0");
-		            numwrapper.setText("0");
+		        	helper.setSyntaxError();
 		        }
 				numwrapper.setText(calc.getText());
 			}
@@ -694,7 +704,7 @@ public class BSIT2A extends JFrame {
 		cuberoot_button.setBackground(new Color(212, 212, 210));
 		cuberoot_button.setBounds(548, 320, 94, 54);
 		panel.add(cuberoot_button);
-//		ATTENTION
+		
 		RoundedButton summation_button = new RoundedButton("", 50);	
 		summation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/summation.png")));
 		summation_button.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -702,16 +712,14 @@ public class BSIT2A extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					calc.setText("");
-					numwrapper.setText(zeroCount == 0 ?("" + "∑") : numwrapper.getText() + "∑");
+					
 					zeroCount++;
 					operator = "∑";
 					decimalCount = 0;
 					valueIndex = 1;
 				} catch (Exception error) {
 					reset = true;
-		        	holder.setText("Syntax Error");
-		            calc.setText("0");
-		            numwrapper.setText("0");
+		        	helper.setSyntaxError();
 				}
 			}
 		});
@@ -725,8 +733,7 @@ public class BSIT2A extends JFrame {
 		one_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + one_button.getText()) : calc.getText() + one_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + one_button.getText()) : numwrapper.getText() + one_button.getText());
@@ -750,8 +757,7 @@ public class BSIT2A extends JFrame {
 		two_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + two_button.getText()) : calc.getText() + two_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + two_button.getText()) : numwrapper.getText() + two_button.getText());
@@ -775,8 +781,7 @@ public class BSIT2A extends JFrame {
 		three_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					calc.setText(zeroCount == 0 ? ("" + three_button.getText()) : calc.getText() + three_button.getText());
 					numwrapper.setText(zeroCount == 0 ? ("" + three_button.getText()) : numwrapper.getText() + three_button.getText());
@@ -837,18 +842,21 @@ public class BSIT2A extends JFrame {
 						isVisible1 = false;
 					} else {
 						zValue.setBounds(0, 0, 0, 0);
+						xyz_holder.setBounds(0, 0, 0, 0);
+						
+						zValue.setBounds(0, 0, 0, 0);
 						yValue.setBounds(515, 36, 178, 25);
 						xValue.setBounds(515, 54, 161, 41);
 						xy_holder.setBounds(15, 37, 66, 60);
 						numwrapper.setBounds(0, 0, 0, 0);
 						isVisible1 = true;
 					}
-				
+					
 					zeroCount ++;
 					operator = "x^y";
 					decimalCount = 0;
 				} catch (Exception error) {
-					holder.setText("Syntax Error");
+					helper.setSyntaxError();
 					return;
 				}
 			}
@@ -864,27 +872,31 @@ public class BSIT2A extends JFrame {
 		XpowerYpowerofZ_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(isVisible2) {
+					if(isVisible1) {
 						zValue.setBounds(0, 0, 0, 0);
 						yValue.setBounds(0, 0, 0, 0);
 						xValue.setBounds(0, 0, 0, 0);
 						xyz_holder.setBounds(0, 0, 0, 0);
 						numwrapper.setBounds(10, 33, 698, 72);
-						isVisible2 = false;
+						isVisible1 = false;
 					} else {
+						yValue.setBounds(0, 0, 0, 0);
+						xValue.setBounds(0, 0, 0, 0);
+						xy_holder.setBounds(0, 0, 0, 0);
+						
 						zValue.setBounds(500, 21, 189, 25);
 						yValue.setBounds(497, 46, 178, 27);
 						xValue.setBounds(497, 67, 161, 41);
 						xyz_holder.setBounds(15, 37, 66, 60);
 						numwrapper.setBounds(0, 0, 0, 0);
-						isVisible2 = true;
+						isVisible1 = true;
 					}
 					
 					zeroCount ++;
 					operator = "x^y^z";
 					decimalCount = 0;
 				} catch (Exception error) {
-					holder.setText("Syntax Error");
+					helper.setSyntaxError();
 					return;
 				}
 			}
@@ -909,9 +921,7 @@ public class BSIT2A extends JFrame {
 					valueIndex = 1;
 				} catch (Exception error) {
 					reset = true;
-		        	holder.setText("Syntax Error");
-		            calc.setText("0");
-		            numwrapper.setText("0");
+		        	helper.setSyntaxError();
 				}
 			}
 		});
@@ -925,8 +935,7 @@ public class BSIT2A extends JFrame {
 		zero_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(reset) {
-					numwrapper.setText("");
-					calc.setText("");
+					helper.setReset();
 					reset = false;
 					if(zeroCount !=0) {
 						  calc.setText(calc.getText() + zero_button.getText());
@@ -1099,9 +1108,7 @@ public class BSIT2A extends JFrame {
 					valueIndex = 1;
 				} catch (Exception error) {
 					reset = true;
-		        	holder.setText("Syntax Error");
-		            calc.setText("0");
-		            numwrapper.setText("0");
+		        	helper.setSyntaxError();
 				}
 			}
 		});
@@ -1124,9 +1131,7 @@ public class BSIT2A extends JFrame {
 					valueIndex = 1;
 				} catch (Exception error) {
 					reset = true;
-		        	holder.setText("Syntax Error");
-		            calc.setText("0");
-		            numwrapper.setText("0");
+					helper.setSyntaxError();
 				}
 			}
 		});
@@ -1452,10 +1457,9 @@ public class BSIT2A extends JFrame {
 		answer_button.setBackground(new Color(80, 80, 80));
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
+		
 	}
 }
-
-
 // ATTENTION FIX
 // SWITHCHING BETWEEN XY and XYZ
 // MISSING FUNCTION

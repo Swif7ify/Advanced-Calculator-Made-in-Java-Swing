@@ -1,0 +1,10 @@
+package calculator;
+
+public class CalculatorHelper {
+	
+	private RoundJTextField calc;
+	private RoundJTextField numwrapper;
+	private RoundJTextField holder;
+	
+	public CalculatorHelper()
+}
