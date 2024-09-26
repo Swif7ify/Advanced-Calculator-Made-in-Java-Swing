@@ -133,7 +133,7 @@ public class BSIT2A extends JFrame {
 		holder.setColumns(10);
 		
 		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder);
-		
+//		helper.addFormatting(numwrapper); // Good while it lasted
 		RoundedButton DEL_button = new RoundedButton("DEL", 50);
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		DEL_button.addActionListener(new ActionListener() {
@@ -1040,23 +1040,29 @@ public class BSIT2A extends JFrame {
 								Answer = Functions.basicCalculation(operator, firstDoubleValue, secondDoubleValue);
 							}
 					}
+					String formattedAnswer = Functions.formatString(Answer);
+					
+					helper.setEquals();
+					holder.setText(numwrapper.getText());
+					
+					ANS = Answer;
+					
+					calc.setText("" + formattedAnswer);  
+					calc.setText(calc.getText());
+					
+					
+					numwrapper.setText(calc.getText());
+					
+					reset = true;
+					firstValue = null;
+					decimalCount = 0;
+					operators.clear();
+					numbers.clear();
 				} catch (Exception error) {
+					System.out.println(error);
 					holder.setText("Syntax Error");
 					return;
 				}
-				
-				String formattedAnswer = Functions.formatString(Answer);
-				
-				holder.setText(numwrapper.getText());
-				ANS = Answer;
-				calc.setText("" + formattedAnswer);  
-				calc.setText(calc.getText());
-				numwrapper.setText(calc.getText());
-				reset = true;
-				firstValue = null;
-				decimalCount = 0;
-				operators.clear();
-				numbers.clear();
 			}
 		});
 		equals_button.setForeground(new Color(255, 255, 255));
