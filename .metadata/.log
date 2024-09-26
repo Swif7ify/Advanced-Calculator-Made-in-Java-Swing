@@ -6103,3 +6103,115 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2024-09-26 21:39:30.661 -----------------------------------------------
+eclipse.buildId=4.33.0.20240905-0613
+java.version=21.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_PH
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-26 21:40:19.102
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY ch.qos.logback.classic 1 0 2024-09-26 21:40:55.510
+!MESSAGE Logback config file: C:\Users\earlo\OneDrive\Desktop\Calculator Project\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.6.1.20240411-1122.xml
+
+!ENTRY org.eclipse.egit.ui 2 0 2024-09-26 21:41:09.033
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\earlo'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jdt.ui 4 2 2024-09-26 22:16:12.824
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jdt.ui".
+!STACK 0
+org.eclipse.core.runtime.AssertionFailedException: assertion failed: 
+	at org.eclipse.core.runtime.Assert.isTrue(Assert.java:119)
+	at org.eclipse.core.runtime.Assert.isTrue(Assert.java:104)
+	at org.eclipse.jdt.internal.ui.text.correction.proposals.TypeChangeCorrectionProposalCore.<init>(TypeChangeCorrectionProposalCore.java:178)
+	at org.eclipse.jdt.internal.ui.text.correction.proposals.TypeChangeCorrectionProposal.<init>(TypeChangeCorrectionProposal.java:45)
+	at org.eclipse.jdt.internal.ui.text.correction.TypeMismatchSubProcessor.createChangeConstructorTypeProposal(TypeMismatchSubProcessor.java:143)
+	at org.eclipse.jdt.internal.ui.text.correction.TypeMismatchSubProcessor.createChangeConstructorTypeProposal(TypeMismatchSubProcessor.java:1)
+	at org.eclipse.jdt.internal.ui.text.correction.TypeMismatchBaseSubProcessor.collectChangeSenderTypeProposals(TypeMismatchBaseSubProcessor.java:335)
+	at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsBaseSubProcessor.doEqualNumberOfParameters(UnresolvedElementsBaseSubProcessor.java:2011)
+	at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsBaseSubProcessor.addParameterMissmatchProposals(UnresolvedElementsBaseSubProcessor.java:1724)
+	at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsBaseSubProcessor.collectMethodProposals(UnresolvedElementsBaseSubProcessor.java:1443)
+	at org.eclipse.jdt.internal.ui.text.correction.UnresolvedElementsSubProcessor.getMethodProposals(UnresolvedElementsSubProcessor.java:156)
+	at org.eclipse.jdt.internal.ui.text.correction.QuickFixProcessor.process(QuickFixProcessor.java:415)
+	at org.eclipse.jdt.internal.ui.text.correction.QuickFixProcessor.getCorrections(QuickFixProcessor.java:378)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionCollector.safeRun(JavaCorrectionProcessor.java:381)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.run(JavaCorrectionProcessor.java:341)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor$SafeCorrectionProcessorAccess.process(JavaCorrectionProcessor.java:336)
+	at org.eclipse.jdt.internal.ui.text.correction.JavaCorrectionProcessor.collectCorrections(JavaCorrectionProcessor.java:465)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.getJavaAnnotationFixes(ProblemHover.java:115)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.computeCompletionProposals(ProblemHover.java:89)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover$ProblemInfo.<init>(ProblemHover.java:74)
+	at org.eclipse.jdt.internal.ui.text.java.hover.ProblemHover.createAnnotationInfo(ProblemHover.java:178)
+	at org.eclipse.jdt.internal.ui.text.java.hover.AbstractAnnotationHover.getHoverInfo2(AbstractAnnotationHover.java:755)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-26 22:19:02.689
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-26 22:19:03.235
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 1!
+Expecting token of type --> EOF <-- but found --> 'CalculatorHelper' <--!
+	->compilationUnit
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-26 22:42:19.594
+!MESSAGE Got back status code 1
+
+
+!ENTRY com.thegreatgooo.eclipse.prettier 1 0 2024-09-26 22:42:20.134
+!MESSAGE Got back status code 
+C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:13583
+    throw error.stack;
+    ^
+Error: Sad sad panda, parsing errors detected in line: 1, column: 8!
+Expecting: one of these possible Token sequences:
+  1. ['interface']
+  2. ['@']
+but found: 'void'!
+	->compilationUnit
+	->ordinaryCompilationUnit
+	->typeDeclaration
+	->interfaceDeclaration
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\java-parser\src\index.js:40:11)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier-plugin-java\src\parser.js:6:26)
+    at Object.parse (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:13565:19)
+    at coreFormat (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:14841:25)
+    at format (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:15063:14)
+    at formatWithCursor (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:15080:12)
+    at C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:54672:12
+    at Object.format (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\node_modules\prettier\index.js:54692:12)
+    at process.<anonymous> (C:\Users\earlo\AppData\Local\Temp\bridge-js17996499379403591660\js\scripts\bridge.js:13:42)
+    at process.emit (node:events:520:28)
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v22.7.0
+
