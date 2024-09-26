@@ -3,7 +3,6 @@ package calculator;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -28,8 +27,7 @@ public class BSIT2A extends JFrame {
 	private RoundJTextField yValue;
 	private RoundJTextField xValue;
 	private CalculatorHelper helper;
-	private JLabel xy_holder;
-	private JLabel xyz_holder;
+	private JLabel imageHolder;
 	
 	/**
 	  Launch the application.
@@ -46,7 +44,6 @@ public class BSIT2A extends JFrame {
 					Image scaledImage = image.getScaledInstance(256, 256, Image.SCALE_SMOOTH);
 					frame.setIconImage(scaledImage);
 					frame.setVisible(true);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,7 +57,7 @@ public class BSIT2A extends JFrame {
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
-    boolean reset = false, isMinus = false, allowed = false, isVisible = false, isVisible2 = false;
+    boolean reset = false, isMinus = false, allowed = false, isVisible = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
     
@@ -69,17 +66,15 @@ public class BSIT2A extends JFrame {
 	 */
 	public BSIT2A() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 808, 768);
+		setBounds(100, 100, 793, 762);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 17, 775, 704);
+		panel.setBounds(0, 0, 785, 725);
 		panel.setBackground(new Color(28, 28, 28));
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -90,15 +85,9 @@ public class BSIT2A extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		xy_holder = new JLabel("");
-		panel_1.add(xy_holder);
-		xy_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xy-black.png")));
-		xy_holder.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		xyz_holder = new JLabel("");
-		panel_1.add(xyz_holder);
-		xyz_holder.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz-black.png")));
-		xyz_holder.setHorizontalAlignment(SwingConstants.CENTER);
+		imageHolder = new JLabel("");
+		panel_1.add(imageHolder);
+		imageHolder.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		calc = new RoundJTextField(10);
 		calc.setSize(135, 33);
@@ -143,7 +132,7 @@ public class BSIT2A extends JFrame {
 		panel_1.add(holder);
 		holder.setColumns(10);
 		
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, xy_holder, xyz_holder);
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder);
 		
 		RoundedButton DEL_button = new RoundedButton("DEL", 50);
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -156,7 +145,7 @@ public class BSIT2A extends JFrame {
 					String yVal = yValue.getText();
 					String zVal = zValue.getText();
 					
-					if(isVisible || isVisible2) {
+					if(isVisible) {
 						if(!zVal.isEmpty() && !zVal.equals("0")) {
 							zValue.setText(zVal.substring(0, zVal.length() - 1));
 						} else {
@@ -228,6 +217,7 @@ public class BSIT2A extends JFrame {
 		        C = null; D = null;
 		        reset = false; isMinus = false;
 		        allowed = false;
+		        isVisible = false;
 				helper.resetAll();
 			}
 		});
@@ -697,9 +687,15 @@ public class BSIT2A extends JFrame {
 		summation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(isVisible) {
+						helper.setXYZInactive();
+						isVisible = false;
+					} else {
+						helper.setXYZInactive();
+						helper.setSummationActive();
+						isVisible = true;
+					}
 					calc.setText("");
-					
-					zeroCount++;
 					operator = "∑";
 					decimalCount = 0;
 					valueIndex = 1;
@@ -884,9 +880,15 @@ public class BSIT2A extends JFrame {
 		productnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(isVisible) {
+						helper.setXYZInactive();
+						isVisible = false;
+					} else {
+						helper.setXYZInactive();
+						helper.setNotationActive();
+						isVisible = true;
+					}
 					calc.setText("");
-					numwrapper.setText(zeroCount == 0 ? ("" + "Π") : numwrapper.getText() + "Π");
-					zeroCount++;
 					operator = "Π";
 					decimalCount = 0;
 					valueIndex = 1;
@@ -1061,16 +1063,23 @@ public class BSIT2A extends JFrame {
 		equals_button.setBackground(new Color(254, 143, 0));
 		equals_button.setBounds(236, 448, 198, 54);
 		panel.add(equals_button);
-//		ATTENTION
+
 		RoundedButton doublesummation_button = new RoundedButton("", 50);
 		doublesummation_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		doublesummation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doublesum.png")));
 		doublesummation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(isVisible) {
+						helper.setXYZInactive();
+						isVisible = false;
+					} else {
+						helper.setXYZInactive();
+						helper.setDSummationActive();
+						isVisible = true;
+					}
+					
 					calc.setText("");
-					numwrapper.setText(zeroCount == 0 ?("" + "∑∑") : numwrapper.getText() + "∑∑");
-					zeroCount++;
 					operator = "∑∑";
 					decimalCount = 0;
 					valueIndex = 1;
@@ -1091,9 +1100,15 @@ public class BSIT2A extends JFrame {
 		doubleproductnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(isVisible) {
+						helper.setXYZInactive();
+						isVisible = false;
+					} else {
+						helper.setXYZInactive();
+						helper.setDSummationActive();
+						isVisible = true;
+					}
 					calc.setText("");
-					numwrapper.setText(zeroCount == 0 ?("" + "ΠΠ") : numwrapper.getText() + "ΠΠ");
-					zeroCount++;
 					operator = "ΠΠ";
 					decimalCount = 0;
 					valueIndex = 1;
@@ -1346,15 +1361,13 @@ public class BSIT2A extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if(isVisible) {
-						yValue.setBounds(0, 0, 0, 0);
-						xValue.setBounds(0, 0, 0, 0);
-						xy_holder.setBounds(0, 0, 0, 0);
+						helper.setXYZInactive();
 						numwrapper.setBounds(10, 33, 698, 72);
 						isVisible = false;
 					} else {
-						yValue.setBounds(515, 36, 178, 25);
-						xValue.setBounds(515, 54, 161, 41);
-						xy_holder.setBounds(15, 37, 66, 60);
+						helper.setXYZInactive();
+						helper.setImageHolder("/Picture/xy-black.png");
+						helper.setXYActive();
 						numwrapper.setBounds(0, 0, 0, 0);
 						isVisible = true;
 					}

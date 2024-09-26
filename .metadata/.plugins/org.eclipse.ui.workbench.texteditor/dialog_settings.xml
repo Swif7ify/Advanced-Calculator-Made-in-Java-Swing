@@ -8,14 +8,14 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="XpowerY"/>
+			<item value="cuberoot"/>
 			<item value="helper.setZero"/>
 			<item value="summation"/>
 			<item value="lblNewLabel"/>
 			<item value="x^y"/>
 			<item value="xy"/>
 			<item value="Exception"/>
-			<item value="multiplication_button"/>
-			<item value="multiplication"/>
 		</list>
 		<list key="replacehistory">
 			<item value="xy_holder"/>
