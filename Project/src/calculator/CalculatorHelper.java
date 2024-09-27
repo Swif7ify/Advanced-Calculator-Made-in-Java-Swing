@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class CalculatorHelper {
 	
@@ -14,6 +15,7 @@ public class CalculatorHelper {
 	private RoundJTextField yValue;
 	private RoundJTextField xValue;
 	private JLabel imageHolder;
+	private JLabel variableHolder;
 	private RoundedButton lognumx_button;
 	private RoundedButton logsubtwoX_button;
 	private RoundedButton set_button;
@@ -24,7 +26,7 @@ public class CalculatorHelper {
 	private ArrayList<String> operators;
 	
 	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button) {
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -36,6 +38,7 @@ public class CalculatorHelper {
 		this.lognumx_button = lognumx_button;
 		this.logsubtwoX_button = logsubtwoX_button;
 		this.set_button = set_button;
+		this.variableHolder = variableHolder;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -90,6 +93,7 @@ public class CalculatorHelper {
 		yValue.setBounds(0, 0, 0, 0);
 		xValue.setBounds(0, 0, 0, 0);
 		imageHolder.setBounds(0, 0, 0, 0);
+		variableHolder.setBounds(0, 0, 0, 0);
 	}
 	
 	public void setXYActive() {
@@ -145,6 +149,12 @@ public class CalculatorHelper {
 			logsubtwoX_button.setBounds(0, 0, 0, 0);
 			isActive = true;
 		}
-		
+	}
+	
+	public void setLogNumXActive() {
+		xValue.setHorizontalAlignment(SwingConstants.LEADING);
+		xValue.setBounds(80, 10, 200, 50);
+		variableHolder.setBounds(20, 12, 60, 50);
+		variableHolder.setText("n =");
 	}
 }

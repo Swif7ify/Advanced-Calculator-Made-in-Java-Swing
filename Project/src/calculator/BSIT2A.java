@@ -28,6 +28,7 @@ public class BSIT2A extends JFrame {
 	private RoundJTextField xValue;
 	private CalculatorHelper helper;
 	private JLabel imageHolder;
+	private JLabel variableHolder;
 	private RoundedButton lognumx_button;
 	private RoundedButton logsubtwoX_button;
 	private RoundedButton set_button;
@@ -58,7 +59,6 @@ public class BSIT2A extends JFrame {
 	String firstValue, secondValue, thirdValue, fourthValue, operator, A, B, C, D;
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result, ANS;
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
-    int start, end, constant, sum, jstart, jend, equation;
     int a = 1, b = 1;
     boolean reset = false, isMinus = false, allowed = false, isVisible = false;
     private ArrayList<Double> numbers = new ArrayList<>();
@@ -88,16 +88,6 @@ public class BSIT2A extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		imageHolder = new JLabel("");
-		panel_1.add(imageHolder);
-		imageHolder.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		calc = new RoundJTextField(10);
-		calc.setSize(135, 33);
-		calc.setLocation(175, 10);
-		panel_1.add(calc);
-		calc.setColumns(10);
-		
 		zValue = new RoundJTextField(10);
 		zValue.setHorizontalAlignment(SwingConstants.TRAILING);
 		zValue.setFont(new Font("Malgun Gothic", Font.PLAIN, 26)); zValue.setText("0");
@@ -115,6 +105,21 @@ public class BSIT2A extends JFrame {
 		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 33)); xValue.setText("0"); 
 		panel_1.add(xValue);
 		xValue.setColumns(10);
+		
+		variableHolder = new JLabel("");
+		variableHolder.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 30));
+		variableHolder.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(variableHolder);
+		
+		imageHolder = new JLabel("");
+		panel_1.add(imageHolder);
+		imageHolder.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		calc = new RoundJTextField(10);
+//		calc.setSize(135, 33);
+//		calc.setLocation(175, 10);
+		panel_1.add(calc);
+		calc.setColumns(10);
 		
 		numwrapper = new RoundJTextField(500);
 		numwrapper.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -145,6 +150,7 @@ public class BSIT2A extends JFrame {
 					String xVal = xValue.getText();
 					String yVal = yValue.getText();
 					String zVal = zValue.getText();
+
 					
 					if(isVisible) {
 						if(!zVal.isEmpty() && !zVal.equals("0")) {
@@ -164,6 +170,11 @@ public class BSIT2A extends JFrame {
 							}
 						}
 					} else {
+						if(valueIndex == 1) {
+							valueIndex = 1;
+						} else {
+							valueIndex --;
+						}
 						if (currentText.equals("0") || currentEq.equals("0")) {
 							return;
 						} else if(currentText.length() == 1 || currentEq.length() == 1) {
@@ -171,23 +182,18 @@ public class BSIT2A extends JFrame {
 					            numbers.remove(numbers.size() - 1);
 					        }
 							helper.setZero();
-						} else if (currentText.length() > 1 || currentEq.length() > 1) {
+						} else if (currentText.length() > 1) {
 							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+						} else if (currentEq.length() > 1 ) {
 							calc.setText(currentEq.substring(0, currentEq.length() - 1));
-						} else {
-							helper.setZero();
 						}
 						
-						if(valueIndex == 1) {
-							valueIndex = 1;
-						} else {
-							valueIndex--;
-						}
-						if (zeroCount == 0) {
+						if(zeroCount == 0) {
+							helper.setZero();
 							zeroCount = 0;
 						} else {
 							zeroCount --;
-						} 
+						}
 					}
 					
 					reset = false;
@@ -197,8 +203,6 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		
-		
 		DEL_button.setForeground(new Color(0, 0, 0));
 		DEL_button.setBackground(new Color(212, 212, 210));
 		DEL_button.setBounds(28, 192, 94, 54);
@@ -967,6 +971,11 @@ public class BSIT2A extends JFrame {
 					} else if (operator == "log(2)(" || operator == "log(") {
 						firstValue = calc.getText();
 						firstDoubleValue = Double.parseDouble(firstValue);
+					} else if (operator == "log(n)x(") {
+						firstValue = xValue.getText();
+						secondValue = calc.getText();
+						firstDoubleValue = Double.parseDouble(firstValue);
+						secondDoubleValue = Double.parseDouble(secondValue);
 					}
 					switch(operator) {
 						case "∑":
@@ -1011,6 +1020,10 @@ public class BSIT2A extends JFrame {
 							
 						case "log(":
 							Answer = Math.log(firstDoubleValue);
+							break;
+							
+						case "log(n)x(":
+							Answer = Math.log(secondDoubleValue) / Math.log(firstDoubleValue);
 							break;
 							
 						case "x^y^z":
@@ -1170,9 +1183,10 @@ public class BSIT2A extends JFrame {
 		lognumx_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					numwrapper.setText(zeroCount == 0 ?("" + "log□x(") : numwrapper.getText() + "log□x(");
+					helper.setLogNumXActive();
+					numwrapper.setText(zeroCount == 0 ?("" + "log(n)X(") : numwrapper.getText() + "log(n)X(");
 					zeroCount++;
-					operator = "log□x(";
+					operator = "log(n)x(";
 					valueIndex = 1;
 				} catch (Exception error) {
 					holder.setText("Syntax Error");
@@ -1468,7 +1482,7 @@ public class BSIT2A extends JFrame {
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
 		
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, lognumx_button, logsubtwoX_button, set_button);
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button);
 	}
 }
 // ATTENTION FIX
