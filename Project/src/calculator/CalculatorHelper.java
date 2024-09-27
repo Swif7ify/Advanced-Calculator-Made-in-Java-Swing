@@ -1,9 +1,7 @@
 package calculator;
 
-import javax.swing.text.*;
+import java.awt.Color;
 import java.util.ArrayList;
-
-import java.text.NumberFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -16,14 +14,17 @@ public class CalculatorHelper {
 	private RoundJTextField yValue;
 	private RoundJTextField xValue;
 	private JLabel imageHolder;
+	private RoundedButton lognumx_button;
+	private RoundedButton logsubtwoX_button;
+	private RoundedButton set_button;
 	
-	public boolean updating = false;
+	boolean isActive = false;
 	
 	private ArrayList<Double> numbers;
 	private ArrayList<String> operators;
 	
 	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder) {
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -32,6 +33,9 @@ public class CalculatorHelper {
 		this.yValue = yValue;
 		this.xValue = xValue;
 		this.imageHolder = imageHolder;
+		this.lognumx_button = lognumx_button;
+		this.logsubtwoX_button = logsubtwoX_button;
+		this.set_button = set_button;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -127,40 +131,20 @@ public class CalculatorHelper {
 		imageHolder.setBounds(10, 33, 66, 72);
 	}
 	
-	
-// GOOD WHILE IT LASTED
-//	public void addFormatting(RoundJTextField numwrapper) {
-//	    ((AbstractDocument) numwrapper.getDocument()).setDocumentFilter(new DocumentFilter() {
-//	    	@Override
-//	    	public void insertString(FilterBypass fb, int offset, String string, AttributeSet attr) throws BadLocationException {
-//	    	    String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
-//	    	    String newText = currentText.substring(0, offset) + string + currentText.substring(offset);
-//	    	    fb.replace(0, fb.getDocument().getLength(), newText, null);
-//	    	    formatAndSetText(fb);
-//	    	}
-//
-//	    	@Override
-//	    	public void replace(FilterBypass fb, int offset, int length, String string, AttributeSet attr) throws BadLocationException {
-//	    	    String currentText = fb.getDocument().getText(0, fb.getDocument().getLength());
-//	    	    String newText = currentText.substring(0, offset) + string + currentText.substring(offset + length);
-//	    	    fb.replace(0, fb.getDocument().getLength(), newText, null);
-//	    	    formatAndSetText(fb);
-//	    	}
-//
-//	    	private void formatAndSetText(FilterBypass fb) throws BadLocationException {
-//	    	    String text = fb.getDocument().getText(0, fb.getDocument().getLength()).replaceAll(",", "");
-//	    	    if (!text.isEmpty()) {
-//	    	        try {
-//	    	            NumberFormat formatter = NumberFormat.getInstance();
-//	    	            Number number = formatter.parse(text);
-//	    	            String formatted = formatter.format(number);
-//	    	            fb.replace(0, fb.getDocument().getLength(), formatted, null);
-//	    	        } catch (Exception e) {
-//	    	            System.out.println(e);
-//	    	        }
-//	    	    }
-//	    	}
-//	    });
-//	} 
-	
+	public void setChange() {
+		if(isActive) {
+			logsubtwoX_button.setBounds(444, 510, 147, 54);
+			lognumx_button.setBounds(0, 0, 0, 0);
+			set_button.setForeground(new Color(255, 255, 255));
+			set_button.setBackground(new Color(80, 80, 80));
+			isActive = false;
+		} else {
+			lognumx_button.setBounds(444, 510, 147, 54);
+			set_button.setForeground(new Color(255, 255, 255));
+			set_button.setBackground(new Color(0, 128, 0));
+			logsubtwoX_button.setBounds(0, 0, 0, 0);
+			isActive = true;
+		}
+		
+	}
 }
