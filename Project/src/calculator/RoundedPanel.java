@@ -2,6 +2,8 @@
 package calculator;
 
 import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -15,6 +17,8 @@ public class RoundedPanel extends JPanel {
     // Constructor with color and roundness
     public RoundedPanel(int cornerRadius) {
         this.cornerRadius = cornerRadius;
+        setBackground(new Color(255, 255, 255));
+        setBounds(28, 36, 718, 136);
         setOpaque(false); // Make the panel transparent for custom painting
     }
 
