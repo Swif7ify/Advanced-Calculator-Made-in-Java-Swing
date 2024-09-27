@@ -28,6 +28,9 @@ public class BSIT2A extends JFrame {
 	private RoundJTextField xValue;
 	private CalculatorHelper helper;
 	private JLabel imageHolder;
+	private RoundedButton lognumx_button;
+	private RoundedButton logsubtwoX_button;
+	private RoundedButton set_button;
 	
 	/**
 	  Launch the application.
@@ -132,8 +135,6 @@ public class BSIT2A extends JFrame {
 		panel_1.add(holder);
 		holder.setColumns(10);
 		
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder);
-//		helper.addFormatting(numwrapper); // Good while it lasted
 		RoundedButton DEL_button = new RoundedButton("DEL", 50);
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		DEL_button.addActionListener(new ActionListener() {
@@ -1128,20 +1129,20 @@ public class BSIT2A extends JFrame {
 		doubleproductnotation_button.setBackground(new Color(212, 212, 210));
 		doubleproductnotation_button.setBounds(601, 448, 145, 54);
 		panel.add(doubleproductnotation_button);
-//		ATTENTION
-		RoundedButton set_button = new RoundedButton("SET", 50);
+		
+		set_button = new RoundedButton("SET", 50);
 		set_button.setFont(new Font("Tahoma", Font.BOLD, 15));
 		set_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "SET");
+				helper.setChange();
 			}
 		});
 		set_button.setForeground(new Color(255, 255, 255));
 		set_button.setBackground(new Color(80, 80, 80));
 		set_button.setBounds(28, 510, 406, 54);
 		panel.add(set_button);
-//		ATTENTION
-		RoundedButton logsubtwoX_button = new RoundedButton("", 50);
+		
+		logsubtwoX_button = new RoundedButton("", 50);
 		logsubtwoX_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logsubtwoX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/log2x.png")));
 		logsubtwoX_button.addActionListener(new ActionListener() {
@@ -1154,14 +1155,36 @@ public class BSIT2A extends JFrame {
 					valueIndex = 1;
 				} catch (Exception error) {
 					holder.setText("Syntax Error");
+					return;
 				}
 			}
 		});
 		logsubtwoX_button.setForeground(new Color(255, 255, 255));
 		logsubtwoX_button.setBackground(new Color(80, 80, 80));
-		logsubtwoX_button.setBounds(444, 510, 147, 54);
+		logsubtwoX_button.setBounds(444, 512, 147, 54);
 		panel.add(logsubtwoX_button);
-//		ATTENTION
+		
+		lognumx_button = new RoundedButton("", 50);
+		lognumx_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lognumx_button.setIcon(new ImageIcon(getClass().getResource("/Picture/lognumx.png")));
+		lognumx_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					numwrapper.setText(zeroCount == 0 ?("" + "log□x(") : numwrapper.getText() + "log□x(");
+					zeroCount++;
+					operator = "log□x(";
+					valueIndex = 1;
+				} catch (Exception error) {
+					holder.setText("Syntax Error");
+					return;
+				}
+			}
+		});
+		lognumx_button.setForeground(new Color(255, 255, 255));
+		lognumx_button.setBounds(0, 0, 0, 0);
+		lognumx_button.setBackground(new Color(80, 80, 80));
+		panel.add(lognumx_button);
+		
 		RoundedButton logX_button = new RoundedButton("", 50);
 		logX_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/logx.png")));
@@ -1445,10 +1468,9 @@ public class BSIT2A extends JFrame {
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
 		
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, lognumx_button, logsubtwoX_button, set_button);
 	}
 }
 // ATTENTION FIX
-// SWITHCHING BETWEEN XY and XYZ
 // MISSING FUNCTION
-// SET WOULD PROBABLY BE SOMEHTING LIKE LOG INPUT(INPUT
 // CLEASN THE DAMN CODE WHY THE FUCK YOU HAVE 1.4k+ LINES OF CODE WADAPAK
