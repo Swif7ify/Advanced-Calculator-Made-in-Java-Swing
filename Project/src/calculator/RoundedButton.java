@@ -18,6 +18,7 @@ public class RoundedButton extends JButton {
         setOpaque(false); // Make the button transparent for custom painting
         setBorderPainted(false); // Remove border painting
         setBorder(null); // Make the button transparent for the custom painting
+        setFont(new Font("Tahoma", Font.BOLD, 15));
     }
 
     @Override
