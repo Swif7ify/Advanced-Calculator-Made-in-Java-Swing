@@ -20,18 +20,18 @@ public class BSIT2A extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private RoundJTextField calc;
-	private RoundJTextField numwrapper;
-	private RoundJTextField holder;
-	private RoundJTextField zValue;
-	private RoundJTextField yValue;
-	private RoundJTextField xValue;
+	public RoundJTextField calc;
+	public RoundJTextField numwrapper;
+	public RoundJTextField holder;
+	public RoundJTextField zValue;
+	public RoundJTextField yValue;
+	public RoundJTextField xValue;
 	private CalculatorHelper helper;
-	private JLabel imageHolder;
-	private JLabel variableHolder;
-	private RoundedButton lognumx_button;
-	private RoundedButton logsubtwoX_button;
-	private RoundedButton set_button;
+	public JLabel imageHolder;
+	public JLabel variableHolder;
+	public RoundedButton lognumx_button;
+	public RoundedButton logsubtwoX_button;
+	public RoundedButton set_button;
 	
 	/**
 	  Launch the application.
@@ -60,7 +60,7 @@ public class BSIT2A extends JFrame {
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result, ANS;
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int a = 1, b = 1;
-    boolean reset = false, isMinus = false, allowed = false, isVisible = false;
+    boolean reset = false, isMinus = false, allowed = false, isVisible = false, add = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
     
@@ -114,8 +114,8 @@ public class BSIT2A extends JFrame {
 		imageHolder.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		calc = new RoundJTextField(10);
-//		calc.setSize(135, 33);
-//		calc.setLocation(175, 10);
+		calc.setSize(135, 33);
+		calc.setLocation(175, 10);
 		panel_1.add(calc);
 		
 		numwrapper = new RoundJTextField(500);
@@ -144,52 +144,63 @@ public class BSIT2A extends JFrame {
 					String xVal = xValue.getText();
 					String yVal = yValue.getText();
 					String zVal = zValue.getText();
-
+					String[] values = {zVal, yVal, xVal};
+					RoundJTextField[] textFields = {zValue, yValue, xValue};
 					
 					if(isVisible) {
-						if(!zVal.isEmpty() && !zVal.equals("0")) {
-							zValue.setText(zVal.substring(0, zVal.length() - 1));
-						} else {
-							zValue.setText("0");
-							if(!yVal.isEmpty() && !yVal.equals("0")) {
-								yValue.setText(yVal.substring(0, yVal.length() - 1));
-							} else {
-								yValue.setText("0");
-								if(!xVal.isEmpty() && !xVal.equals("0")) {
-									xValue.setText(xVal.substring(0, xVal.length() - 1));
-								} else {
-									xValue.setText("0");
-									return;
-								}
-							}
+						for (int i = 0; i < values.length; i++) {
+						    if (!values[i].isEmpty() && !values[i].equals("0")) {
+						        textFields[i].setText(values[i].substring(0, values[i].length() - 1));
+						        return;
+						    } else {
+						        textFields[i].setText("0");
+						    }
 						}
 					} else {
-						if(valueIndex == 1) {
-							valueIndex = 1;
-						} else {
-							valueIndex --;
-						}
+						valueIndex = (valueIndex == 1) ? 1 : valueIndex - 1;
+						zeroCount = (zeroCount == 0) ? 0 : zeroCount - 1;
+						
 						if (currentText.equals("0") || currentEq.equals("0")) {
 							return;
-						} else if(currentText.length() == 1 || currentEq.length() == 1) {
-							if (!numbers.isEmpty()) {
-					            numbers.remove(numbers.size() - 1);
-					        }
-							helper.setZero();
-						} else if (currentText.length() > 1) {
-							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
-						} else if (currentEq.length() > 1 ) {
-							calc.setText(currentEq.substring(0, currentEq.length() - 1));
-						}
+						} 
 						
+//						if (!numbers.isEmpty() || !operators.isEmpty()) {
+//							add = true;
+//						    if (numbers.size() > operators.size()) {
+//						    	if(numbers.size() == operators.size() || operators.size() < numbers.size()) {
+//									operators.add("+");
+//								}
+//						    	String lastNumberStr = String.valueOf(numbers.get(numbers.size() - 1));
+//						        if (lastNumberStr.length() > 1) {
+//						            String updatedNumberStr = lastNumberStr.substring(0, lastNumberStr.length() - 1);
+//						            
+//						            if (updatedNumberStr.endsWith(".")) {
+//						                updatedNumberStr = lastNumberStr.substring(1, lastNumberStr.length() - 2);
+//						                updatedNumberStr = updatedNumberStr.replace(".", ".0");
+//						            }
+//						            
+//						            if(!updatedNumberStr.isEmpty()) {
+//						            	 numbers.set(numbers.size() - 1, Double.valueOf(updatedNumberStr));
+//						            } else {
+//						            	numbers.remove(numbers.size() - 1);
+//						            }
+//						        } else {
+//						            numbers.remove(numbers.size() - 1);
+//						        }
+//						    } else {
+//						        operators.remove(operators.size() - 1);
+//						    }
+//						}
+					
+						if (currentText.length() > 1 || currentEq.length() > 1) {
+							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+							calc.setText(currentEq.substring(0, currentEq.length() - 1));
+						} 
 						if(zeroCount == 0) {
 							helper.setZero();
-							zeroCount = 0;
-						} else {
-							zeroCount --;
-						}
+						} 
 					}
-					
+					add = false;
 					reset = false;
 					isMinus = false;
 				} catch (Exception error) {
@@ -214,8 +225,10 @@ public class BSIT2A extends JFrame {
 		        A = null; B = null; 
 		        C = null; D = null;
 		        reset = false; isMinus = false;
-		        allowed = false;
+		        allowed = false; add = false;
 		        isVisible = false;
+		        numbers.clear(); //ATTENTION
+		        operators.clear();
 				helper.resetAll();
 			}
 		});
@@ -258,6 +271,8 @@ public class BSIT2A extends JFrame {
 					} else {
 						reset = false;
 						numwrapper.setText(numwrapper.getText() + "+");
+						holder.setText(holder.getText() + numwrapper.getText());
+						numwrapper.setText("");
 						operator = plus_button.getText();
 			            decimalCount = 0;
 						numbers.add(Double.parseDouble(calc.getText()));
@@ -414,6 +429,8 @@ public class BSIT2A extends JFrame {
 					} else {
 						reset = false;
 						numwrapper.setText(numwrapper.getText() + "-");
+						holder.setText(holder.getText() + numwrapper.getText());
+						numwrapper.setText("");
 						operator = minus_button.getText();
 						decimalCount = 0;
 						numbers.add(Double.parseDouble(calc.getText()));
@@ -598,7 +615,9 @@ public class BSIT2A extends JFrame {
 						return;
 					} else {
 						reset = false;
-						numwrapper.setText(numwrapper.getText() + "*");
+						numwrapper.setText(numwrapper.getText() + "+");
+						holder.setText(holder.getText() + numwrapper.getText());
+						numwrapper.setText("");
 						operator = multiplication_button.getText();
 						decimalCount = 0;
 						numbers.add(Double.parseDouble(calc.getText()));
@@ -766,7 +785,9 @@ public class BSIT2A extends JFrame {
 						return;
 					} else {
 						reset = false;
-						numwrapper.setText(numwrapper.getText() + "÷");
+						numwrapper.setText(numwrapper.getText() + "+");
+						holder.setText(holder.getText() + numwrapper.getText());
+						numwrapper.setText("");
 						operator = division_button.getText();
 						decimalCount = 0;
 						numbers.add(Double.parseDouble(calc.getText()));
@@ -1004,6 +1025,7 @@ public class BSIT2A extends JFrame {
 								if (!calc.getText().isEmpty()) {
 									numbers.add((Double) Double.parseDouble(calc.getText()));
 								}
+								
 								Answer = Functions.calculateResult(numbers, operators);
 							} else {
 								if(operator == "x^y") {
@@ -1036,7 +1058,6 @@ public class BSIT2A extends JFrame {
 					operators.clear();
 					numbers.clear();
 				} catch (Exception error) {
-					System.out.println(error);
 					holder.setText("Syntax Error");
 					return;
 				}
@@ -1429,3 +1450,4 @@ public class BSIT2A extends JFrame {
 // ATTENTION FIX
 // MISSING FUNCTION
 // CLEASN THE DAMN CODE WHY THE FUCK YOU HAVE 1.4k+ LINES OF CODE WADAPAK
+// PROBLEM 99 + 99 -> 99 + -- -> 99 + 91 wont work
