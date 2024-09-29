@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Functions {
 	public static int factorial(double firstValue) {
+		if(firstValue < 0) {
+			 throw new IllegalArgumentException("Input must be a non-negative integer.");
+		}
 		int Answer;
 		if(firstValue == 0 || firstValue == 1) {
 			Answer = 1;
