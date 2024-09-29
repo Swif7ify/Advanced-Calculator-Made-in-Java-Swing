@@ -1,6 +1,7 @@
 package calculator;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -84,14 +85,14 @@ public class CalculatorHelper {
 		setZero();
 		setXYZ();
 		setXYZInactive();
-		numwrapper.setBounds(10, 33, 698, 72);
+		numwrapper.setBounds(13, 41, 691, 72);
         numbers.clear();
         operators.clear();
     }
 	
 	public void setEquals() {
 		setXYZInactive();
-		numwrapper.setBounds(10, 33, 698, 72);
+		numwrapper.setBounds(13, 41, 691, 72);
 	}
 	
 	public void setXYZInactive() {
@@ -101,20 +102,22 @@ public class CalculatorHelper {
 		imageHolder.setBounds(0, 0, 0, 0);
 		variableHolder.setBounds(0, 0, 0, 0);
 		equationHolder.setBounds(0, 0, 0, 0);
+		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 38)); 
+		variableHolder.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 30));
 	}
 	
 	public void setXYActive() {
 		setImageHolder("/Picture/xy-black.png");
-		yValue.setBounds(515, 36, 178, 25);
-		xValue.setBounds(515, 54, 161, 41);
+		yValue.setBounds(523, 45, 178, 25);
+		xValue.setBounds(523, 63, 161, 41);
 		imageHolder.setBounds(10, 33, 66, 72);
 	}
 	
 	public void setXYZActive() {
 		setImageHolder("/Picture/xyz-black.png");
-		zValue.setBounds(500, 21, 189, 25);
-		yValue.setBounds(497, 46, 178, 27);
-		xValue.setBounds(497, 67, 161, 41);
+		zValue.setBounds(517, 31, 189, 25);
+		yValue.setBounds(514, 56, 178, 27);
+		xValue.setBounds(514, 77, 161, 41);
 		imageHolder.setBounds(10, 33, 66, 72);
 	}
 	
@@ -124,24 +127,24 @@ public class CalculatorHelper {
 	
 	public void setSummationActive() {
 		setImageHolder("/Picture/summation_hold.png");
-		imageHolder.setBounds(10, 33, 66, 72);
+		imageHolder.setBounds(14, 42, 66, 72);
 	}
 	
 	public void setNotationActive() {
 		setImageHolder("/Picture/notation_hold.png");
-		imageHolder.setBounds(10, 33, 66, 72);
+		imageHolder.setBounds(14, 42, 66, 72);
 	}
 	
 	public void setDSummationActive() {
 		setDsumDnotActive();
 		setImageHolder("/Picture/Dsummation_hold.png");
-		imageHolder.setBounds(20, 42, 144, 84);
+		imageHolder.setBounds(15, 34, 144, 84);	
 	}
 	
 	public void setDNotationActive() {
 		setDsumDnotActive();
 		setImageHolder("/Picture/Dnotation_hold.png");
-		imageHolder.setBounds(20, 42, 144, 84);
+		imageHolder.setBounds(15, 34, 144, 84);	
 	}
 	
 	public void setChange() {
@@ -181,11 +184,13 @@ public class CalculatorHelper {
 	}
 	
 	public void setDsumDnotActive() {
+		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 25)); 
 		xValue.setHorizontalAlignment(SwingConstants.LEADING);
-		xValue.setBounds(223, 74, 200, 50);
-		variableHolder.setBounds(163, 76, 60, 50);
+		xValue.setBounds(333, 101, 200, 41);
+		variableHolder.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 25));
+		variableHolder.setBounds(273, 103, 60, 39);
 		variableHolder.setText("N =");
-		equationHolder.setBounds(258, 72, 173, 54);
+		equationHolder.setBounds(134, 101, 133, 41);
 		equationHolder.setBackground(new Color(255, 255, 255));
 	}
 }
