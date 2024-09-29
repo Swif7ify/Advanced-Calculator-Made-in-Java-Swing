@@ -641,6 +641,9 @@ public class BSIT2A extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 		            double currentValue = Double.parseDouble(calc.getText().trim());
+		            if(currentValue < 0) {
+		            	throw new IllegalArgumentException("Input must be a non-negative integer.");
+		            }
 		            double squreRootValue = Math.sqrt(currentValue);
 		            
 		            String formattedAnswer = Functions.formatString(squreRootValue);
