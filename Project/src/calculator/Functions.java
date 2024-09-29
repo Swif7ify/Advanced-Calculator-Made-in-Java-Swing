@@ -44,16 +44,30 @@ public class Functions {
 		return sum;
 	}
 	
-	public static double doubleSummation(double firstValue, double secondValue, double thirdValue, double fourthValue) {
+	public static double doubleSummation(Integer nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
 		int start = (int) firstValue;
 		int end = (int) secondValue;
 		int jstart = (int) thirdValue;
 		int jend = (int) fourthValue;
 		int sum = 0;
+			
+		nValue = (nValue == 0) ? 1 : nValue;
 		
 		for(int n = start; n <= end; n++) {
 			for(int j = jstart; j <= jend; j++) {
-				sum += (3*n*j);
+				switch (equation) {
+					case "xy":
+						sum += (nValue * n * j);
+						break;
+					case "x+y":
+						sum += (nValue * n + j);
+						break;
+					case "x^y":
+						sum += (nValue * Math.pow(n, j));
+						break;
+					default:
+						sum += (n * j);
+				 }
 			}
 		}
 		return sum;
@@ -76,16 +90,30 @@ public class Functions {
 		return sum;
 	}
 	
-	public static double doubleProdNot(double firstValue, double secondValue, double thirdValue, double fourthValue) {
+	public static double doubleProdNot(int nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
 		int start = (int) firstValue;
 		int end = (int) secondValue;
 		int jstart = (int) thirdValue;
 		int jend = (int) fourthValue;
 		int sum = 1;
 		
+		nValue = (nValue == 0) ? 1 : nValue;
+		
 		for(int n = start; n <= end; n++) {
 			for(int j = jstart; j <= jend; j++) {
-				sum *= (3*n*j);
+				switch (equation) {
+					case "xy":
+						sum *= (nValue * n * j);
+						break;
+					case "x+y":
+						sum *= (nValue * n + j);
+						break;
+					case "x^y":
+						sum *= (nValue * Math.pow(n, j));
+						break;
+					default:
+						sum *= (n * j);
+				 }
 			}
 		}
 		return sum;
@@ -104,6 +132,8 @@ public class Functions {
 		case "x^y":
 			Answer = Math.pow(firstValue, secondValue);
 			break;
+		case "numroot":
+			Answer = Math.pow(secondValue, 1.0 / firstValue);
 		}
 		
 		return Answer;

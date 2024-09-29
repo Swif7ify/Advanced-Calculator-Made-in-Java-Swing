@@ -14,11 +14,14 @@ public class CalculatorHelper {
 	private RoundJTextField zValue;
 	private RoundJTextField yValue;
 	private RoundJTextField xValue;
+	private RoundJTextField equationHolder;
 	private JLabel imageHolder;
 	private JLabel variableHolder;
 	private RoundedButton lognumx_button;
 	private RoundedButton logsubtwoX_button;
 	private RoundedButton set_button;
+	private RoundedButton cuberoot_button;
+	private RoundedButton numroot_button;
 	
 	boolean isActive = false;
 	
@@ -26,7 +29,7 @@ public class CalculatorHelper {
 	private ArrayList<String> operators;
 	
 	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button) {
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -39,6 +42,9 @@ public class CalculatorHelper {
 		this.logsubtwoX_button = logsubtwoX_button;
 		this.set_button = set_button;
 		this.variableHolder = variableHolder;
+		this.cuberoot_button = cuberoot_button;
+		this.numroot_button = numroot_button;
+		this.equationHolder = equationHolder;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -94,6 +100,7 @@ public class CalculatorHelper {
 		xValue.setBounds(0, 0, 0, 0);
 		imageHolder.setBounds(0, 0, 0, 0);
 		variableHolder.setBounds(0, 0, 0, 0);
+		equationHolder.setBounds(0, 0, 0, 0);
 	}
 	
 	public void setXYActive() {
@@ -126,27 +133,33 @@ public class CalculatorHelper {
 	}
 	
 	public void setDSummationActive() {
-		setImageHolder("/Picture/DSummation_hold.png");
-		imageHolder.setBounds(10, 33, 66, 72);
+		setDsumDnotActive();
+		setImageHolder("/Picture/Dsummation_hold.png");
+		imageHolder.setBounds(20, 42, 144, 84);
 	}
 	
 	public void setDNotationActive() {
-		setImageHolder("/Picture/DNotation_hold.png");
-		imageHolder.setBounds(10, 33, 66, 72);
+		setDsumDnotActive();
+		setImageHolder("/Picture/Dnotation_hold.png");
+		imageHolder.setBounds(20, 42, 144, 84);
 	}
 	
 	public void setChange() {
 		if(isActive) {
 			logsubtwoX_button.setBounds(444, 510, 147, 54);
+			cuberoot_button.setBounds(548, 320, 94, 54);
 			lognumx_button.setBounds(0, 0, 0, 0);
+			numroot_button.setBounds(0, 0, 0, 0);
 			set_button.setForeground(new Color(255, 255, 255));
 			set_button.setBackground(new Color(80, 80, 80));
 			isActive = false;
 		} else {
 			lognumx_button.setBounds(444, 510, 147, 54);
+			numroot_button.setBounds(548, 320, 94, 54);
 			set_button.setForeground(new Color(255, 255, 255));
 			set_button.setBackground(new Color(0, 128, 0));
 			logsubtwoX_button.setBounds(0, 0, 0, 0);
+			cuberoot_button.setBounds(0, 0, 0, 0);
 			isActive = true;
 		}
 	}
@@ -156,5 +169,23 @@ public class CalculatorHelper {
 		xValue.setBounds(80, 10, 200, 50);
 		variableHolder.setBounds(20, 12, 60, 50);
 		variableHolder.setText("n =");
+	}
+	
+	public void setNumRootActive() {
+		xValue.setHorizontalAlignment(SwingConstants.LEADING);
+		xValue.setBounds(80, 6, 200, 50);
+		variableHolder.setBounds(20, 5, 60, 50);
+		variableHolder.setText("x =");
+		setImageHolder("/Picture/numroot.png");
+		imageHolder.setBounds(10, 33, 66, 72);
+	}
+	
+	public void setDsumDnotActive() {
+		xValue.setHorizontalAlignment(SwingConstants.LEADING);
+		xValue.setBounds(223, 74, 200, 50);
+		variableHolder.setBounds(163, 76, 60, 50);
+		variableHolder.setText("N =");
+		equationHolder.setBounds(258, 72, 173, 54);
+		equationHolder.setBackground(new Color(255, 255, 255));
 	}
 }

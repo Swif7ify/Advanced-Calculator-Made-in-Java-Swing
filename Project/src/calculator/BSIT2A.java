@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.imageio.ImageIO;
@@ -20,18 +22,21 @@ public class BSIT2A extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public RoundJTextField calc;
-	public RoundJTextField numwrapper;
-	public RoundJTextField holder;
-	public RoundJTextField zValue;
-	public RoundJTextField yValue;
-	public RoundJTextField xValue;
+	private RoundJTextField calc;
+	private RoundJTextField numwrapper;
+	private RoundJTextField holder;
+	private RoundJTextField zValue;
+	private RoundJTextField yValue;
+	private RoundJTextField xValue;
+	private RoundJTextField equationHolder;
 	private CalculatorHelper helper;
-	public JLabel imageHolder;
-	public JLabel variableHolder;
-	public RoundedButton lognumx_button;
-	public RoundedButton logsubtwoX_button;
-	public RoundedButton set_button;
+	private JLabel imageHolder;
+	private JLabel variableHolder;
+	private RoundedButton lognumx_button;
+	private RoundedButton logsubtwoX_button;
+	private RoundedButton set_button;
+	private RoundedButton cuberoot_button;
+	private RoundedButton numroot_button;
 	
 	/**
 	  Launch the application.
@@ -56,13 +61,16 @@ public class BSIT2A extends JFrame {
 		
 	}
 
-	String firstValue, secondValue, thirdValue, fourthValue, operator, A, B, C, D;
+	String firstValue, secondValue, thirdValue, fourthValue, operator, equation = "xy", A, B, C, D;
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result, ANS;
     int decimalCount = 0, zeroCount = 0, valueIndex = 1;
     int a = 1, b = 1;
+    Integer nValue = null;
     boolean reset = false, isMinus = false, allowed = false, isVisible = false, add = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
+    private Set<String> supportedAdvancedEquation = new HashSet<>(Set.of("∑", "∑∑", "Π", "ΠΠ"));
+    private Set<String> supportedBasicEquation = new HashSet<>(Set.of("+", "-", "*", "÷"));
     
 	/**
 	 * Create the frame.
@@ -85,6 +93,13 @@ public class BSIT2A extends JFrame {
 		RoundedPanel panel_1 = new RoundedPanel(100);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
+		
+		equationHolder = new RoundJTextField(10);
+		equationHolder.setEditable(false);
+		equationHolder.setFont(new Font("Malgun Gothic", Font.PLAIN, 20));
+		equationHolder.setText("Equation: " + equation);
+		
+		panel_1.add(equationHolder);
 		
 		zValue = new RoundJTextField(10);
 		zValue.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -114,8 +129,6 @@ public class BSIT2A extends JFrame {
 		imageHolder.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		calc = new RoundJTextField(10);
-		calc.setSize(135, 33);
-		calc.setLocation(175, 10);
 		panel_1.add(calc);
 		
 		numwrapper = new RoundJTextField(500);
@@ -164,34 +177,6 @@ public class BSIT2A extends JFrame {
 							return;
 						} 
 						
-//						if (!numbers.isEmpty() || !operators.isEmpty()) {
-//							add = true;
-//						    if (numbers.size() > operators.size()) {
-//						    	if(numbers.size() == operators.size() || operators.size() < numbers.size()) {
-//									operators.add("+");
-//								}
-//						    	String lastNumberStr = String.valueOf(numbers.get(numbers.size() - 1));
-//						        if (lastNumberStr.length() > 1) {
-//						            String updatedNumberStr = lastNumberStr.substring(0, lastNumberStr.length() - 1);
-//						            
-//						            if (updatedNumberStr.endsWith(".")) {
-//						                updatedNumberStr = lastNumberStr.substring(1, lastNumberStr.length() - 2);
-//						                updatedNumberStr = updatedNumberStr.replace(".", ".0");
-//						            }
-//						            
-//						            if(!updatedNumberStr.isEmpty()) {
-//						            	 numbers.set(numbers.size() - 1, Double.valueOf(updatedNumberStr));
-//						            } else {
-//						            	numbers.remove(numbers.size() - 1);
-//						            }
-//						        } else {
-//						            numbers.remove(numbers.size() - 1);
-//						        }
-//						    } else {
-//						        operators.remove(operators.size() - 1);
-//						    }
-//						}
-					
 						if (currentText.length() > 1 || currentEq.length() > 1) {
 							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
 							calc.setText(currentEq.substring(0, currentEq.length() - 1));
@@ -227,8 +212,6 @@ public class BSIT2A extends JFrame {
 		        reset = false; isMinus = false;
 		        allowed = false; add = false;
 		        isVisible = false;
-		        numbers.clear(); //ATTENTION
-		        operators.clear();
 				helper.resetAll();
 			}
 		});
@@ -661,7 +644,7 @@ public class BSIT2A extends JFrame {
 		squareroot_button.setBounds(444, 320, 94, 54);
 		panel.add(squareroot_button);
 		
-		RoundedButton cuberoot_button = new RoundedButton("", 50);
+		cuberoot_button = new RoundedButton("", 50);
 		cuberoot_button.setIcon(new ImageIcon(getClass().getResource("/Picture/cuberoot.png")));
 		cuberoot_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -682,6 +665,23 @@ public class BSIT2A extends JFrame {
 		cuberoot_button.setBackground(new Color(212, 212, 210));
 		cuberoot_button.setBounds(548, 320, 94, 54);
 		panel.add(cuberoot_button);
+		
+		numroot_button = new RoundedButton("", 50);
+		numroot_button.setIcon(new ImageIcon(getClass().getResource("/Picture/numroot.png")));
+		numroot_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					helper.setNumRootActive();
+					operator = "numroot";
+		        } catch (Exception error) {
+		        	helper.setSyntaxError();
+		        }
+			}
+		});
+		numroot_button.setForeground(new Color(0, 0, 0));
+		numroot_button.setBounds(0, 0, 0, 0);
+		numroot_button.setBackground(new Color(212, 212, 210));
+		panel.add(numroot_button);
 		
 		RoundedButton summation_button = new RoundedButton("", 50);	
 		summation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/summation.png")));
@@ -869,7 +869,7 @@ public class BSIT2A extends JFrame {
 		XpowerYpowerofZ_button.setBackground(new Color(212, 212, 210));
 		XpowerYpowerofZ_button.setBounds(548, 384, 94, 54);
 		panel.add(XpowerYpowerofZ_button);
-//		ATTENTION
+
 		RoundedButton productnotation_button = new RoundedButton("", 50);
 		productnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/prodnot.png")));
 		productnotation_button.addActionListener(new ActionListener() {
@@ -946,6 +946,7 @@ public class BSIT2A extends JFrame {
 						secondDoubleValue = Double.parseDouble(secondValue);
 						thirdDoubleValue = Double.parseDouble(thirdValue);
 					} else if(operator == "∑∑" || operator == "ΠΠ") {
+						nValue = Integer.parseInt(xValue.getText());
 						firstValue = A; secondValue = B;
 						thirdValue = C; fourthValue = D;
 						firstDoubleValue = Double.parseDouble(firstValue);
@@ -971,7 +972,7 @@ public class BSIT2A extends JFrame {
 							break;
 			            	
 						case "∑∑":
-							int doubleSummation = (int) Functions.doubleSummation(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+							int doubleSummation = (int) Functions.doubleSummation(nValue, equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
 							Answer = doubleSummation;
 							break;
 			            	
@@ -981,7 +982,7 @@ public class BSIT2A extends JFrame {
 			            	break;
 			            	
 						case "ΠΠ":
-							int doubleProdNot = (int) Functions.doubleProdNot(firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+							int doubleProdNot = (int) Functions.doubleProdNot(nValue, equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
 			            	Answer = doubleProdNot;
 							break;
 			            
@@ -1020,20 +1021,20 @@ public class BSIT2A extends JFrame {
 							holder.setText(numwrapper.getText());
 							result =  Math.pow(thirdDoubleValue, secondDoubleValue);
 							Answer =  Math.pow(firstDoubleValue, result);
-							XpowerYpowerofZ_button.doClick();
 							break;
-							
 						default:
-							if(operator == "+" || operator == "-" || operator == "*" || operator == "÷") {
+							if(supportedBasicEquation.contains(operator)) {
 								if (!calc.getText().isEmpty()) {
 									numbers.add((Double) Double.parseDouble(calc.getText()));
 								}
-								
 								Answer = Functions.calculateResult(numbers, operators);
 							} else {
 								if(operator == "x^y") {
 									firstValue = xValue.getText();
 									secondValue = yValue.getText();
+								} else if (operator == "numroot") {
+									firstValue = xValue.getText();
+									secondValue = calc.getText();
 								} else {
 									secondValue = calc.getText();
 								}
@@ -1055,6 +1056,7 @@ public class BSIT2A extends JFrame {
 					
 					numwrapper.setText(calc.getText());
 					
+					isVisible = false;
 					reset = true;
 					firstValue = null;
 					decimalCount = 0;
@@ -1070,7 +1072,7 @@ public class BSIT2A extends JFrame {
 		equals_button.setBackground(new Color(254, 143, 0));
 		equals_button.setBounds(236, 448, 198, 54);
 		panel.add(equals_button);
-
+		
 		RoundedButton doublesummation_button = new RoundedButton("", 50);
 		doublesummation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doublesum.png")));
 		doublesummation_button.addActionListener(new ActionListener() {
@@ -1099,7 +1101,7 @@ public class BSIT2A extends JFrame {
 		doublesummation_button.setBackground(new Color(212, 212, 210));
 		doublesummation_button.setBounds(444, 448, 147, 54);
 		panel.add(doublesummation_button);
-//		ATTENTION
+
 		RoundedButton doubleproductnotation_button = new RoundedButton("", 50);
 		doubleproductnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doubleprodnot.png")));
 		doubleproductnotation_button.addActionListener(new ActionListener() {
@@ -1110,7 +1112,7 @@ public class BSIT2A extends JFrame {
 						isVisible = false;
 					} else {
 						helper.setXYZInactive();
-						helper.setDSummationActive();
+						helper.setDNotationActive();
 						isVisible = true;
 					}
 					calc.setText("");
@@ -1155,6 +1157,7 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
+		
 		logsubtwoX_button.setForeground(new Color(255, 255, 255));
 		logsubtwoX_button.setBackground(new Color(80, 80, 80));
 		logsubtwoX_button.setBounds(444, 512, 147, 54);
@@ -1346,22 +1349,28 @@ public class BSIT2A extends JFrame {
 		aFACTdividebFACT_button.setBackground(new Color(80, 80, 80));
 		aFACTdividebFACT_button.setBounds(601, 576, 145, 54);
 		panel.add(aFACTdividebFACT_button);
-//		ATTENTION
+
 		RoundedButton XY_button = new RoundedButton("xy", 50);
 		XY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "xy");
+				if(supportedAdvancedEquation.contains(operator)) {
+					equation = "xy";
+					equationHolder.setText("Equation: " + equation);
+				}
 			}
 		});
 		XY_button.setForeground(new Color(255, 255, 255));
 		XY_button.setBackground(new Color(80, 80, 80));
 		XY_button.setBounds(28, 638, 94, 54);
 		panel.add(XY_button);
-//		ATTENTION
+		
 		RoundedButton XplusY_button = new RoundedButton("x+y", 50);
 		XplusY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "x+y");
+				if(supportedAdvancedEquation.contains(operator)) {
+					equation = "x+y";
+					equationHolder.setText("Equation: " + equation);
+				}
 			}
 		});
 		XplusY_button.setForeground(new Color(255, 255, 255));
@@ -1373,25 +1382,9 @@ public class BSIT2A extends JFrame {
 		XpowerY.setIcon(new ImageIcon(getClass().getResource("/Picture/xy-white.png")));
 		XpowerY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					if(isVisible) {
-						helper.setXYZInactive();
-						numwrapper.setBounds(10, 33, 698, 72);
-						isVisible = false;
-					} else {
-						helper.setXYZInactive();
-						helper.setImageHolder("/Picture/xy-black.png");
-						helper.setXYActive();
-						numwrapper.setBounds(0, 0, 0, 0);
-						isVisible = true;
-					}
-					
-					zeroCount ++;
-					operator = "x^y";
-					decimalCount = 0;
-				} catch (Exception error) {
-					holder.setText("Syntax Error");
-					return;
+				if(supportedAdvancedEquation.contains(operator)) {
+					equation = "x^y";
+					equationHolder.setText("Equation: " + equation);
 				}
 			}
 		});
@@ -1447,10 +1440,9 @@ public class BSIT2A extends JFrame {
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
 		
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button);
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder);
 	}
 }
 // ATTENTION FIX
 // MISSING FUNCTION
 // CLEASN THE DAMN CODE WHY THE FUCK YOU HAVE 1.4k+ LINES OF CODE WADAPAK
-// PROBLEM 99 + 99 -> 99 + -- -> 99 + 91 wont work
