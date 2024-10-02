@@ -12,6 +12,7 @@ public class RoundJTextField extends JTextField {
         setOpaque(false); // As we will paint the background
         setBorder(null);  // Remove the border outline
         setColumns(10);
+        setBackground(new Color(213, 178, 224));
     }
 
     @Override

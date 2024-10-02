@@ -3,11 +3,11 @@ package calculator;
 import java.util.ArrayList;
 
 public class Functions {
-	public static int factorial(double firstValue) {
+	public static long factorial(double firstValue) {
 		if(firstValue < 0) {
 			 throw new IllegalArgumentException("Input must be a non-negative integer.");
 		}
-		int Answer;
+		long Answer;
 		if(firstValue == 0 || firstValue == 1) {
 			Answer = 1;
 		} else {
@@ -19,15 +19,15 @@ public class Functions {
 		return Answer;
 	}
 	
-	public static int sumFactorial(double firstValue, double secondValue) {
+	public static long sumFactorial(double firstValue, double secondValue) {
 		return Functions.factorial(firstValue) + Functions.factorial(secondValue);
 	}
 	
-	public static int divideFactorial(double firstValue, double secondValue) {
+	public static long divideFactorial(double firstValue, double secondValue) {
 		return Functions.factorial(firstValue) / Functions.factorial(secondValue);
 	}
 	
-	public static double summation(double firstValue, double secondValue, double thirdValue) {
+	public static long summation(double firstValue, double secondValue, double thirdValue) {
 		int start = (int) firstValue;
 		int end = (int) secondValue;
 		int constant = (int) thirdValue;
@@ -44,17 +44,17 @@ public class Functions {
 		return sum;
 	}
 	
-	public static double doubleSummation(Integer nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
-		int start = (int) firstValue;
-		int end = (int) secondValue;
-		int jstart = (int) thirdValue;
-		int jend = (int) fourthValue;
-		int sum = 0;
+	public static long doubleSummation(Integer nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
+		long start = (long) firstValue;
+		long end = (long) secondValue;
+		long jstart = (long) thirdValue;
+		long jend = (long) fourthValue;
+		long sum = 0;
 			
 		nValue = (nValue == 0) ? 1 : nValue;
 		
-		for(int n = start; n <= end; n++) {
-			for(int j = jstart; j <= jend; j++) {
+		for(long n = start; n <= end; n++) {
+			for(long j = jstart; j <= jend; j++) {
 				switch (equation) {
 					case "xy":
 						sum += (nValue * n * j);
@@ -73,34 +73,34 @@ public class Functions {
 		return sum;
 	}
 	
-	public static int prodnot(double firstValue, double secondValue, double thirdValue) {
-		int start = (int) firstValue;
-		int end = (int) secondValue;
-		int constant = (int) thirdValue;
-		int sum = 1;
+	public static long prodnot(double firstValue, double secondValue, double thirdValue) {
+		long start = (long) firstValue;
+		long end = (long) secondValue;
+		long constant = (long) thirdValue;
+		long sum = 1;
 		if (constant == 0 || constant == 1) {
-			for (int n = start; n <= end; n++) {
+			for (long n = start; n <= end; n++) {
 				sum *= n;
 			}
 		} else {
-			for (int n = start; n <= end; n++) {
+			for (long n = start; n <= end; n++) {
 				sum *= constant;
         	}
 		}
 		return sum;
 	}
 	
-	public static double doubleProdNot(int nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
-		int start = (int) firstValue;
-		int end = (int) secondValue;
-		int jstart = (int) thirdValue;
-		int jend = (int) fourthValue;
-		int sum = 1;
+	public static long doubleProdNot(int nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
+		long start = (long) firstValue;
+		long end = (long) secondValue;
+		long jstart = (long) thirdValue;
+		long jend = (long) fourthValue;
+		long sum = 1;
 		
 		nValue = (nValue == 0) ? 1 : nValue;
 		
-		for(int n = start; n <= end; n++) {
-			for(int j = jstart; j <= jend; j++) {
+		for(long n = start; n <= end; n++) {
+			for(long j = jstart; j <= jend; j++) {
 				switch (equation) {
 					case "xy":
 						sum *= (nValue * n * j);
@@ -124,7 +124,7 @@ public class Functions {
 		switch(operator) {
 		case "//":
 			Answer = firstValue / secondValue;
-			Answer = (int) Answer;
+			Answer = (long) Answer;
 			break;
 		case "%":
 			Answer = firstValue % secondValue;
@@ -167,7 +167,7 @@ public class Functions {
 	public static String formatString(double Answer) {
 		String formattedAnswer;
 		if (Answer % 1 == 0) {
-			formattedAnswer = String.valueOf((int) Answer);
+			formattedAnswer = String.valueOf((long) Answer);
 		} else {
 			formattedAnswer = String.format("%.2f", Answer);
 		}

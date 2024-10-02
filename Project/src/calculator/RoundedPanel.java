@@ -17,7 +17,7 @@ public class RoundedPanel extends JPanel {
     // Constructor with color and roundness
     public RoundedPanel(int cornerRadius) {
         this.cornerRadius = cornerRadius;
-        setBackground(new Color(255, 255, 255));
+		setBackground(new Color(213, 178, 224));
         setBounds(28, 36, 718, 136);
         setOpaque(false); // Make the panel transparent for custom painting
     }
