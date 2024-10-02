@@ -37,6 +37,7 @@ public class BSIT2A extends JFrame {
 	private RoundedButton set_button;
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
+	private RoundedButton format;
 	
 	/**
 	  Launch the application.
@@ -61,7 +62,7 @@ public class BSIT2A extends JFrame {
 	}
 
 	String firstValue, secondValue, thirdValue, fourthValue, operator, equation = "xy", A, B, C, D;
-    double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer, result, ANS;
+    double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer = 0.0, result, ANS;
     int zeroCount = 0, valueIndex = 1;
     int a = 1, b = 1;
     Integer nValue = null;
@@ -182,6 +183,7 @@ public class BSIT2A extends JFrame {
 							calc.setText(currentEq.substring(0, currentEq.length() - 1));
 						} 
 						if(zeroCount == 0) {
+							operator = null;
 							helper.setZero();
 						} 
 					}
@@ -201,6 +203,7 @@ public class BSIT2A extends JFrame {
 		AC_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		AC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				operator = null;
 				zeroCount = 0; Answer = 0;
 				firstValue = null; secondValue = null;
 		        thirdValue = null; fourthValue = null;
@@ -929,6 +932,7 @@ public class BSIT2A extends JFrame {
 		equals_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(operator == null) return;
 					String currentText = calc.getText();
 					
 					if(operator == "∑" || operator == "Π") {
@@ -957,27 +961,26 @@ public class BSIT2A extends JFrame {
 				    if (fourthValue != null) {
 				        fourthDoubleValue = Double.parseDouble(fourthValue);
 				    }
-					
 					switch(operator) {
 						case "∑":
-							Answer = (int) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+							Answer = (long) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
 							break;
 			            	
 						case "∑∑":
-							Answer = (int) Functions.doubleSummation(nValue, equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+							Answer = (long) Functions.doubleSummation(nValue, equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
 							break;
 			            	
 						case "Π":
-							Answer = (int) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+							Answer = (long) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
 			            	break;
 			            	
 						case "ΠΠ":
-			            	Answer = (int) Functions.doubleProdNot(nValue, equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
+			            	Answer = (long) Functions.doubleProdNot(nValue, equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue);
 							break;
 			            
 						case "N!":
 							firstDoubleValue = Double.parseDouble(firstValue);
-							int factorial = Functions.factorial(firstDoubleValue);
+							long factorial = Functions.factorial(firstDoubleValue);
 							Answer = factorial;
 							break;
 							
@@ -1046,6 +1049,7 @@ public class BSIT2A extends JFrame {
 					operators.clear();
 					numbers.clear();
 				} catch (Exception error) {
+					System.out.println(error);
 					holder.setText("Syntax Error");
 					return;
 				}
@@ -1436,7 +1440,15 @@ public class BSIT2A extends JFrame {
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
 		
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder);
+		format = new RoundedButton("", 30);
+		format.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				helper.setFormat();
+			}
+		});
+		format.setBounds(749, 704, 20, 21);
+		panel.add(format);
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, format, set_button, cuberoot_button, numroot_button, equationHolder);
 	}
 }
 // ATTENTION FIX

@@ -7,6 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class CalculatorHelper {
 	
 	private RoundJTextField calc;
@@ -23,14 +26,16 @@ public class CalculatorHelper {
 	private RoundedButton set_button;
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
+	private RoundedButton format;
 	
 	boolean isActive = false;
+	boolean isFormatted = false;
 	
 	private ArrayList<Double> numbers;
 	private ArrayList<String> operators;
 	
 	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder) {
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton format, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -46,6 +51,7 @@ public class CalculatorHelper {
 		this.cuberoot_button = cuberoot_button;
 		this.numroot_button = numroot_button;
 		this.equationHolder = equationHolder;
+		this.format = format;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -156,7 +162,7 @@ public class CalculatorHelper {
 			lognumx_button.setBounds(0, 0, 0, 0);
 			numroot_button.setBounds(0, 0, 0, 0);
 			set_button.setForeground(new Color(255, 255, 255));
-			set_button.setBackground(new Color(80, 80, 80));
+			set_button.setBackground(new Color(133, 110, 167));
 			isActive = false;
 		} else {
 			lognumx_button.setBounds(444, 510, 147, 54);
@@ -194,5 +200,23 @@ public class CalculatorHelper {
 		variableHolder.setText("N =");
 		equationHolder.setBounds(134, 101, 133, 41);
 		equationHolder.setBackground(new Color(255, 255, 255));
+	}
+	
+	public void setFormat() {
+		NumberFormat formatter = new DecimalFormat("#,###");
+		try {
+			if(isFormatted) {
+				String number = numwrapper.getText();
+				Number num = formatter.parse(number);
+				numwrapper.setText(String.valueOf(num));
+				isFormatted = false;
+			} else {
+				double number = Double.parseDouble(numwrapper.getText());
+				numwrapper.setText(formatter.format(number));
+				isFormatted = true;
+			}
+		} catch(Exception e) {
+			return;
+		}
 	}
 }
