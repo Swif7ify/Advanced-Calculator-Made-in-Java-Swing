@@ -124,7 +124,7 @@ public class Functions {
 		switch(operator) {
 		case "//":
 			Answer = firstValue / secondValue;
-			Answer = (int) Answer;
+			Answer = (long) Answer;
 			break;
 		case "%":
 			Answer = firstValue % secondValue;
@@ -167,7 +167,7 @@ public class Functions {
 	public static String formatString(double Answer) {
 		String formattedAnswer;
 		if (Answer % 1 == 0) {
-			formattedAnswer = String.valueOf((int) Answer);
+			formattedAnswer = String.valueOf((long) Answer);
 		} else {
 			formattedAnswer = String.format("%.2f", Answer);
 		}

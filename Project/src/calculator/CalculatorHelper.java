@@ -111,6 +111,7 @@ public class CalculatorHelper {
 		yValue.setBounds(523, 45, 178, 25);
 		xValue.setBounds(523, 63, 161, 41);
 		imageHolder.setBounds(10, 33, 66, 72);
+		xValue.setHorizontalAlignment(SwingConstants.TRAILING);
 	}
 	
 	public void setXYZActive() {
@@ -119,6 +120,7 @@ public class CalculatorHelper {
 		yValue.setBounds(514, 56, 178, 27);
 		xValue.setBounds(514, 77, 161, 41);
 		imageHolder.setBounds(10, 33, 66, 72);
+		xValue.setHorizontalAlignment(SwingConstants.TRAILING);
 	}
 	
 	public void setImageHolder(String text) {
