@@ -1,5 +1,4 @@
-<br>
-![teamba](https://github.com/user-attachments/assets/15686bbe-5227-4e3f-9fde-b8f0c43a4130)
+![teamba](https://github.com/user-attachments/assets/61f45986-0e71-43d2-9ae1-637638b1d7fb)
 
 A "VERY" basic calculator, with just a "FEW" lines of code, nothing much.
 
