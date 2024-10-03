@@ -39,8 +39,8 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 
 **How to Run:**
 - Open folder
-- type cmd on the address bar ![image](https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512)
-
+- type cmd on the address bar
+<img align="left" width="100" height="100" src="(https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512">
 
 - cd Project/src ![image](https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a)
 
