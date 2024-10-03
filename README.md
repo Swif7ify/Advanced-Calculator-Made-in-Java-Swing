@@ -40,7 +40,7 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 **How to Run:**
 - Open folder
 - type cmd on the address bar<br>
-  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block"><br>
+  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block; width: 100%; height: 100%"><br>
 
 
   
