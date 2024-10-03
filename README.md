@@ -31,24 +31,24 @@ A "BASIC" Calculator project made by TeamBa
   - ANS button and;
   - Number Format Button
 
-**How to Use:**
+**<h2>How to Use:</h2>**
 - View the video below
 
 https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 
 
-**How to Run:**
-- Open folder
-- type cmd on the **address bar**
-  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block; width: 100%; height: 100%">
-- **cd Project/src**
-  <img align="left" src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="display: block; width: 100%; height: 100%">
-- type **Javac calculator/BSIT2A.java**
-  <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: block; width: 100%; height: 100%">
-- type **java calculator/BSIT2A.java**
-  <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block; width: 100%; height: 100%">
+**<h2>How to Run:</h2>**
+- Open folder__
+- type cmd on the **address bar**__
+  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block; width: 100%; height: 100%">__
+- **cd Project/src**__
+  <img align="left" src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="display: block; width: 100%; height: 100%">__
+- type **Javac calculator/BSIT2A.java**__
+  <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: block; width: 100%; height: 100%">__
+- type **java calculator/BSIT2A.java**__
+  <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block; width: 100%; height: 100%">__
 
-**Creating jar file**
+**<h2>Creating Jar File</h2>**
 
 
 
