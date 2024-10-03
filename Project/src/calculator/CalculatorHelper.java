@@ -3,6 +3,9 @@ package calculator;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -26,7 +29,7 @@ public class CalculatorHelper {
 	private RoundedButton set_button;
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
-	private RoundedButton  AC_button;
+	private RoundedButton format;
 	
 	boolean isActive = false;
 	boolean isFormatted = false;
@@ -34,8 +37,8 @@ public class CalculatorHelper {
 	private ArrayList<Double> numbers;
 	private ArrayList<String> operators;
 	
-	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder, RoundedButton AC_button) {
+	public CalculatorHelper(RoundedButton format, RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -51,7 +54,7 @@ public class CalculatorHelper {
 		this.cuberoot_button = cuberoot_button;
 		this.numroot_button = numroot_button;
 		this.equationHolder = equationHolder;
-		this.AC_button = AC_button;
+		this.format = format;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -209,11 +212,13 @@ public class CalculatorHelper {
 		NumberFormat formatter = new DecimalFormat("#,###");
 		try {
 			if(isFormatted) {
+				format.setBackground(new Color(255, 255, 255));
 				String number = numwrapper.getText();
 				Number num = formatter.parse(number);
 				numwrapper.setText(String.valueOf(num));
 				isFormatted = false;
 			} else {
+				format.setBackground(new Color(0, 0, 255));
 				double number = Double.parseDouble(numwrapper.getText());
 				numwrapper.setText(formatter.format(number));
 				isFormatted = true;
