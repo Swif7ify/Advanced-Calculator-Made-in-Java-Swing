@@ -39,20 +39,16 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 
 **How to Run:**
 - Open folder
-- type cmd on the address bar
-![image](https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512)
+- type cmd on the address bar ![image](https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512)
 
 
-- cd Project/src
-![image](https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a)
+- cd Project/src ![image](https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a)
 
 
-- type Javac calculator/BSIT2A.java
-![image](https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc)
+- type Javac calculator/BSIT2A.java ![image](https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc)
 
 
-- type java calculator/BSIT2A.java
- ![image](https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18)
+- type java calculator/BSIT2A.java ![image](https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18)
 
 
 **Creating jar file**
