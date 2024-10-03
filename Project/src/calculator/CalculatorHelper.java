@@ -26,7 +26,7 @@ public class CalculatorHelper {
 	private RoundedButton set_button;
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
-	private RoundedButton format;
+	private RoundedButton  AC_button;
 	
 	boolean isActive = false;
 	boolean isFormatted = false;
@@ -35,7 +35,7 @@ public class CalculatorHelper {
 	private ArrayList<String> operators;
 	
 	public CalculatorHelper(RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton format, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder) {
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder, RoundedButton AC_button) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -51,7 +51,7 @@ public class CalculatorHelper {
 		this.cuberoot_button = cuberoot_button;
 		this.numroot_button = numroot_button;
 		this.equationHolder = equationHolder;
-		this.format = format;
+		this.AC_button = AC_button;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -98,7 +98,6 @@ public class CalculatorHelper {
 	
 	public void setEquals() {
 		setXYZInactive();
-		numwrapper.setBounds(13, 41, 691, 72);
 	}
 	
 	public void setXYZInactive() {
@@ -108,6 +107,7 @@ public class CalculatorHelper {
 		imageHolder.setBounds(0, 0, 0, 0);
 		variableHolder.setBounds(0, 0, 0, 0);
 		equationHolder.setBounds(0, 0, 0, 0);
+		numwrapper.setBounds(13, 41, 691, 72);
 		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 38)); 
 		variableHolder.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 30));
 	}
@@ -134,6 +134,7 @@ public class CalculatorHelper {
 	}
 	
 	public void setSummationActive() {
+		numwrapper.setBounds(13, 41, 691, 72);
 		setImageHolder("/Picture/summation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
 	}
@@ -176,6 +177,7 @@ public class CalculatorHelper {
 	}
 	
 	public void setLogNumXActive() {
+		setXYZInactive();
 		xValue.setHorizontalAlignment(SwingConstants.LEADING);
 		xValue.setBounds(80, 10, 200, 50);
 		variableHolder.setBounds(20, 12, 60, 50);
@@ -183,6 +185,7 @@ public class CalculatorHelper {
 	}
 	
 	public void setNumRootActive() {
+		setXYZInactive();
 		xValue.setHorizontalAlignment(SwingConstants.LEADING);
 		xValue.setBounds(80, 6, 200, 50);
 		variableHolder.setBounds(20, 5, 60, 50);
@@ -218,5 +221,10 @@ public class CalculatorHelper {
 		} catch(Exception e) {
 			return;
 		}
+	}
+	
+	public void setSENone() {
+		String get = holder.getText();
+		if(get.equals("Syntax Error") || get.equals("Math Error")) holder.setText("");
 	}
 }
