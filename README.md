@@ -6,7 +6,7 @@ A "BASIC" Calculator project made by TeamBa
 ![Calculator](https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f)
 
 
-**Features:**
+<h2>Features:</h2>
   - Infinite Calculation in addition, subtraction, multiplication, division.
   - Mixed Calculation in addition, subtraction, multiplication, division.
   - Plus/minus Function
@@ -47,9 +47,9 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
   <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: block; width: 100%; height: 100%">
 - type **java calculator/BSIT2A.java**
   <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block; width: 100%; height: 100%">
-<br><br><br>
+
 **Creating jar file**
--
+
 
 
 
