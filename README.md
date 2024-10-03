@@ -37,4 +37,7 @@ A "BASIC" Calculator project made by TeamBa
 https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 
 
+**How to Run:**
+- Create 
+
 
