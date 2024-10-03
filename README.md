@@ -5,7 +5,7 @@ A "BASIC" Calculator project made by TeamBa
 
 ![Calculator](https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f)
 
-**![image](https://github.com/user-attachments/assets/96a7ffb1-7841-4e0a-bec2-593d81ea7784)<h2>Features:</h2>**
+**✨<h2>Features:</h2>**
   - Infinite Calculation in addition, subtraction, multiplication, division.
   - Mixed Calculation in addition, subtraction, multiplication, division.
   - Plus/minus Function
@@ -36,7 +36,7 @@ A "BASIC" Calculator project made by TeamBa
 https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 
 
-**<h2>How to Run:</h2>**
+**⚙️<h2>How to Run:</h2>**
 - Open folder
 - type cmd on the **address bar**
   <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block; width: 100%; height: 100%">
@@ -47,7 +47,7 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 - type **java calculator/BSIT2A.java**
   <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block; width: 100%; height: 100%">
 
-**<h2>Creating Jar File</h2>**
+**💡<h2>Creating Jar File</h2>**
 
 
 
