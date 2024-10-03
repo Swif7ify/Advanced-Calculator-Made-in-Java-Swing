@@ -37,7 +37,6 @@ public class BSIT2A extends JFrame {
 	private RoundedButton set_button;
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
-	private RoundedButton format;
 	
 	/**
 	  Launch the application.
@@ -77,7 +76,7 @@ public class BSIT2A extends JFrame {
 	 */
 	public BSIT2A() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 782, 762);
+		setBounds(100, 100, 789, 762);
 		contentPane = new JPanel();
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -85,7 +84,7 @@ public class BSIT2A extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 769, 725);
+		panel.setBounds(0, 0, 883, 725);
 		panel.setBackground(new Color(36, 43, 62));
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -147,7 +146,7 @@ public class BSIT2A extends JFrame {
 		holder.setBounds(37, 2, 210, 41);
 		panel_1.add(holder);
 		
-		RoundedButton DEL_button = new RoundedButton("DEL", 30);
+		RoundedButton DEL_button = new RoundedButton("DEL", 30, "DL");
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		DEL_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -194,12 +193,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		DEL_button.setForeground(new Color(0, 0, 0));
-		DEL_button.setBackground(new Color(245, 155, 121));
 		DEL_button.setBounds(28, 192, 94, 54);
 		panel.add(DEL_button);
 		
-		RoundedButton AC_button = new RoundedButton("AC", 30);
+		RoundedButton AC_button = new RoundedButton("AC", 30, "AC");
 		AC_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		AC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -218,12 +215,10 @@ public class BSIT2A extends JFrame {
 				helper.resetAll();
 			}
 		});
-		AC_button.setForeground(new Color(0, 0, 0));
-		AC_button.setBackground(new Color(245, 155, 121));
 		AC_button.setBounds(132, 192, 94, 54);
 		panel.add(AC_button);
 		
-		RoundedButton plus_minusbutton = new RoundedButton("+/-", 30);
+		RoundedButton plus_minusbutton = new RoundedButton("+/-", 30, "PM");
 		plus_minusbutton.setFont(new Font("Tahoma", Font.BOLD, 17));
 		plus_minusbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -243,12 +238,10 @@ public class BSIT2A extends JFrame {
 				 }
 			}
 		});
-		plus_minusbutton.setForeground(new Color(0, 0, 0));
-		plus_minusbutton.setBackground(new Color(245, 155, 121));
 		plus_minusbutton.setBounds(236, 192, 94, 54);
 		panel.add(plus_minusbutton);
 		
-		RoundedButton plus_button = new RoundedButton("+", 30);
+		RoundedButton plus_button = new RoundedButton("+", 30, "PLUS");
 		plus_button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		plus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -270,16 +263,15 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		plus_button.setForeground(new Color(255, 255, 255));
-		plus_button.setBackground(new Color(241, 133, 141));
 		plus_button.setBounds(340, 192, 94, 54);
 		panel.add(plus_button);
 		
-		RoundedButton FLR_button = new RoundedButton("FLR", 30);
+		RoundedButton FLR_button = new RoundedButton("FLR", 30, "FLR");
 		FLR_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		FLR_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					helper.setXYZInactive();
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            double flooredValue = Math.floor(currentValue);
 		            
@@ -292,16 +284,15 @@ public class BSIT2A extends JFrame {
 		        }
 			}
 		});
-		FLR_button.setForeground(new Color(0, 0, 0));
-		FLR_button.setBackground(new Color(245, 155, 121));
 		FLR_button.setBounds(444, 192, 94, 54);
 		panel.add(FLR_button);
 		
-		RoundedButton CEIL_button = new RoundedButton("CEIL", 30);
+		RoundedButton CEIL_button = new RoundedButton("CEIL", 30, "CEL");
 		CEIL_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		CEIL_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					helper.setXYZInactive();
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            double ceiledValue = Math.ceil(currentValue);
 		            
@@ -314,16 +305,15 @@ public class BSIT2A extends JFrame {
 		        }
 			}
 		});
-		CEIL_button.setForeground(new Color(0, 0, 0));
-		CEIL_button.setBackground(new Color(245, 155, 121));
 		CEIL_button.setBounds(548, 192, 94, 54);
 		panel.add(CEIL_button);
 		
-		RoundedButton INT_button = new RoundedButton("INT", 30);
+		RoundedButton INT_button = new RoundedButton("INT", 30, "IT");
 		INT_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		INT_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					helper.setXYZInactive();
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            int intValue = (int) currentValue;
 
@@ -335,36 +325,31 @@ public class BSIT2A extends JFrame {
 		        }
 			}
 		});
-		INT_button.setForeground(new Color(0, 0, 0));
-		INT_button.setBackground(new Color(245, 155, 121));
 		INT_button.setBounds(652, 192, 94, 54);
 		panel.add(INT_button);
 		
-		RoundedButton seven_button = new RoundedButton("7", 30);
+		RoundedButton seven_button = new RoundedButton("7", 30, "SVN");
 		seven_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		seven_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(reset) {
-					helper.setReset();
-					reset = false;
-					calc.setText(zeroCount == 0 ? ("" + seven_button.getText()) : calc.getText() + seven_button.getText());
-					numwrapper.setText(zeroCount == 0 ? ("" + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
-			        zeroCount++;
-					
-				} else {
-					calc.setText(zeroCount == 0 ? ("" + seven_button.getText()) : calc.getText() + seven_button.getText());
-					numwrapper.setText(zeroCount == 0 ? ("" + seven_button.getText()) : numwrapper.getText() + seven_button.getText());
-					zeroCount++;
+				String buttonText = seven_button.getText();
+				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
+				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
+				if (reset) {
+				    helper.setReset();
+				    reset = false;
 				}
+				calc.setText(calcText);
+				numwrapper.setText(numwrapperText);
+				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		seven_button.setForeground(new Color(255, 255, 255));
-		seven_button.setBackground(new Color(133, 110, 167));
 		seven_button.setBounds(28, 256, 94, 54);
 		panel.add(seven_button);
 		
-		RoundedButton eight_button = new RoundedButton("8", 30);
+		RoundedButton eight_button = new RoundedButton("8", 30, "EHT");
 		eight_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		eight_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -378,15 +363,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		eight_button.setForeground(new Color(255, 255, 255));
-		eight_button.setBackground(new Color(133, 110, 167));
 		eight_button.setBounds(132, 256, 94, 54);
 		panel.add(eight_button);
 		
-		RoundedButton nine_button = new RoundedButton("9", 30);
+		RoundedButton nine_button = new RoundedButton("9", 30, "NN");
 		nine_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		nine_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -400,15 +384,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		nine_button.setForeground(new Color(255, 255, 255));
-		nine_button.setBackground(new Color(133, 110, 167));
 		nine_button.setBounds(236, 256, 94, 54);
 		panel.add(nine_button);
 		
-		RoundedButton minus_button = new RoundedButton("-", 30);
+		RoundedButton minus_button = new RoundedButton("-", 30, "MN");
 		minus_button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		minus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -432,12 +415,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		minus_button.setForeground(new Color(255, 255, 255));
-		minus_button.setBackground(new Color(241, 133, 141));
 		minus_button.setBounds(340, 256, 94, 54);
 		panel.add(minus_button);
 		
-		RoundedButton integerdivision_button = new RoundedButton("//", 30);
+		RoundedButton integerdivision_button = new RoundedButton("//", 30, "INTD");
 		integerdivision_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		integerdivision_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -463,12 +444,10 @@ public class BSIT2A extends JFrame {
 				}
 		    }
 		});
-		integerdivision_button.setForeground(new Color(0, 0, 0));
-		integerdivision_button.setBackground(new Color(245, 155, 121));
 		integerdivision_button.setBounds(444, 256, 94, 54);
 		panel.add(integerdivision_button);
 		
-		RoundedButton modulus = new RoundedButton("%", 30);
+		RoundedButton modulus = new RoundedButton("%", 30, "MOD");
 		modulus.setFont(new Font("Tahoma", Font.BOLD, 17));
 		modulus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -493,12 +472,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		modulus.setForeground(new Color(0, 0, 0));
-		modulus.setBackground(new Color(245, 155, 121));
 		modulus.setBounds(548, 256, 94, 54);
 		panel.add(modulus);
 		
-		RoundedButton factorial_button = new RoundedButton("N!", 30);
+		RoundedButton factorial_button = new RoundedButton("N!", 30, "FAC");
 		factorial_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		factorial_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -521,12 +498,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		factorial_button.setForeground(new Color(0, 0, 0));
-		factorial_button.setBackground(new Color(245, 155, 121));
 		factorial_button.setBounds(652, 256, 94, 54);
 		panel.add(factorial_button);
 		
-		RoundedButton four_button = new RoundedButton("4", 30);
+		RoundedButton four_button = new RoundedButton("4", 30, "FR");
 		four_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		four_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -540,15 +515,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		four_button.setForeground(new Color(255, 255, 255));
-		four_button.setBackground(new Color(133, 110, 167));
 		four_button.setBounds(28, 320, 94, 54);
 		panel.add(four_button);
 		
-		RoundedButton five_button = new RoundedButton("5", 30);
+		RoundedButton five_button = new RoundedButton("5", 30, "FV");
 		five_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		five_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -562,15 +536,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		five_button.setForeground(new Color(255, 255, 255));
-		five_button.setBackground(new Color(133, 110, 167));
 		five_button.setBounds(132, 320, 94, 54);
 		panel.add(five_button);
 		
-		RoundedButton six_button = new RoundedButton("6", 30);
+		RoundedButton six_button = new RoundedButton("6", 30, "SX");
 		six_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		six_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -584,15 +557,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		six_button.setForeground(new Color(255, 255, 255));
-		six_button.setBackground(new Color(133, 110, 167));
 		six_button.setBounds(236, 320, 94, 54);
 		panel.add(six_button);
 		
-		RoundedButton multiplication_button = new RoundedButton("*", 30);
+		RoundedButton multiplication_button = new RoundedButton("*", 30, "MUL");
 		multiplication_button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		multiplication_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -616,12 +588,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		multiplication_button.setForeground(new Color(255, 255, 255));
-		multiplication_button.setBackground(new Color(241, 133, 141));
 		multiplication_button.setBounds(340, 320, 94, 54);
 		panel.add(multiplication_button);
 		
-		RoundedButton squareroot_button = new RoundedButton("√", 30);
+		RoundedButton squareroot_button = new RoundedButton("√", 30, "SQRT");
 		squareroot_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		squareroot_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -642,12 +612,10 @@ public class BSIT2A extends JFrame {
 				numwrapper.setText(calc.getText());
 			}
 		});
-		squareroot_button.setForeground(new Color(0, 0, 0));
-		squareroot_button.setBackground(new Color(245, 155, 121));
 		squareroot_button.setBounds(444, 320, 94, 54);
 		panel.add(squareroot_button);
 		
-		cuberoot_button = new RoundedButton("", 30);
+		cuberoot_button = new RoundedButton("", 30, "CBRT");
 		cuberoot_button.setIcon(new ImageIcon(getClass().getResource("/Picture/cuberoot.png")));
 		cuberoot_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -664,12 +632,10 @@ public class BSIT2A extends JFrame {
 				numwrapper.setText(calc.getText());
 			}
 		});
-		cuberoot_button.setForeground(new Color(0, 0, 0));
-		cuberoot_button.setBackground(new Color(245, 155, 121));
 		cuberoot_button.setBounds(548, 320, 94, 54);
 		panel.add(cuberoot_button);
 		
-		numroot_button = new RoundedButton("", 30);
+		numroot_button = new RoundedButton("", 30, "NMROOT");
 		numroot_button.setIcon(new ImageIcon(getClass().getResource("/Picture/numroot.png")));
 		numroot_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -681,12 +647,10 @@ public class BSIT2A extends JFrame {
 		        }
 			}
 		});
-		numroot_button.setForeground(new Color(0, 0, 0));
 		numroot_button.setBounds(0, 0, 0, 0);
-		numroot_button.setBackground(new Color(245, 155, 121));
 		panel.add(numroot_button);
 		
-		RoundedButton summation_button = new RoundedButton("", 30);	
+		RoundedButton summation_button = new RoundedButton("", 30, "SUM");	
 		summation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/summation.png")));
 		summation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -708,12 +672,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		summation_button.setForeground(new Color(0, 0, 0));
-		summation_button.setBackground(new Color(245, 155, 121));
 		summation_button.setBounds(652, 320, 94, 54);
 		panel.add(summation_button);
 		
-		RoundedButton one_button = new RoundedButton("1", 30);
+		RoundedButton one_button = new RoundedButton("1", 30, "ON");
 		one_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		one_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -727,15 +689,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		one_button.setForeground(new Color(255, 255, 255));
-		one_button.setBackground(new Color(133, 110, 167));
 		one_button.setBounds(28, 384, 94, 54);
 		panel.add(one_button);
 		
-		RoundedButton two_button = new RoundedButton("2", 30);
+		RoundedButton two_button = new RoundedButton("2", 30, "TWO");
 		two_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		two_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -749,15 +710,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		two_button.setForeground(new Color(255, 255, 255));
-		two_button.setBackground(new Color(133, 110, 167));
 		two_button.setBounds(132, 384, 94, 54);
 		panel.add(two_button);
 		
-		RoundedButton three_button = new RoundedButton("3", 30);
+		RoundedButton three_button = new RoundedButton("3", 30, "THR");
 		three_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		three_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -771,15 +731,14 @@ public class BSIT2A extends JFrame {
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
+				helper.setSENone();
 				allowed = true;
 			}
 		});
-		three_button.setForeground(new Color(255, 255, 255));
-		three_button.setBackground(new Color(133, 110, 167));
 		three_button.setBounds(236, 384, 94, 54);
 		panel.add(three_button);
 		
-		RoundedButton division_button = new RoundedButton("÷", 30);
+		RoundedButton division_button = new RoundedButton("÷", 30, "DIV");
 		division_button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		division_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -803,12 +762,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		division_button.setForeground(new Color(255, 255, 255));
-		division_button.setBackground(new Color(241, 133, 141));
 		division_button.setBounds(340, 384, 94, 54);
 		panel.add(division_button);
 		
-		RoundedButton XpowerY_button = new RoundedButton("", 30);
+		RoundedButton XpowerY_button = new RoundedButton("", 30, "XY");
 		XpowerY_button.setIcon(new ImageIcon(getClass().getResource("/Picture/X.png")));
 		XpowerY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -833,12 +790,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		XpowerY_button.setForeground(new Color(0, 0, 0));
-		XpowerY_button.setBackground(new Color(245, 155, 121));
 		XpowerY_button.setBounds(444, 384, 94, 54);
 		panel.add(XpowerY_button);
 		
-		RoundedButton XpowerYpowerofZ_button = new RoundedButton("", 30);
+		RoundedButton XpowerYpowerofZ_button = new RoundedButton("", 30, "XYZ");
 		XpowerYpowerofZ_button.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz.png")));
 		XpowerYpowerofZ_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -862,12 +817,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		XpowerYpowerofZ_button.setForeground(new Color(0, 0, 0));
-		XpowerYpowerofZ_button.setBackground(new Color(245, 155, 121));
 		XpowerYpowerofZ_button.setBounds(548, 384, 94, 54);
 		panel.add(XpowerYpowerofZ_button);
 		
-		RoundedButton productnotation_button = new RoundedButton("", 30);
+		RoundedButton productnotation_button = new RoundedButton("", 30, "PRN");
 		productnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/prodnot.png")));
 		productnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -889,12 +842,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		productnotation_button.setForeground(new Color(0, 0, 0));
-		productnotation_button.setBackground(new Color(245, 155, 121));
 		productnotation_button.setBounds(652, 384, 94, 54);
 		panel.add(productnotation_button);
 		
-		RoundedButton zero_button = new RoundedButton("0", 30);
+		RoundedButton zero_button = new RoundedButton("0", 30, "ZRO");
 		zero_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		zero_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -905,29 +856,27 @@ public class BSIT2A extends JFrame {
 				    }
 				    calc.setText(calc.getText() + zero_button.getText());
 				    numwrapper.setText(numwrapper.getText() + "0");
+				    helper.setSENone();
 				}
 			}
 		});
-		zero_button.setForeground(new Color(0, 0, 0));
-		zero_button.setBackground(new Color(245, 155, 121));
 		zero_button.setBounds(28, 448, 94, 54);
 		panel.add(zero_button);
 		
-		RoundedButton period_button = new RoundedButton(".", 30);
+		RoundedButton period_button = new RoundedButton(".", 30, "PRD");
 		period_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		period_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 zeroCount++;
 				 calc.setText(calc.getText() + period_button.getText());     
 				 numwrapper.setText(numwrapper.getText() + ".");
+				 helper.setSENone();
 			}
 		});
-		period_button.setForeground(new Color(0, 0, 0));
-		period_button.setBackground(new Color(245, 155, 121));
 		period_button.setBounds(132, 448, 94, 54);
 		panel.add(period_button);
 		
-		RoundedButton equals_button = new RoundedButton("=", 30);
+		RoundedButton equals_button = new RoundedButton("=", 30, "EQU");
 		equals_button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		equals_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1055,12 +1004,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		equals_button.setForeground(new Color(255, 255, 255));
-		equals_button.setBackground(new Color(241, 133, 141));
 		equals_button.setBounds(236, 448, 198, 54);
 		panel.add(equals_button);
 		
-		RoundedButton doublesummation_button = new RoundedButton("", 30);
+		RoundedButton doublesummation_button = new RoundedButton("", 30, "DSUM");
 		doublesummation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doublesum.png")));
 		doublesummation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1083,12 +1030,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		doublesummation_button.setForeground(new Color(0, 0, 0));
-		doublesummation_button.setBackground(new Color(245, 155, 121));
 		doublesummation_button.setBounds(444, 448, 147, 54);
 		panel.add(doublesummation_button);
 
-		RoundedButton doubleproductnotation_button = new RoundedButton("", 30);
+		RoundedButton doubleproductnotation_button = new RoundedButton("", 30, "DNOT");
 		doubleproductnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doubleprodnot.png")));
 		doubleproductnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1110,24 +1055,20 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		doubleproductnotation_button.setForeground(new Color(0, 0, 0));
-		doubleproductnotation_button.setBackground(new Color(245, 155, 121));
 		doubleproductnotation_button.setBounds(601, 448, 145, 54);
 		panel.add(doubleproductnotation_button);
 		
-		set_button = new RoundedButton("SET", 30);
+		set_button = new RoundedButton("SET", 30, "ST");
 		set_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		set_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				helper.setChange();
 			}
 		});
-		set_button.setForeground(new Color(255, 255, 255));
-		set_button.setBackground(new Color(133, 110, 167));
 		set_button.setBounds(28, 510, 406, 54);
 		panel.add(set_button);
 		
-		logsubtwoX_button = new RoundedButton("", 30);
+		logsubtwoX_button = new RoundedButton("", 30, "LG2");
 		logsubtwoX_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		logsubtwoX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/log2x.png")));
 		logsubtwoX_button.addActionListener(new ActionListener() {
@@ -1144,12 +1085,10 @@ public class BSIT2A extends JFrame {
 			}
 		});
 		
-		logsubtwoX_button.setForeground(new Color(255, 255, 255));
-		logsubtwoX_button.setBackground(new Color(133, 110, 167));
 		logsubtwoX_button.setBounds(444, 512, 147, 54);
 		panel.add(logsubtwoX_button);
 		
-		lognumx_button = new RoundedButton("", 30);
+		lognumx_button = new RoundedButton("", 30, "LGN");
 		lognumx_button.setIcon(new ImageIcon(getClass().getResource("/Picture/lognumx.png")));
 		lognumx_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1165,12 +1104,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		lognumx_button.setForeground(new Color(255, 255, 255));
 		lognumx_button.setBounds(0, 0, 0, 0);
-		lognumx_button.setBackground(new Color(133, 110, 167));
 		panel.add(lognumx_button);
 		
-		RoundedButton logX_button = new RoundedButton("", 30);
+		RoundedButton logX_button = new RoundedButton("", 30, "LG");
 		logX_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		logX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/logx.png")));
 		logX_button.addActionListener(new ActionListener() {
@@ -1186,12 +1123,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		logX_button.setForeground(new Color(255, 255, 255));
-		logX_button.setBackground(new Color(133, 110, 167));
 		logX_button.setBounds(601, 512, 145, 54);
 		panel.add(logX_button);
 
-		RoundedButton A_button = new RoundedButton("A", 30);
+		RoundedButton A_button = new RoundedButton("A", 30, "A");
 		A_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		A_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1210,12 +1145,10 @@ public class BSIT2A extends JFrame {
 		        zeroCount++;
 			}
 		});
-		A_button.setForeground(new Color(255, 255, 255));
-		A_button.setBackground(new Color(133, 110, 167));
 		A_button.setBounds(28, 574, 94, 54);
 		panel.add(A_button);
 
-		RoundedButton B_button = new RoundedButton("B", 30);
+		RoundedButton B_button = new RoundedButton("B", 30, "B");
 		B_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		B_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1235,12 +1168,10 @@ public class BSIT2A extends JFrame {
 		        zeroCount++;
 			}
 		});
-		B_button.setForeground(new Color(255, 255, 255));
-		B_button.setBackground(new Color(133, 110, 167));
 		B_button.setBounds(132, 574, 94, 54);
 		panel.add(B_button);
 		
-		RoundedButton C_button = new RoundedButton("C", 30);
+		RoundedButton C_button = new RoundedButton("C", 30, "C");
 		C_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		C_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1260,12 +1191,10 @@ public class BSIT2A extends JFrame {
 				zeroCount++;
 			}
 		});
-		C_button.setForeground(new Color(255, 255, 255));
-		C_button.setBackground(new Color(133, 110, 167));
 		C_button.setBounds(236, 574, 94, 54);
 		panel.add(C_button);
 		
-		RoundedButton D_button = new RoundedButton("D", 30);
+		RoundedButton D_button = new RoundedButton("D", 30, "D");
 		D_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		D_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1285,12 +1214,10 @@ public class BSIT2A extends JFrame {
 				zeroCount++;
 			}
 		});
-		D_button.setForeground(new Color(255, 255, 255));
-		D_button.setBackground(new Color(133, 110, 167));
 		D_button.setBounds(340, 574, 94, 54);
 		panel.add(D_button);
 		
-		RoundedButton aFACTplusbFACT_button = new RoundedButton("a! + b!", 30);
+		RoundedButton aFACTplusbFACT_button = new RoundedButton("a! + b!", 30, "a+b");
 		aFACTplusbFACT_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		aFACTplusbFACT_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1302,7 +1229,7 @@ public class BSIT2A extends JFrame {
 		                secondValue = calc.getText();                
 		            }
 					calc.setText("");
-					numwrapper.setText(zeroCount == 0 ?("" + "!") : numwrapper.getText() + "!");
+					numwrapper.setText(zeroCount == 1 ?(numwrapper.getText() + "!+") : numwrapper.getText() + "!");
 					zeroCount++;
 					operator = "a! + b!";
 				} catch (Exception error) {
@@ -1312,12 +1239,10 @@ public class BSIT2A extends JFrame {
 			}
 		});
 			
-		aFACTplusbFACT_button.setForeground(new Color(255, 255, 255));
-		aFACTplusbFACT_button.setBackground(new Color(133, 110, 167));
 		aFACTplusbFACT_button.setBounds(444, 574, 147, 54);
 		panel.add(aFACTplusbFACT_button);
-//		ATTENTION
-		RoundedButton aFACTdividebFACT_button = new RoundedButton("a! / b!", 30);
+
+		RoundedButton aFACTdividebFACT_button = new RoundedButton("a! / b!", 30, "a/b");
 		aFACTdividebFACT_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		aFACTdividebFACT_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1329,7 +1254,7 @@ public class BSIT2A extends JFrame {
 		                secondValue = calc.getText();                
 		            }
 					calc.setText("");
-					numwrapper.setText(zeroCount == 0 ?("" + "!") : numwrapper.getText() + "!");
+					numwrapper.setText(zeroCount == 1 ?(numwrapper.getText() + "!÷") : numwrapper.getText() + "!");
 					zeroCount++;
 					operator = "a! / b!";
 				} catch (Exception error) {
@@ -1338,12 +1263,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		aFACTdividebFACT_button.setForeground(new Color(255, 255, 255));
-		aFACTdividebFACT_button.setBackground(new Color(133, 110, 167));
 		aFACTdividebFACT_button.setBounds(601, 576, 145, 54);
 		panel.add(aFACTdividebFACT_button);
 
-		RoundedButton XY_button = new RoundedButton("xy", 30);
+		RoundedButton XY_button = new RoundedButton("xy", 30, "XEY");
 		XY_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		XY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1353,12 +1276,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		XY_button.setForeground(new Color(255, 255, 255));
-		XY_button.setBackground(new Color(133, 110, 167));
 		XY_button.setBounds(28, 638, 94, 54);
 		panel.add(XY_button);
 		
-		RoundedButton XplusY_button = new RoundedButton("x+y", 30);
+		RoundedButton XplusY_button = new RoundedButton("x+y", 30, "x+y");
 		XplusY_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		XplusY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1368,12 +1289,10 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		XplusY_button.setForeground(new Color(255, 255, 255));
-		XplusY_button.setBackground(new Color(133, 110, 167));
 		XplusY_button.setBounds(132, 638, 94, 54);
 		panel.add(XplusY_button);
 		
-		RoundedButton XpowerY = new RoundedButton("", 30);
+		RoundedButton XpowerY = new RoundedButton("", 30, "x^y");
 		XpowerY.setFont(new Font("Tahoma", Font.BOLD, 17));
 		XpowerY.setIcon(new ImageIcon(getClass().getResource("/Picture/xy-white.png")));
 		XpowerY.addActionListener(new ActionListener() {
@@ -1384,49 +1303,50 @@ public class BSIT2A extends JFrame {
 				}
 			}
 		});
-		XpowerY.setForeground(new Color(255, 255, 255));
-		XpowerY.setBackground(new Color(133, 110, 167));
 		XpowerY.setBounds(236, 638, 94, 54);
 		panel.add(XpowerY);
-//		ATTENTION
-		RoundedButton Cx_button = new RoundedButton("Cx", 30);
+
+		RoundedButton Cx_button = new RoundedButton("Cx", 30, "CEX");
 		Cx_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Cx_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "Cx");
+				if(supportedAdvancedEquation.contains(operator)) {
+					equation = "Cx";
+					equationHolder.setText("Equation: " + equation);
+				}
 			}
 		});
-		Cx_button.setForeground(new Color(255, 255, 255));
-		Cx_button.setBackground(new Color(133, 110, 167));
 		Cx_button.setBounds(340, 638, 94, 54);
 		panel.add(Cx_button);
-//		ATTENTION
-		RoundedButton xplusC_button = new RoundedButton("x + C", 30);
+
+		RoundedButton xplusC_button = new RoundedButton("x + C", 30, "x+c");
 		xplusC_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		xplusC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "x + C");
+				if(supportedAdvancedEquation.contains(operator)) {
+					equation = "x+C";
+					equationHolder.setText("Equation: " + equation);
+				}
 			} 
 		});
-		xplusC_button.setForeground(new Color(255, 255, 255));
-		xplusC_button.setBackground(new Color(133, 110, 167));
 		xplusC_button.setBounds(444, 638, 94, 54);
 		panel.add(xplusC_button);
-//		ATTENTION
-		RoundedButton XpowerC = new RoundedButton("", 30);
+
+		RoundedButton XpowerC = new RoundedButton("", 30, "x^c");
 		XpowerC.setFont(new Font("Tahoma", Font.BOLD, 17));
 		XpowerC.setIcon(new ImageIcon(getClass().getResource("/Picture/xc.png")));
 		XpowerC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				numwrapper.setText(numwrapper.getText() + "x^C");
+				if(supportedAdvancedEquation.contains(operator)) {
+					equation = "x^C";
+					equationHolder.setText("Equation: " + equation);
+				}
 			}
 		});
-		XpowerC.setForeground(new Color(255, 255, 255));
-		XpowerC.setBackground(new Color(133, 110, 167));
 		XpowerC.setBounds(548, 638, 94, 54);
 		panel.add(XpowerC);
 		
-		RoundedButton answer_button = new RoundedButton("ANS", 30);
+		RoundedButton answer_button = new RoundedButton("ANS", 30, "ANS");
 		answer_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		answer_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1435,22 +1355,17 @@ public class BSIT2A extends JFrame {
 				zeroCount ++;
 			}
 		});
-		answer_button.setForeground(new Color(255, 255, 255));
-		answer_button.setBackground(new Color(133, 110, 167));
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
 		
-		format = new RoundedButton("", 30);
+		RoundedButton format = new RoundedButton("", 0, "FRM");
 		format.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				helper.setFormat();
 			}
 		});
-		format.setBounds(749, 704, 20, 21);
+		format.setBounds(756, 706, 20, 21);
 		panel.add(format);
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, format, set_button, cuberoot_button, numroot_button, equationHolder);
+		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder, AC_button);
 	}
 }
-// ATTENTION FIX
-// MISSING FUNCTION
-// CLEASN THE DAMN CODE WHY THE FUCK YOU HAVE 1.4k+ LINES OF CODE WADAPAK
