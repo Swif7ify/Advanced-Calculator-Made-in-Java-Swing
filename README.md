@@ -5,7 +5,7 @@ A "BASIC" Calculator project made by TeamBa
 
 ![Calculator](https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f)
 
-**<h2>![check-read-svgrepo-com](https://github.com/user-attachments/assets/0e4b00af-3c04-4fab-8210-9292e8fa8bb3)Features:</h2>**
+**![image](https://github.com/user-attachments/assets/96a7ffb1-7841-4e0a-bec2-593d81ea7784)<h2>Features:</h2>**
   - Infinite Calculation in addition, subtraction, multiplication, division.
   - Mixed Calculation in addition, subtraction, multiplication, division.
   - Plus/minus Function
