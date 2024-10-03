@@ -4,6 +4,8 @@ A "BASIC" Calculator project made by TeamBa
 
 ![Calculator](https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f)
 
+<br>
+
 **<h2>✨ Features:</h2>**
   - Infinite Calculation in addition, subtraction, multiplication, division.
   - Mixed Calculation in addition, subtraction, multiplication, division.
@@ -28,25 +30,39 @@ A "BASIC" Calculator project made by TeamBa
   - xy, x+y, x^y, Cx, x+C, x^C Equation for Double summation/productnotation
   - ANS button and;
   - Number Format Button
-< br / >
+
+<br>
+
 **<h2>👍 How to Use:</h2>**
-- View the video below
+> [!NOTE]
+> View the video below
 
 https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 
+<br>
+
 **<h2>⚙️ How to Run:</h2>**
 - Open folder
-- type cmd on the **address bar**
+- type cmd on the `address bar`
   <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block; width: 100%; height: 100%">
-
-- **cd Project/src**
+  <br>
+  
+- `cd Project/src`
   <img align="left" src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="display: block; width: 100%; height: 100%">
+  <br>
 
-- type **Javac calculator/BSIT2A.java**
+  
+- type `Javac calculator/BSIT2A.java`
   <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: block; width: 100%; height: 100%">
+  <br>
 
-- type **java calculator/BSIT2A.java**
+  
+- type `java calculator/BSIT2A.java`
   <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block; width: 100%; height: 100%">
+  <br>
+
+  
+<br>
 
 
 **<h2>💡 Creating Jar File</h2>**
