@@ -40,22 +40,22 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 **How to Run:**
 - Open folder
 - type cmd on the address bar<br>
-  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: inline-block"><br>
+  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block"><br>
 
 
   
 - cd Project/src<br>
-  <img align="left" src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="display: inline-block"><br>
+  <img align="left" src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="display: block"><br>
 
 
   
 - type Javac calculator/BSIT2A.java
-  <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: inline-block"><br>
+  <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: block"><br>
 
 
   
 - type java calculator/BSIT2A.java
-  <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: inline-block"><br>
+  <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block"><br>
 
 
   
