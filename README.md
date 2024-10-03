@@ -44,24 +44,27 @@ https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
 **<h2>⚙️ How to Run:</h2>**
 - Open folder
 - type cmd on the `address bar`
-  <img align="left" src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="display: block; width: 100%; height: 100%">
-  <br>
-  
-- `cd Project/src`
-  <img align="left" src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="display: block; width: 100%; height: 100%">
-  <br>
+<div style="display: flex; justify-content: center; width: 100%">
+  <img src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="width: 50%; height: 50%;">
+</div>
+<br>
 
-  
-- type `Javac calculator/BSIT2A.java`
-  <img align="left" src="https://github.com/user-attachments/assets/138e9901-08c2-4c92-a510-c02fb9f777fc" style="display: block; width: 100%; height: 100%">
-  <br>
+- type `cd Project/src` in cmd
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/8197c62a-ebad-478c-8a70-b08320f5689a" style="width: 50%; height: auto;">
+</div>
+<br>
 
-  
-- type `java calculator/BSIT2A.java`
-  <img align="left" src="https://github.com/user-attachments/assets/63c435bd-60e1-4070-87ca-b210f0140f18" style="display: block; width: 100%; height: 100%">
-  <br>
+- type `javac calculator/Main.java` in cmd
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/5c40f19f-94cf-4800-90d5-837a7b778d94" style="width: 50%; height: auto;">
+</div>
+<br>
 
-  
+- type `java calculator/Main.java` in cmd
+<div style="text-align: center;">
+  <img src="https://github.com/user-attachments/assets/cbf998db-fb91-4504-b7ae-d0a259a3d34d" style="width: 50%; height: auto;">
+</div>
 <br>
 
 
