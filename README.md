@@ -1,7 +1,4 @@
-![teamba](https://github.com/user-attachments/assets/61f45986-0e71-43d2-9ae1-637638b1d7fb)
-
-A "VERY" basic calculator, with just a "FEW" lines of code, nothing much.
-
+📄 <h1>A "VERY" basic calculator, with just a "FEW" lines of code, nothing much.</h1>
 
 ![Calculator](https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f)
 
