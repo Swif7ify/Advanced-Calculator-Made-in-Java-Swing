@@ -1132,12 +1132,8 @@ public class BSIT2A extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (valueIndex == 1) {
 					A = calc.getText();
-		        } else if (valueIndex == 2) {
-		        	B = calc.getText();
-		        } else if (valueIndex == 3) {
-		            C = calc.getText();
-		        } else if (valueIndex == 4) {
-		        	D = calc.getText();
+		        } else {
+		        	return;
 		        }
 				calc.setText("");
 		        valueIndex++;
@@ -1152,16 +1148,11 @@ public class BSIT2A extends JFrame {
 		B_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		B_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (valueIndex == 1) {
-					A = calc.getText();
-		        } else if (valueIndex == 2) {
-		        	B = calc.getText();
-		        } else if (valueIndex == 3) {
-		            C = calc.getText();
-		        } else if (valueIndex == 4) {
-		        	D = calc.getText();
-		        }
-				
+				if (valueIndex == 2) {
+				    B = calc.getText();
+				} else {
+				    return;
+				}
 				calc.setText("");
 		        valueIndex++;
 		        numwrapper.setText(zeroCount == 0 ? ("" + B_button.getText()) : numwrapper.getText() + B_button.getText());
@@ -1175,16 +1166,11 @@ public class BSIT2A extends JFrame {
 		C_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		C_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (valueIndex == 1) {
-					A = calc.getText();
-		        } else if (valueIndex == 2) {
-		        	B = calc.getText();
-		        } else if (valueIndex == 3) {
-		            C = calc.getText();
-		        } else if (valueIndex == 4) {
-		        	D = calc.getText();
+				if (valueIndex == 3) {
+					C = calc.getText();
+		        } else {
+		        	return;
 		        }
-							
 				calc.setText("");
 				valueIndex++;
 				numwrapper.setText(zeroCount == 0 ? ("" + C_button.getText()) : numwrapper.getText() + C_button.getText());
@@ -1198,16 +1184,11 @@ public class BSIT2A extends JFrame {
 		D_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		D_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (valueIndex == 1) {
-					A = calc.getText();
-		        } else if (valueIndex == 2) {
-		        	B = calc.getText();
-		        } else if (valueIndex == 3) {
-		            C = calc.getText();
-		        } else if (valueIndex == 4) {
-		        	D = calc.getText();
+				if (valueIndex == 4) {
+					D = calc.getText();
+		        } else {
+		        	return;
 		        }
-							
 				calc.setText("");
 				valueIndex++;
 				numwrapper.setText(zeroCount == 0 ? ("" + D_button.getText()) : numwrapper.getText() + D_button.getText());
