@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 
-public class BSIT2A extends JFrame {
+public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -37,6 +37,7 @@ public class BSIT2A extends JFrame {
 	private RoundedButton set_button;
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
+	private RoundedButton format;
 	
 	/**
 	  Launch the application.
@@ -47,7 +48,7 @@ public class BSIT2A extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BSIT2A frame = new BSIT2A();
+					Main frame = new Main();
 					frame.setTitle("Calculator But Its Not A Normal Calculator It Is A Calculator That Can Literally Solve Human Crisis");
 					Image image = ImageIO.read(new File(getClass().getResource("/Picture/teamba.png").toURI()));
 					Image scaledImage = image.getScaledInstance(256, 256, Image.SCALE_SMOOTH);
@@ -74,7 +75,7 @@ public class BSIT2A extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BSIT2A() {
+	public Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 789, 762);
 		contentPane = new JPanel();
@@ -332,13 +333,13 @@ public class BSIT2A extends JFrame {
 		seven_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		seven_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = seven_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -353,13 +354,13 @@ public class BSIT2A extends JFrame {
 		eight_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		eight_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = eight_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -374,13 +375,13 @@ public class BSIT2A extends JFrame {
 		nine_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		nine_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = nine_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -505,13 +506,13 @@ public class BSIT2A extends JFrame {
 		four_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		four_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = four_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -526,13 +527,13 @@ public class BSIT2A extends JFrame {
 		five_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		five_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = five_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -547,13 +548,13 @@ public class BSIT2A extends JFrame {
 		six_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		six_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = six_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -679,13 +680,13 @@ public class BSIT2A extends JFrame {
 		one_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		one_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = one_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -700,13 +701,13 @@ public class BSIT2A extends JFrame {
 		two_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		two_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = two_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -721,13 +722,13 @@ public class BSIT2A extends JFrame {
 		three_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		three_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (reset) {
+					helper.setReset();
+					reset = false;
+				}
 				String buttonText = three_button.getText();
 				String calcText = zeroCount == 0 ? buttonText : calc.getText() + buttonText;
 				String numwrapperText = zeroCount == 0 ? buttonText : numwrapper.getText() + buttonText;
-				if (reset) {
-				    helper.setReset();
-				    reset = false;
-				}
 				calc.setText(calcText);
 				numwrapper.setText(numwrapperText);
 				zeroCount++;
@@ -984,14 +985,17 @@ public class BSIT2A extends JFrame {
 					}
 					String formattedAnswer = Functions.formatString(Answer);
 					helper.setEquals();
-					holder.setText(numwrapper.getText());
-					
+
+					if(supportedBasicEquation.contains(operator)) {
+						holder.setText(holder.getText() + calc.getText());
+					} else {
+						holder.setText(numwrapper.getText());
+					}
 					ANS = Answer;
 					
 					calc.setText("" + formattedAnswer);  
 					
 					numwrapper.setText(calc.getText());
-					
 					isVisible = false;
 					reset = true;
 					firstValue = null;
@@ -1339,7 +1343,7 @@ public class BSIT2A extends JFrame {
 		answer_button.setBounds(652, 640, 94, 54);
 		panel.add(answer_button);
 		
-		RoundedButton format = new RoundedButton("", 0, "FRM");
+		format = new RoundedButton("", 0, "FRM");
 		format.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				helper.setFormat();
@@ -1347,6 +1351,8 @@ public class BSIT2A extends JFrame {
 		});
 		format.setBounds(756, 706, 20, 21);
 		panel.add(format);
-		helper = new CalculatorHelper(calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder, AC_button);
+		helper = new CalculatorHelper(format, calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder);
 	}
 }
+// BSIT2A TeamBa
+// Gordon College, Olongapo Philippines
