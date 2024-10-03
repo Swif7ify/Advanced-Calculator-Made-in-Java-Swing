@@ -1,3 +1,6 @@
+<br>
+![teamba](https://github.com/user-attachments/assets/15686bbe-5227-4e3f-9fde-b8f0c43a4130)
+
 A "VERY" basic calculator, with just a "FEW" lines of code, nothing much.
 
 
