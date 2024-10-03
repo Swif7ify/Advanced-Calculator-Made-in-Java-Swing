@@ -8,6 +8,7 @@ A Advanced Calculator project made by TeamBa
 
 **Features:**
   - Infinite Calculation in addition, subtraction, multiplication, division.
+  - Mixed Calculation in addition, subtraction, multiplication, division.
   - Plus/minus Function
   - Flooring, Ceiling, and Integer calculation
   - Modulus Function
@@ -29,3 +30,11 @@ A Advanced Calculator project made by TeamBa
   - xy, x+y, x^y, Cx, x+C, x^C Equation for Double summation/productnotation
   - ANS button and;
   - Number Format Button
+
+**How to Use:**
+- View the video below
+
+https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5
+
+
+
