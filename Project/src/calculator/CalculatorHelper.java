@@ -97,6 +97,7 @@ public class CalculatorHelper {
 		numwrapper.setBounds(13, 41, 691, 72);
         numbers.clear();
         operators.clear();
+        equationHolder.setText("Equation: --");
     }
 	
 	public void setEquals() {
@@ -140,11 +141,15 @@ public class CalculatorHelper {
 		numwrapper.setBounds(13, 41, 691, 72);
 		setImageHolder("/Picture/summation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
+		equationHolder.setBounds(134, 101, 133, 41);
+		equationHolder.setBackground(new Color(255, 255, 255));
 	}
 	
 	public void setNotationActive() {
 		setImageHolder("/Picture/notation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
+		equationHolder.setBounds(134, 101, 133, 41);
+		equationHolder.setBackground(new Color(255, 255, 255));
 	}
 	
 	public void setDSummationActive() {
