@@ -61,7 +61,7 @@ public class Main extends JFrame {
 		});
 	}
 
-	String firstValue, secondValue, thirdValue, fourthValue, operator, equation = "xy", A, B, C, D;
+	String firstValue, secondValue, thirdValue, fourthValue, operator, equation = "--", A, B, C, D;
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer = 0.0, result, ANS;
     int zeroCount = 0, valueIndex = 1;
     int a = 1, b = 1;
@@ -69,7 +69,8 @@ public class Main extends JFrame {
     boolean reset = false, isMinus = false, allowed = false, isVisible = false;
     private ArrayList<Double> numbers = new ArrayList<>();
     private ArrayList<String> operators = new ArrayList<>();
-    private Set<String> supportedAdvancedEquation = new HashSet<>(Set.of("∑", "∑∑", "Π", "ΠΠ"));
+    private Set<String> supportedAdvancedEquation = new HashSet<>(Set.of("∑∑", "ΠΠ"));
+    private Set<String> supportedAdvancedEquation2 = new HashSet<>(Set.of("∑", "Π"));
     private Set<String> supportedBasicEquation = new HashSet<>(Set.of("+", "-", "*", "÷"));
     
 	/**
@@ -214,6 +215,7 @@ public class Main extends JFrame {
 		        allowed = false;
 		        isVisible = false;
 				helper.resetAll();
+				equation = "--";
 			}
 		});
 		AC_button.setBounds(132, 192, 94, 54);
@@ -913,7 +915,7 @@ public class Main extends JFrame {
 				    }
 					switch(operator) {
 						case "∑":
-							Answer = (long) Functions.summation(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+							Answer = (long) Functions.summation(equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue);
 							break;
 			            	
 						case "∑∑":
@@ -921,7 +923,7 @@ public class Main extends JFrame {
 							break;
 			            	
 						case "Π":
-							Answer = (long) Functions.prodnot(firstDoubleValue, secondDoubleValue, thirdDoubleValue);
+							Answer = (long) Functions.prodnot(equation, firstDoubleValue, secondDoubleValue, thirdDoubleValue);
 			            	break;
 			            	
 						case "ΠΠ":
@@ -1295,7 +1297,7 @@ public class Main extends JFrame {
 		Cx_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		Cx_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(supportedAdvancedEquation.contains(operator)) {
+				if(supportedAdvancedEquation2.contains(operator)) {
 					equation = "Cx";
 					equationHolder.setText("Equation: " + equation);
 				}
@@ -1308,7 +1310,7 @@ public class Main extends JFrame {
 		xplusC_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		xplusC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(supportedAdvancedEquation.contains(operator)) {
+				if(supportedAdvancedEquation2.contains(operator)) {
 					equation = "x+C";
 					equationHolder.setText("Equation: " + equation);
 				}
@@ -1322,7 +1324,7 @@ public class Main extends JFrame {
 		XpowerC.setIcon(new ImageIcon(getClass().getResource("/Picture/xc.png")));
 		XpowerC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(supportedAdvancedEquation.contains(operator)) {
+				if(supportedAdvancedEquation2.contains(operator)) {
 					equation = "x^C";
 					equationHolder.setText("Equation: " + equation);
 				}

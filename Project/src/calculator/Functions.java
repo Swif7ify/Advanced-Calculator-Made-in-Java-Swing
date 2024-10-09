@@ -27,24 +27,46 @@ public class Functions {
 		return Functions.factorial(firstValue) / Functions.factorial(secondValue);
 	}
 	
-	public static long summation(double firstValue, double secondValue, double thirdValue) {
-		int start = (int) firstValue;
-		int end = (int) secondValue;
-		int constant = (int) thirdValue;
-		int sum = 0;
-		if (constant == 0 || constant == 1) {
-			for (int n = start; n <= end; n++) {
-				sum += n;
-			}
-		} else {
-			for (int n = start; n <= end; n++) {
-				sum +=constant;
-        	}
+	public static long summation(String equation, double firstValue, double secondValue, double thirdValue) {
+		long start = (long) firstValue;
+		long end = (long) secondValue;
+		long constant = (long) thirdValue;
+		long sum = 0;
+		
+		switch(equation) {
+			case "Cx":
+				for (long n = start; n <= end; n++) {
+					sum += constant * n;
+				}
+				break;
+				
+			case "x+C":
+				for (long n = start; n <= end; n++) {
+					sum += n + constant;
+				}
+				break;
+				
+			case "x^C":
+				for (long n = start; n <= end; n++) {
+					sum += Math.pow(n, constant);
+				}
+				break;
+			
+			default:
+				if (constant == 0 || constant == 1) {
+					for (long n = start; n <= end; n++) {
+						sum += n;
+					}
+				} else {
+					for (long n = start; n <= end; n++) {
+						sum +=constant;
+		        	}
+				}
 		}
 		return sum;
 	}
 	
-	public static long doubleSummation(Integer nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
+	public static long doubleSummation(int nValue, String equation, double firstValue, double secondValue, double thirdValue, double fourthValue) {
 		long start = (long) firstValue;
 		long end = (long) secondValue;
 		long jstart = (long) thirdValue;
@@ -66,27 +88,50 @@ public class Functions {
 						sum += (nValue * Math.pow(n, j));
 						break;
 					default:
-						sum += (n * j);
+						sum += n * j;
 				 }
 			}
 		}
 		return sum;
 	}
 	
-	public static long prodnot(double firstValue, double secondValue, double thirdValue) {
+	public static long prodnot(String equation, double firstValue, double secondValue, double thirdValue) {
 		long start = (long) firstValue;
 		long end = (long) secondValue;
 		long constant = (long) thirdValue;
 		long sum = 1;
-		if (constant == 0 || constant == 1) {
-			for (long n = start; n <= end; n++) {
-				sum *= n;
-			}
-		} else {
-			for (long n = start; n <= end; n++) {
-				sum *= constant;
-        	}
+		
+		switch(equation) {
+			case "Cx":
+				for (long n = start; n <= end; n++) {
+					sum *= constant * n;
+				}
+				break;
+				
+			case "x+C":
+				for (long n = start; n <= end; n++) {
+					sum *= n + constant;
+				}
+				break;
+				
+			case "x^C":
+				for (long n = start; n <= end; n++) {
+					sum *= Math.pow(n, constant);
+				}
+				break;
+			
+			default:
+				if (constant == 0 || constant == 1) {
+					for (long n = start; n <= end; n++) {
+						sum *= n;
+					}
+				} else {
+					for (long n = start; n <= end; n++) {
+						sum *= constant;
+		        	}
+				}
 		}
+		
 		return sum;
 	}
 	
@@ -112,7 +157,7 @@ public class Functions {
 						sum *= (nValue * Math.pow(n, j));
 						break;
 					default:
-						sum *= (n * j);
+						sum *= n * j;
 				 }
 			}
 		}
