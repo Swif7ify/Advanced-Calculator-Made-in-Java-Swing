@@ -260,8 +260,8 @@ public class Main extends JFrame {
 					operators.add(plus_button.getText());
 					calc.setText("");
 				} catch (Exception error) {
-					String currentText = numwrapper.getText();
-					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					String currentText = holder.getText();
+					holder.setText(currentText.substring(0, currentText.length() - 1));
 					return;
 				}
 			}
@@ -412,8 +412,8 @@ public class Main extends JFrame {
 						calc.setText("");
 					}
 				} catch (Exception error) {
-					String currentText = numwrapper.getText();
-					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					String currentText = holder.getText();
+					holder.setText(currentText.substring(0, currentText.length() - 1));
 					return;
 				}
 			}
@@ -576,7 +576,7 @@ public class Main extends JFrame {
 						return;
 					} else {
 						reset = false;
-						numwrapper.setText(numwrapper.getText() + "+");
+						numwrapper.setText(numwrapper.getText() + "*");
 						holder.setText(holder.getText() + numwrapper.getText());
 						numwrapper.setText("");
 						operator = multiplication_button.getText();
@@ -585,8 +585,8 @@ public class Main extends JFrame {
 						calc.setText("");
 					}
 				} catch (Exception error) {
-					String currentText = numwrapper.getText();
-					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					String currentText = holder.getText();
+					holder.setText(currentText.substring(0, currentText.length() - 1));
 					return;
 				}
 			}
@@ -747,7 +747,7 @@ public class Main extends JFrame {
 						return;
 					} else {
 						reset = false;
-						numwrapper.setText(numwrapper.getText() + "+");
+						numwrapper.setText(numwrapper.getText() + "/");
 						holder.setText(holder.getText() + numwrapper.getText());
 						numwrapper.setText("");
 						operator = division_button.getText();
@@ -756,8 +756,8 @@ public class Main extends JFrame {
 						calc.setText("");
 					}
 				} catch (Exception error) {
-					String currentText = numwrapper.getText();
-					numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+					String currentText = holder.getText();
+					holder.setText(currentText.substring(0, currentText.length() - 1));
 					return;
 				}
 			}
