@@ -51,7 +51,7 @@ Follow the steps below to run the calculator from your command line:
      <img src="https://github.com/user-attachments/assets/61bd6f26-30da-480e-bd52-c3020d10b512" style="width: 50%; height: auto;">
    </div>
    
-4. Navigate to the source directory by typing:
+4. Navigate to the source directory by typing in cmd:
    ```bash
    cd Project/src
 5. In cmd type
