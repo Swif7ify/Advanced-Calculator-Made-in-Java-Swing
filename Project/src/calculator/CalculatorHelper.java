@@ -2,10 +2,14 @@ package calculator;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -134,7 +138,8 @@ public class CalculatorHelper {
 	}
 	
 	public void setImageHolder(String text) {
-		imageHolder.setIcon(new ImageIcon(getClass().getResource(text)));
+		Image Holder = loadImage(text);
+		imageHolder.setIcon(new ImageIcon(Holder));
 	}
 	
 	public void setSummationActive() {
@@ -236,5 +241,19 @@ public class CalculatorHelper {
 	public void setSENone() {
 		String get = holder.getText();
 		if(get.equals("Syntax Error") || get.equals("Math Error")) holder.setText("");
+	}
+	
+	public Image loadImage(String path) {
+		try {
+	        InputStream imageStream = getClass().getResourceAsStream(path);
+	        if (imageStream != null) {
+	            return ImageIO.read(imageStream);
+	        } else {
+	            return null;
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 }
