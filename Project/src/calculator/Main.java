@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,9 +50,9 @@ public class Main extends JFrame {
 				try {
 					Main frame = new Main();
 					frame.setTitle("Calculator But Its Not A Normal Calculator It Is A Calculator That Can Literally Solve Human Crisis");
-					Image image = ImageIO.read(new File(getClass().getResource("/Picture/teamba.png").toURI()));
-					Image scaledImage = image.getScaledInstance(256, 256, Image.SCALE_SMOOTH);
-					frame.setIconImage(scaledImage);
+					InputStream imageStream = getClass().getResourceAsStream("/Picture/teamba.png");
+					Image image = ImageIO.read(imageStream);
+					frame.setIconImage(image);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -619,7 +619,6 @@ public class Main extends JFrame {
 		panel.add(squareroot_button);
 		
 		cuberoot_button = new RoundedButton("", 30, "CBRT");
-		cuberoot_button.setIcon(new ImageIcon(getClass().getResource("/Picture/cuberoot.png")));
 		cuberoot_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -639,7 +638,6 @@ public class Main extends JFrame {
 		panel.add(cuberoot_button);
 		
 		numroot_button = new RoundedButton("", 30, "NMROOT");
-		numroot_button.setIcon(new ImageIcon(getClass().getResource("/Picture/numroot.png")));
 		numroot_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -654,7 +652,6 @@ public class Main extends JFrame {
 		panel.add(numroot_button);
 		
 		RoundedButton summation_button = new RoundedButton("", 30, "SUM");	
-		summation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/summation.png")));
 		summation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -769,7 +766,6 @@ public class Main extends JFrame {
 		panel.add(division_button);
 		
 		RoundedButton XpowerY_button = new RoundedButton("", 30, "XY");
-		XpowerY_button.setIcon(new ImageIcon(getClass().getResource("/Picture/X.png")));
 		XpowerY_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -797,7 +793,6 @@ public class Main extends JFrame {
 		panel.add(XpowerY_button);
 		
 		RoundedButton XpowerYpowerofZ_button = new RoundedButton("", 30, "XYZ");
-		XpowerYpowerofZ_button.setIcon(new ImageIcon(getClass().getResource("/Picture/xyz.png")));
 		XpowerYpowerofZ_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -824,7 +819,6 @@ public class Main extends JFrame {
 		panel.add(XpowerYpowerofZ_button);
 		
 		RoundedButton productnotation_button = new RoundedButton("", 30, "PRN");
-		productnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/prodnot.png")));
 		productnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1014,7 +1008,6 @@ public class Main extends JFrame {
 		panel.add(equals_button);
 		
 		RoundedButton doublesummation_button = new RoundedButton("", 30, "DSUM");
-		doublesummation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doublesum.png")));
 		doublesummation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1040,7 +1033,6 @@ public class Main extends JFrame {
 		panel.add(doublesummation_button);
 
 		RoundedButton doubleproductnotation_button = new RoundedButton("", 30, "DNOT");
-		doubleproductnotation_button.setIcon(new ImageIcon(getClass().getResource("/Picture/doubleprodnot.png")));
 		doubleproductnotation_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1076,7 +1068,6 @@ public class Main extends JFrame {
 		
 		logsubtwoX_button = new RoundedButton("", 30, "LG2");
 		logsubtwoX_button.setFont(new Font("Tahoma", Font.BOLD, 17));
-		logsubtwoX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/log2x.png")));
 		logsubtwoX_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1095,7 +1086,6 @@ public class Main extends JFrame {
 		panel.add(logsubtwoX_button);
 		
 		lognumx_button = new RoundedButton("", 30, "LGN");
-		lognumx_button.setIcon(new ImageIcon(getClass().getResource("/Picture/lognumx.png")));
 		lognumx_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1115,7 +1105,6 @@ public class Main extends JFrame {
 		
 		RoundedButton logX_button = new RoundedButton("", 30, "LG");
 		logX_button.setFont(new Font("Tahoma", Font.BOLD, 17));
-		logX_button.setIcon(new ImageIcon(getClass().getResource("/Picture/logx.png")));
 		logX_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -1281,7 +1270,6 @@ public class Main extends JFrame {
 		
 		RoundedButton XpowerY = new RoundedButton("", 30, "x^y");
 		XpowerY.setFont(new Font("Tahoma", Font.BOLD, 17));
-		XpowerY.setIcon(new ImageIcon(getClass().getResource("/Picture/xy-white.png")));
 		XpowerY.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(supportedAdvancedEquation.contains(operator)) {
@@ -1321,7 +1309,6 @@ public class Main extends JFrame {
 
 		RoundedButton XpowerC = new RoundedButton("", 30, "x^c");
 		XpowerC.setFont(new Font("Tahoma", Font.BOLD, 17));
-		XpowerC.setIcon(new ImageIcon(getClass().getResource("/Picture/xc.png")));
 		XpowerC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(supportedAdvancedEquation2.contains(operator)) {
@@ -1353,7 +1340,48 @@ public class Main extends JFrame {
 		});
 		format.setBounds(756, 706, 20, 21);
 		panel.add(format);
+		
 		helper = new CalculatorHelper(format, calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder);
+		String[] imagePaths = {
+			    "/Picture/cuberoot.png", 
+			    "/Picture/numroot.png", 
+			    "/Picture/summation.png", 
+			    "/Picture/X.png", 
+			    "/Picture/xyz.png", 
+			    "/Picture/prodnot.png", 
+			    "/Picture/doublesum.png", 
+			    "/Picture/doubleprodnot.png", 
+			    "/Picture/log2x.png", 
+			    "/Picture/lognumx.png", 
+			    "/Picture/logx.png", 
+			    "/Picture/xy-white.png", 
+			    "/Picture/xc.png"
+		};
+		
+		RoundedButton[] buttons = {
+			    cuberoot_button, 
+			    numroot_button, 
+			    summation_button,
+			    XpowerY_button,
+			    XpowerYpowerofZ_button, 
+			    productnotation_button, 
+			    doublesummation_button, 
+			    doubleproductnotation_button, 
+			    logsubtwoX_button, 
+			    lognumx_button, 
+			    logX_button, 
+			    XpowerY, 
+			    XpowerC
+		};
+		
+		for (int i = 0; i < imagePaths.length; i++) {
+		    Image image = helper.loadImage(imagePaths[i]);
+		    if (image != null) {
+		        buttons[i].setIcon(new ImageIcon(image));
+		    } else {
+		        System.out.println("Failed to load image: " + imagePaths[i]);
+		    }
+		}
 	}
 }
 // BSIT2A TeamBa
