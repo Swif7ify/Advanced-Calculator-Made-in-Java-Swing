@@ -1,8 +1,15 @@
 # 🧮 Advanced Calculator
 
-<h3>Welcome to an advanced calculator built by **TeamBa**. This project offers a wide range of mathematical functions, from basic arithmetic operations to complex notations and summations. The calculator is designed for infinite calculations with robust handling of various mathematical functions.</h3>
+<p align="center">
+  <strong>Welcome to an advanced calculator built by TeamBa.</strong><br>
+  This project offers a wide range of mathematical functions, from basic arithmetic operations to complex notations and summations. The calculator is designed for infinite calculations with robust handling of various mathematical functions.
+</p>
 
-![Calculator](https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f)
+<div align="center"> 
+  <img src="https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f" style="width: 50%; height: 50%;">
+</div>
+
+---
 
 ## ✨ Features
 This calculator supports a comprehensive set of features, including but not limited to:
@@ -23,10 +30,14 @@ This calculator supports a comprehensive set of features, including but not limi
   - Operations with ANS button
   - Custom number format button for precise outputs
 
+---
+
 ## 📚 How to Use
 Watch the video tutorial below for step-by-step guidance on using the calculator's features.
 
 [![How to Use Video](https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5)](https://github.com/user-attachments/assets/8ee6f6dc-9a17-4af4-b9b0-7447520764c5)
+
+---
 
 ## ⚙️ How to Run
 Follow the steps below to run the calculator from your command line:
@@ -49,6 +60,7 @@ Follow the steps below to run the calculator from your command line:
    java calculator/Main.java
 <br>
 
+---
 
 ## 💡 Creating a JAR File
 1. Download or clone the repository.
@@ -84,6 +96,9 @@ Follow the steps below to run the calculator from your command line:
 
 > OPTIONAL: Cut and paste the Jar file to any directory to separate the file.
 <br>
+
+---
+
 
 ## 🛠 Creating a Batch File
 1. Create a `.bat` file in the folder.
