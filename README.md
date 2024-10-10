@@ -1,5 +1,7 @@
 # 🧮 Advanced Calculator
 
+<h2 align="center">Made in Java Swing</h2>
+
 <p align="center">
   <strong>Welcome to an advanced calculator built by TeamBa.</strong><br>
   This project offers a wide range of mathematical functions, from basic arithmetic operations to complex notations and summations. The calculator is designed for infinite calculations with robust handling of various mathematical functions.
