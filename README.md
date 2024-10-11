@@ -13,6 +13,10 @@
 
 ---
 
+>[!NOTE]
+>Updated: Fixed Bugs **`10-11-2024 3:50PM`**
+
+---
 ## ✨ Features
 This calculator supports a comprehensive set of features, including but not limited to:
 
