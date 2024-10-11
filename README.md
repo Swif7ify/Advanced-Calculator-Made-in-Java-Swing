@@ -90,12 +90,7 @@ Follow the steps below to run the calculator from your command line:
    jar cvfm Calculator.jar MANIFEST.MF src .
 7. Open the `.jar` file with .zip
 8. Navigate to `META-INF`
-<div style="display: flex; justify-content: center; width: 100%">
-  <img src="https://github.com/user-attachments/assets/e2c029a1-3bb9-4afe-86a3-fc92d57a0f69" style="width: 50%; height: 50%;">
-</div>
-<br>
-
-10. Click the `MANIFEST.MF` and make sure the `Main-Class: calculator.Main` is inside
+9. Click the `MANIFEST.MF` and make sure the `Main-Class: calculator.Main` is inside
 ![Manifest](https://github.com/user-attachments/assets/2af5d82c-799c-4538-b0dd-963a90ad561f)
 <br>
 
@@ -110,10 +105,13 @@ Follow the steps below to run the calculator from your command line:
 1. Create a `.bat` file in the folder.
 ![Batch Creation](https://github.com/user-attachments/assets/807e555d-c08c-4b5d-9427-bbdbf7d44355)
 2. Edit the `.bat` file using Notepad or another text editor.
-<div style="display: flex; justify-content: center; width: 100%">
-  <img src="https://github.com/user-attachments/assets/87927964-4a6b-4ac6-909d-3ca750bb541e" style="width: 50%; height: 50%;">
-</div>
-<br>
-
-
+   ```bash
+   @echo off
+   set JAR_PATH=C:\Users\earlo\OneDrive\Desktop\Runner\Calculator.jar
+   java -jar %JAR_PATH%
+   pause
 - Run the `.bat` file and Enjoy
+
+---
+
+  
