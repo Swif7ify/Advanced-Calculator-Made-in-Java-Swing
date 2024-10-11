@@ -63,7 +63,7 @@ public class Main extends JFrame {
 
 	String firstValue, secondValue, thirdValue, fourthValue, operator, equation = "--", A, B, C, D;
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer = 0.0, result, ANS;
-    int zeroCount = 0, valueIndex = 1;
+    int zeroCount = 0, valueIndex = 0;
     int a = 1, b = 1;
     Integer nValue = null;
     boolean reset = false, isMinus = false, allowed = false, isVisible = false;
@@ -178,11 +178,11 @@ public class Main extends JFrame {
 						if (currentText.equals("0") || currentEq.equals("0")) {
 							return;
 						} 
-						
 						if (currentText.length() > 1 || currentEq.length() > 1) {
-							numwrapper.setText(currentText.substring(0, currentText.length() - 1));
+							if(zeroCount == 0) helper.setZero();
+							else numwrapper.setText(currentText.substring(0, currentText.length() - 1));
 							calc.setText(currentEq.substring(0, currentEq.length() - 1));
-						} 
+						}
 						if(zeroCount == 0) {
 							operator = null;
 							helper.setZero();
@@ -235,7 +235,6 @@ public class Main extends JFrame {
 					 } else {
 						 calc.setText("-" + currentText);
 						 numwrapper.setText(calc.getText());
-						 holder.setText("+/-" + currentText);
 						 isMinus = true;
 					 }
 				 }
@@ -249,10 +248,12 @@ public class Main extends JFrame {
 		plus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (zeroCount == 0) return;
+					if(zeroCount == 0) return;
+					if(reset == true) helper.setIn(operator);
+					else numwrapper.setText(numwrapper.getText() + "+");
 					reset = false;
-					numwrapper.setText(numwrapper.getText() + "+");
-					holder.setText(holder.getText() + numwrapper.getText());
+					isMinus = false;
+					holder.setText(numwrapper.getText() + holder.getText());
 					numwrapper.setText("");
 					
 					operator = plus_button.getText();
@@ -399,18 +400,18 @@ public class Main extends JFrame {
 		minus_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if (zeroCount == 0) {
-						return;
-					} else {
-						reset = false;
-						numwrapper.setText(numwrapper.getText() + "-");
-						holder.setText(holder.getText() + numwrapper.getText());
-						numwrapper.setText("");
-						operator = minus_button.getText();
-						numbers.add(Double.parseDouble(calc.getText()));
-						operators.add(minus_button.getText());
-						calc.setText("");
-					}
+					if (zeroCount == 0)return;
+					if(reset == true) helper.setIn(operator);
+					else numwrapper.setText(numwrapper.getText() + "-");
+					reset = false;
+					isMinus = false;
+					holder.setText(numwrapper.getText() + holder.getText());
+					numwrapper.setText("");
+					
+					operator = minus_button.getText();
+					numbers.add(Double.parseDouble(calc.getText()));
+					operators.add(minus_button.getText());
+					calc.setText("");
 				} catch (Exception error) {
 					String currentText = holder.getText();
 					holder.setText(currentText.substring(0, currentText.length() - 1));
@@ -572,18 +573,18 @@ public class Main extends JFrame {
 		multiplication_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(zeroCount == 0) {
-						return;
-					} else {
-						reset = false;
-						numwrapper.setText(numwrapper.getText() + "*");
-						holder.setText(holder.getText() + numwrapper.getText());
-						numwrapper.setText("");
-						operator = multiplication_button.getText();
-						numbers.add(Double.parseDouble(calc.getText()));
-						operators.add(multiplication_button.getText());
-						calc.setText("");
-					}
+					if(zeroCount == 0) return;
+					if(reset == true) helper.setIn(operator);
+					else numwrapper.setText(numwrapper.getText() + "*");
+					reset = false;
+					isMinus = false;
+					holder.setText(numwrapper.getText() + holder.getText());
+					numwrapper.setText("");
+					
+					operator = multiplication_button.getText();
+					numbers.add(Double.parseDouble(calc.getText()));
+					operators.add(multiplication_button.getText());
+					calc.setText("");
 				} catch (Exception error) {
 					String currentText = holder.getText();
 					holder.setText(currentText.substring(0, currentText.length() - 1));
@@ -601,7 +602,7 @@ public class Main extends JFrame {
 				try {
 		            double currentValue = Double.parseDouble(calc.getText().trim());
 		            if(currentValue < 0) {
-		            	throw new IllegalArgumentException("Input must be a non-negative integer.");
+		            	helper.setMathError();
 		            }
 		            
 		            double squreRootValue = Math.sqrt(currentValue);
@@ -743,18 +744,18 @@ public class Main extends JFrame {
 		division_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(zeroCount == 0) {
-						return;
-					} else {
-						reset = false;
-						numwrapper.setText(numwrapper.getText() + "/");
-						holder.setText(holder.getText() + numwrapper.getText());
-						numwrapper.setText("");
-						operator = division_button.getText();
-						numbers.add(Double.parseDouble(calc.getText()));
-						operators.add(division_button.getText());
-						calc.setText("");
-					}
+					if(zeroCount == 0) return;
+					if(reset == true) helper.setIn(operator);
+					else numwrapper.setText(numwrapper.getText() + "/");
+					reset = false;
+					isMinus = false;
+					holder.setText(numwrapper.getText() + holder.getText());
+					numwrapper.setText("");
+					
+					operator = division_button.getText();
+					numbers.add(Double.parseDouble(calc.getText()));
+					operators.add(division_button.getText());
+					calc.setText("");
 				} catch (Exception error) {
 					String currentText = holder.getText();
 					holder.setText(currentText.substring(0, currentText.length() - 1));
@@ -854,6 +855,7 @@ public class Main extends JFrame {
 				    calc.setText(calc.getText() + zero_button.getText());
 				    numwrapper.setText(numwrapper.getText() + "0");
 				    helper.setSENone();
+				    zeroCount++;
 				}
 			}
 		});
@@ -1126,6 +1128,7 @@ public class Main extends JFrame {
 		A_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (valueIndex == 1) {
+					if(calc.getText().equals("")) calc.setText("0"); zeroCount = 1;
 					A = calc.getText();
 		        } else {
 		        	return;

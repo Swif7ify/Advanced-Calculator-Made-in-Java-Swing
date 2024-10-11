@@ -210,13 +210,12 @@ public class Functions {
 	}
 	
 	public static String formatString(double Answer) {
-		String formattedAnswer;
-		if (Answer % 1 == 0) {
-			formattedAnswer = String.valueOf((long) Answer);
-		} else {
-			formattedAnswer = String.format("%.2f", Answer);
-		}
-		
-		return formattedAnswer;
+	    String formattedAnswer;
+	    if (Answer % 1 == 0) {
+	        formattedAnswer = String.valueOf((long) Answer);
+	    } else {
+	        formattedAnswer = String.format("%.6f", Answer).replaceAll("0*$", "").replaceAll("\\.$", "");
+	    }
+	    return formattedAnswer;
 	}
 }

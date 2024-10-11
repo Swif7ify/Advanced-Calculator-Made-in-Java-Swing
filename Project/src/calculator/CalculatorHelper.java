@@ -76,6 +76,10 @@ public class CalculatorHelper {
 		numwrapper.setText("");
 	}
 	
+	public void setIn(String operator) {
+		holder.setText(operator);
+	}
+	
 	public void setMathError() {
 		calc.setText("");
 		holder.setText("Math Error");
