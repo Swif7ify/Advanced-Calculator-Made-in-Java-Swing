@@ -38,7 +38,9 @@ public class Main extends JFrame {
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
 	private RoundedButton format;
-	
+	private RoundedButton ansHolder1;
+	private RoundedButton ansHolder2;
+	private RoundedButton ansHolder3;
 	/**
 	  Launch the application.
 	 */
@@ -65,6 +67,7 @@ public class Main extends JFrame {
     double firstDoubleValue, secondDoubleValue, thirdDoubleValue, fourthDoubleValue, Answer = 0.0, result, ANS;
     int zeroCount = 0, valueIndex = 0;
     int a = 1, b = 1;
+    long ah1, ah2, ah3;
     Integer nValue = null;
     boolean reset = false, isMinus = false, allowed = false, isVisible = false;
     private ArrayList<Double> numbers = new ArrayList<>();
@@ -991,6 +994,14 @@ public class Main extends JFrame {
 					}
 					ANS = Answer;
 					
+					if(ah1 == 0) {
+						ah1 = (long) ANS;
+					} else if (ah2 == 0) {
+						ah2 = (long) ANS;
+					} else {
+						ah3 = (long) ANS;
+					}
+					
 					calc.setText("" + formattedAnswer);  
 					
 					numwrapper.setText(calc.getText());
@@ -1343,6 +1354,39 @@ public class Main extends JFrame {
 		});
 		format.setBounds(756, 706, 20, 21);
 		panel.add(format);
+		
+		ansHolder1 = new RoundedButton("", 0, "ah1");
+		ansHolder1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ANS = ah1;
+				ah1 = 0;
+				answer_button.doClick();
+			}
+		});
+		ansHolder1.setBounds(334, 0, 20, 21);
+		panel.add(ansHolder1);
+		
+		ansHolder2 = new RoundedButton("", 0, "ah2");
+		ansHolder2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ANS = ah2;
+				ah2 = 0;
+				answer_button.doClick();
+			}
+		});
+		ansHolder2.setBounds(374, 0, 20, 21);
+		panel.add(ansHolder2);
+		
+		ansHolder3 = new RoundedButton("", 0, "ah3");
+		ansHolder3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ANS = ah3;
+				ah3 = 0;
+				answer_button.doClick();
+			}
+		});
+		ansHolder3.setBounds(414, 0, 20, 21);
+		panel.add(ansHolder3);
 		
 		helper = new CalculatorHelper(format, calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder);
 		String[] imagePaths = {

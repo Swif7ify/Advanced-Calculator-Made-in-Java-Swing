@@ -20,9 +20,16 @@ public class RoundedButton extends JButton {
     	Color black = new Color(59, 9, 24);
     	Color white = new Color(255, 255, 255);
     	
+    	Color reds = new Color(240, 0, 0);
+    	Color blue = new Color(0, 240, 0);
+    	Color green = new Color(0, 0, 240);
+    	
     	addColors(new ColorPair(orange, black), "DL", "AC", "PM", "FLR", "CEL", "IT", "INTD", "MOD", "FAC", "SQRT", "CBRT", "NMROOT", "SUM", "XY", "XYZ", "PRN", "ZRO", "PRD", "DSUM", "DNOT");
     	addColors(new ColorPair(red, white), "PLUS", "MN", "MUL", "DIV", "EQU");
     	addColors(new ColorPair(purple, white), "SVN", "EHT", "NN", "FR", "FV", "SX", "ON", "TWO", "THR", "ST", "LG2", "LGN", "LG", "A", "B", "C", "D", "a+b", "a/b", "XEY", "x+y", "x^y", "CEX", "x+c", "x^c", "ANS");
+    	addColors(new ColorPair(reds, white), "ah1");
+    	addColors(new ColorPair(blue, white), "ah2");
+    	addColors(new ColorPair(green, white), "ah3");
     }
     private static void addColors(ColorPair colorPair, String... identifiers) {
         for (String identifier : identifiers) {
