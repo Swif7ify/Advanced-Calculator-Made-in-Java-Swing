@@ -1244,7 +1244,7 @@ public class Main extends JFrame {
 		                secondValue = calc.getText();                
 		            }
 					calc.setText("");
-					numwrapper.setText(zeroCount == 1 ?(numwrapper.getText() + "!÷") : numwrapper.getText() + "!");
+					numwrapper.setText(zeroCount == 1 ?(numwrapper.getText() + "!/") : numwrapper.getText() + "!");
 					zeroCount++;
 					operator = "a! / b!";
 				} catch (Exception error) {
