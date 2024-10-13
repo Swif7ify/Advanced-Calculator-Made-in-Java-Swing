@@ -8,8 +8,9 @@
 </p>
 
 <div align="center"> 
-  <img src="https://github.com/user-attachments/assets/8f64d096-38bc-4391-91a7-443ef909ab9f" style="width: 50%; height: 50%;">
+  <img src="https://github.com/user-attachments/assets/88209a9c-4c71-4b1a-a696-6fc8d9eaedaf" style="width: 50%; height: 50%;">
 </div>
+
 
 ---
 
