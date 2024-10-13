@@ -102,7 +102,7 @@ public class Main extends JFrame {
 		equationHolder = new RoundJTextField(10);
 		equationHolder.setHorizontalAlignment(SwingConstants.CENTER);
 		equationHolder.setEditable(false);
-		equationHolder.setFont(new Font("Malgun Gothic", Font.PLAIN, 20));
+		equationHolder.setFont(new Font("Malgun Gothic", Font.BOLD, 20));
 		equationHolder.setText("Equation: " + equation);
 		panel_1.add(equationHolder);
 		

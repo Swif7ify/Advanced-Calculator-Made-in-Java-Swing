@@ -111,6 +111,10 @@ public class CalculatorHelper {
 	public void setEquals() {
 		setXYZInactive();
 	}
+
+	public void setEquationNull() {
+		equationHolder.setText("Equation: --");
+	}
 	
 	public void setXYZInactive() {
 		zValue.setBounds(0, 0, 0, 0);
@@ -122,6 +126,7 @@ public class CalculatorHelper {
 		numwrapper.setBounds(13, 41, 691, 72);
 		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 38)); 
 		variableHolder.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 30));
+		setEquationNull();
 	}
 	
 	public void setXYActive() {
@@ -144,6 +149,7 @@ public class CalculatorHelper {
 	public void setImageHolder(String text) {
 		Image Holder = loadImage(text);
 		imageHolder.setIcon(new ImageIcon(Holder));
+		setEquationNull();
 	}
 	
 	public void setSummationActive() {
@@ -151,14 +157,14 @@ public class CalculatorHelper {
 		setImageHolder("/Picture/summation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
 		equationHolder.setBounds(134, 101, 133, 41);
-		equationHolder.setBackground(new Color(255, 255, 255));
+		equationHolder.setBackground(new Color(213, 178, 224));
 	}
 	
 	public void setNotationActive() {
 		setImageHolder("/Picture/notation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
 		equationHolder.setBounds(134, 101, 133, 41);
-		equationHolder.setBackground(new Color(255, 255, 255));
+		equationHolder.setBackground(new Color(213, 178, 224));
 	}
 	
 	public void setDSummationActive() {
@@ -219,7 +225,7 @@ public class CalculatorHelper {
 		variableHolder.setBounds(273, 103, 60, 39);
 		variableHolder.setText("N =");
 		equationHolder.setBounds(134, 101, 133, 41);
-		equationHolder.setBackground(new Color(255, 255, 255));
+		equationHolder.setBackground(new Color(213, 178, 224));
 	}
 	
 	public void setFormat() {
