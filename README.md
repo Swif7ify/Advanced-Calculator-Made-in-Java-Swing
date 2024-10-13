@@ -93,7 +93,7 @@ Follow the steps below to run the calculator from your command line:
 5. Open `cmd` in the address bar
 6. In cmd type
    ```bash
-   jar cvfm Calculator.jar MANIFEST.MF src .
+   jar cvfm Calculator.jar MANIFEST.MF -C src .
 7. Open the `.jar` file with .zip
 8. Navigate to `META-INF`
 9. Click the `MANIFEST.MF` and make sure the `Main-Class: calculator.Main` is inside
