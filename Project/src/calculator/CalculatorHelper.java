@@ -3,15 +3,22 @@ package calculator;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import java.text.DecimalFormat;
@@ -34,6 +41,9 @@ public class CalculatorHelper {
 	private RoundedButton cuberoot_button;
 	private RoundedButton numroot_button;
 	private RoundedButton format;
+	private RoundedButton DEL_button;
+	private RoundedButton equals_button;
+	private RoundedButton AC_button;
 	
 	boolean isActive = false;
 	boolean isFormatted = false;
@@ -42,7 +52,7 @@ public class CalculatorHelper {
 	private ArrayList<String> operators;
 	
 	public CalculatorHelper(RoundedButton format, RoundJTextField calc, RoundJTextField numwrapper, RoundJTextField holder,
-			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder) {
+			RoundJTextField zValue, RoundJTextField yValue, RoundJTextField xValue, JLabel imageHolder, JLabel variableHolder,RoundedButton lognumx_button, RoundedButton logsubtwoX_button, RoundedButton set_button, RoundedButton cuberoot_button, RoundedButton numroot_button, RoundJTextField equationHolder, RoundedButton DEL_button, RoundedButton equals_button, RoundedButton AC_button) {
 		
 		this.calc = calc;
 		this.numwrapper = numwrapper;
@@ -59,6 +69,9 @@ public class CalculatorHelper {
 		this.numroot_button = numroot_button;
 		this.equationHolder = equationHolder;
 		this.format = format;
+		this.DEL_button = DEL_button;
+		this.equals_button = equals_button;
+		this.AC_button = AC_button;
 		
 		numbers = new ArrayList<>();
 		operators = new ArrayList<>();
@@ -111,6 +124,10 @@ public class CalculatorHelper {
 	public void setEquals() {
 		setXYZInactive();
 	}
+
+	public void setEquationNull() {
+		equationHolder.setText("Equation: --");
+	}
 	
 	public void setXYZInactive() {
 		zValue.setBounds(0, 0, 0, 0);
@@ -122,12 +139,15 @@ public class CalculatorHelper {
 		numwrapper.setBounds(13, 41, 691, 72);
 		xValue.setFont(new Font("Malgun Gothic", Font.BOLD, 38)); 
 		variableHolder.setFont(new Font("Microsoft Sans Serif", Font.BOLD, 30));
+		setEquationNull();
 	}
 	
 	public void setXYActive() {
 		setImageHolder("/Picture/xy-black.png");
 		yValue.setBounds(523, 45, 178, 25);
 		xValue.setBounds(523, 63, 161, 41);
+		xValue.requestFocusInWindow();
+		setFocusActive();
 		imageHolder.setBounds(10, 33, 66, 72);
 		xValue.setHorizontalAlignment(SwingConstants.TRAILING);
 	}
@@ -137,13 +157,114 @@ public class CalculatorHelper {
 		zValue.setBounds(517, 31, 189, 25);
 		yValue.setBounds(514, 56, 178, 27);
 		xValue.setBounds(514, 77, 161, 41);
+		xValue.requestFocusInWindow();
+		setFocusActive();
 		imageHolder.setBounds(10, 33, 66, 72);
 		xValue.setHorizontalAlignment(SwingConstants.TRAILING);
+	}
+	
+	public void setFocusActive() {
+		xValue.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        if (xValue.getText().equals("0")) {
+		            xValue.setText("");
+		        }
+		    }
+		});
+		yValue.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        if (yValue.getText().equals("0")) {
+		        	yValue.setText(""); 
+		        }
+		    }
+		});
+		zValue.addKeyListener(new KeyAdapter() {
+		    @Override
+		    public void keyTyped(KeyEvent e) {
+		        if (zValue.getText().equals("0")) {
+		        	zValue.setText(""); // Clear the text
+		        }
+		    }
+		});
+		bindArrowKey(zValue, "UP", yValue);
+        bindArrowKey(yValue, "UP", xValue);
+        bindArrowKey(xValue, "UP", zValue); 
+
+        bindArrowKey(zValue, "DOWN", xValue);
+        bindArrowKey(yValue, "DOWN", zValue);
+        bindArrowKey(xValue, "DOWN", yValue); 
+	}
+	
+	public void setKeyToObject(JPanel panel) {
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "delete");
+        panel.getActionMap().put("delete", new AbstractAction() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public void actionPerformed(ActionEvent e) {
+            	AC_button.doClick();
+            }
+        });
+        
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "backspace");
+        panel.getActionMap().put("backspace", new AbstractAction() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public void actionPerformed(ActionEvent e) {
+            	DEL_button.doClick();
+            }
+        });
+
+        panel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enter");
+        panel.getActionMap().put("enter", new AbstractAction() {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public void actionPerformed(ActionEvent e) {
+                equals_button.doClick();
+            }
+        });
+	}
+	
+	public void bindArrowKey(RoundJTextField field, String direction, RoundJTextField targetField) {
+	    int condition = JComponent.WHEN_FOCUSED;
+	    InputMap inputMap = field.getInputMap(condition);
+	    ActionMap actionMap = field.getActionMap();
+	    
+	    KeyStroke keyStroke;
+	    if ("DOWN".equals(direction)) {
+	        keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0);
+	    } else {
+	        keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0);
+	    }
+
+	    inputMap.put(keyStroke, direction);
+	    actionMap.put(direction, new AbstractAction() {
+	        private static final long serialVersionUID = 1L;
+
+	        @Override
+	        public void actionPerformed(ActionEvent e) {
+	            targetField.requestFocusInWindow();
+	        }
+	    });
 	}
 	
 	public void setImageHolder(String text) {
 		Image Holder = loadImage(text);
 		imageHolder.setIcon(new ImageIcon(Holder));
+		setEquationNull();
 	}
 	
 	public void setSummationActive() {
@@ -151,14 +272,14 @@ public class CalculatorHelper {
 		setImageHolder("/Picture/summation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
 		equationHolder.setBounds(134, 101, 133, 41);
-		equationHolder.setBackground(new Color(255, 255, 255));
+		equationHolder.setBackground(new Color(213, 178, 224));
 	}
 	
 	public void setNotationActive() {
 		setImageHolder("/Picture/notation_hold.png");
 		imageHolder.setBounds(14, 42, 66, 72);
 		equationHolder.setBounds(134, 101, 133, 41);
-		equationHolder.setBackground(new Color(255, 255, 255));
+		equationHolder.setBackground(new Color(213, 178, 224));
 	}
 	
 	public void setDSummationActive() {
@@ -219,7 +340,7 @@ public class CalculatorHelper {
 		variableHolder.setBounds(273, 103, 60, 39);
 		variableHolder.setText("N =");
 		equationHolder.setBounds(134, 101, 133, 41);
-		equationHolder.setBackground(new Color(255, 255, 255));
+		equationHolder.setBackground(new Color(213, 178, 224));
 	}
 	
 	public void setFormat() {
