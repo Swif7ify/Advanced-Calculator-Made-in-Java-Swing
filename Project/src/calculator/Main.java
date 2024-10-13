@@ -41,6 +41,9 @@ public class Main extends JFrame {
 	private RoundedButton ansHolder1;
 	private RoundedButton ansHolder2;
 	private RoundedButton ansHolder3;
+	private RoundedButton DEL_button;
+	private RoundedButton equals_button;
+	private RoundedButton AC_button;
 	/**
 	  Launch the application.
 	 */
@@ -151,7 +154,7 @@ public class Main extends JFrame {
 		holder.setBounds(37, 2, 210, 41);
 		panel_1.add(holder);
 		
-		RoundedButton DEL_button = new RoundedButton("DEL", 30, "DL");
+		DEL_button = new RoundedButton("DEL", 30, "DL");
 		DEL_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		DEL_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -201,7 +204,7 @@ public class Main extends JFrame {
 		DEL_button.setBounds(28, 192, 94, 54);
 		panel.add(DEL_button);
 		
-		RoundedButton AC_button = new RoundedButton("AC", 30, "AC");
+		AC_button = new RoundedButton("AC", 30, "AC");
 		AC_button.setFont(new Font("Tahoma", Font.BOLD, 17));
 		AC_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -878,7 +881,7 @@ public class Main extends JFrame {
 		period_button.setBounds(132, 448, 94, 54);
 		panel.add(period_button);
 		
-		RoundedButton equals_button = new RoundedButton("=", 30, "EQU");
+		equals_button = new RoundedButton("=", 30, "EQU");
 		equals_button.setFont(new Font("Tahoma", Font.BOLD, 20));
 		equals_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1391,7 +1394,9 @@ public class Main extends JFrame {
 		ansHolder3.setBounds(414, 0, 20, 21);
 		panel.add(ansHolder3);
 		
-		helper = new CalculatorHelper(format, calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder);
+
+		
+		helper = new CalculatorHelper(format, calc, numwrapper, holder, zValue, yValue, xValue, imageHolder, variableHolder, lognumx_button, logsubtwoX_button, set_button, cuberoot_button, numroot_button, equationHolder, DEL_button, equals_button, AC_button);
 		String[] imagePaths = {
 			    "/Picture/cuberoot.png", 
 			    "/Picture/numroot.png", 
@@ -1407,7 +1412,7 @@ public class Main extends JFrame {
 			    "/Picture/xy-white.png", 
 			    "/Picture/xc.png"
 		};
-		
+		helper.setKeyToObject(panel);
 		RoundedButton[] buttons = {
 			    cuberoot_button, 
 			    numroot_button, 
