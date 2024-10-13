@@ -18,6 +18,8 @@
 >Updated: Added 3 Answer holder **`10-12-2024 12:06PM`** <br>
 >Updated: Fixed Bugs **`10-12-2024 1:57PM`** <br>
 >Updated Fixed Bugs **`10-13-2024 8:35AM`** <br>
+>Updated Added XYZ navigation **`10-13-2024 10:245AM`** <br>
+>Updated Added backspace, delete and enter keyevent to trigger DEL_button, AC_button and equals_button **`10-13-2024 11:25AM`** <br>
 
 ---
 ## ✨ Features
@@ -111,7 +113,7 @@ Follow the steps below to run the calculator from your command line:
    ```bash
    @echo off
    set JAR_PATH=C:\Users\earlo\OneDrive\Desktop\Runner\Calculator.jar
-   java -jar %JAR_PATH%
+   start javaw -jar %JAR_PATH%
    pause
 - Run the `.bat` file and Enjoy
 
