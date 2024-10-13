@@ -1358,6 +1358,7 @@ public class Main extends JFrame {
 		ansHolder1 = new RoundedButton("", 0, "ah1");
 		ansHolder1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(ah1 == 0) return; 
 				ANS = ah1;
 				ah1 = 0;
 				answer_button.doClick();
@@ -1369,6 +1370,7 @@ public class Main extends JFrame {
 		ansHolder2 = new RoundedButton("", 0, "ah2");
 		ansHolder2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(ah2 == 0) return; 
 				ANS = ah2;
 				ah2 = 0;
 				answer_button.doClick();
@@ -1380,6 +1382,7 @@ public class Main extends JFrame {
 		ansHolder3 = new RoundedButton("", 0, "ah3");
 		ansHolder3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(ah3 == 0) return; 
 				ANS = ah3;
 				ah3 = 0;
 				answer_button.doClick();
