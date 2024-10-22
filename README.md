@@ -66,7 +66,7 @@ Follow the steps below to run the calculator from your command line:
    cd Project/src
 5. In cmd type
    ```bash
-   javac calculator/Main.java
+   javac calculator/*.java
 6. Lastly type
    ```bash
    java calculator/Main.java
